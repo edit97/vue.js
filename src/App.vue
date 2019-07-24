@@ -1,28 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <navigation></navigation>
+    <search></search>
+    <filters></filters>
+    <v-flex sm10 offset-sm1 mt-5>
+      <tab></tab>
+    </v-flex>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navigation from "./components/toolbars/Navigation.vue";
+import Search from "./components/toolbars/Search.vue";
+import Filters from "./components/toolbars/Filters";
+import  Tab from "./components/tab/Tab";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    Navigation,
+    Search,
+    Filters,
+    Tab,
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>

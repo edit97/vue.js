@@ -15,6 +15,32 @@
                               <p>Номера в городе Барселона пользуются спросом на выбранные вами даты. Забронируйте ваш, пока цены не выросли.</p>
                           </v-card-text>
                       </v-card>
+                      <v-item-group>
+                          <v-container grid-list-md px-0>
+                              <v-layout wrap>
+                                  <v-flex
+                                          v-for="n in 4"
+                                          :key="n"
+                                          xs6 md3>
+                                      <v-item v-slot:default="{ active, toggle }">
+                                          <v-card
+                                                  :color="active ? '#b7dcf5' : ''"
+                                                  class="d-flex align-center tag_filter"
+                                                  height="50"
+                                                  @click="toggle"
+                                          >
+                                              <v-card-text>
+                                                  {{items[n-1]}}
+                                              </v-card-text>
+                                              <v-scroll-y-transition>
+                                                  <div v-if="active" class="display-3 flex-grow-1 text-center"></div>
+                                              </v-scroll-y-transition>
+                                          </v-card>
+                                      </v-item>
+                                  </v-flex>
+                              </v-layout>
+                          </v-container>
+                      </v-item-group>
                       <ticket
                               v-for="i in 3"
                               :key="i"
@@ -31,12 +57,20 @@ import MainTab from './Main';
 import Ticket from './Ticket';
 export default {
   name: "Home",
+  data(){
+    return{
+      items: ['Лучшие результаты', 'По возрастанию цены', 'Варианты с высокими оценками', 'Секретные предложения'],
+    }
+  },
   components: {Ticket, MainTab}
 };
 </script>
 
 <style scoped>
-.sale{
-    color: #e12d2d;
-}
+    .sale{
+        color: #e12d2d;
+    }
+    .tag_filter{
+        font-weight: bold;
+    }
 </style>

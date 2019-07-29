@@ -1,49 +1,49 @@
 <template >
-    <v-app-bar>
-        <v-layout >
+    <v-app-bar :fixed="fixed">
+        <v-layout class="filters">
            <v-flex sm10 offset-xs1 row pt-4>
                <v-flex sm2>
+<!--                   :menu-props="{ closeOnContentClick: true,  maxHeight:300, closeOnClick: true, }"-->
                    <v-select
-                           :items="items"
+                           :items="populars"
+                           v-model="popular"
                            label="Popular"
-                           solo dark
+                           solo dark dense rounded
                            prepend-inner-icon="mdi-octagram-outline"
-                           class="popSelect"
                    ></v-select>
                </v-flex>
                <v-flex sm1 ml-2>
                    <v-select
-                           :items="items"
+                           :items="prices"
+                           v-model="price"
                            label="Price"
-                           solo dark
+                           solo dark dense rounded
                            prepend-inner-icon="mdi-tag"
-                           class="popSelect"
                    ></v-select>
                </v-flex>
                <v-flex sm2 mx-2>
                    <v-select
-                           :items="items"
+                           :items="counts"
+                           v-model="count"
                            label="Count"
-                           solo dark
+                           solo dark dense rounded
                            prepend-inner-icon="mdi-star"
-                           class="popSelect"
                    ></v-select>
                </v-flex>
                <v-flex sm2>
                    <v-select
-                           :items="items"
+                           :items="regions"
+                           v-model="region"
                            label="Region"
-                           solo dark
+                           solo dark dense rounded
                            prepend-inner-icon="mdi-map-marker"
-                           class="popSelect"
                    ></v-select>
                </v-flex>
                <v-spacer></v-spacer>
                <v-text-field
-                       solo sm3
-                       label="Search"
-                       prepend-inner-icon="mdi-magnify"
-                       class="search"
+                   solo sm3 rounded
+                   label="Search"
+                   prepend-inner-icon="mdi-magnify"
                ></v-text-field>
            </v-flex>
         </v-layout>
@@ -54,12 +54,30 @@
     name: 'Filters',
     data(){
       return{
-        items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+        populars: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+        prices: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+        counts: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+        regions: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+        popular: null,
+        price: null,
+        count: null,
+        region: null,
+        fixed: false,
       }
+    },
+    created() {
+      window.addEventListener('scroll', () => {
+        window.pageYOffset >= 120 ? this.fixed =true : this.fixed = false;
+      });
     }
   };
 </script>
 
-<style scoped>
-
+<style>
+    .filters .v-text-field.v-text-field--solo:not(.v-text-field--solo-flat)>.v-input__control>.v-input__slot {
+        padding: 0 10px!important;
+    }
+    .filters .v-input__slot{
+        margin-bottom: 0 !important;
+    }
 </style>

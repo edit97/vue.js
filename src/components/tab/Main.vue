@@ -1,7 +1,7 @@
 <template>
     <div class="main_styles">
         <iframe
-                width="318"
+                width="260"
                 height="120"
                 id="gmap_canvas"
                 src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed"
@@ -13,11 +13,11 @@
         <v-card color="#f3f9f2" class="my-2">
             <v-card-text>
                 <v-flex row m-0>
-                    <v-btn fab dark large class="mr-2" color="#32a923">
+                    <v-btn fab dark large class="mr-1" color="#32a923">
                         <v-icon dark>mdi-coffee</v-icon>
                     </v-btn>
-                    <span>Показать варианты с <br> бесплатным завтраком</span>
-                    <v-switch v-model="lunch" class="ml-2 mt-2"></v-switch>
+                   <small class="pt-2"> <span>Показать варианты с <br> бесплатным завтраком</span></small>
+                    <v-switch v-model="lunch" class="ml-1 mt-2"></v-switch>
                 </v-flex>
             </v-card-text>
         </v-card>
@@ -42,9 +42,10 @@
                                 <v-rating
                                         v-model="rating"
                                         background-color="pink lighten-3"
-                                        color="pink" dense
+                                        color="orange" dense readonly empty-icon
+                                        size="16"
                                 ></v-rating>
-                                <v-flex row>
+                                <v-flex row m-0>
                                     <v-btn depressed small dark color="#5392f9">8.3</v-btn>
                                     <div class="ml-1">
                                         <p class="mb-0"><small>Отлично</small></p>
@@ -56,8 +57,8 @@
                                 </v-flex>
                             </v-flex>
                             <v-flex class="text-right" mr-1>
-                                <h6>372 $</h6>
-                                <small>Цены за ночь от</small>
+                                <h6 class="m-0">372 $</h6>
+                                <p class="price m-0">Цены за ночь от</p>
                             </v-flex>
                         </v-layout>
                     </v-container>
@@ -96,6 +97,9 @@
         color: #e91e63;
         font-weight: bold;
     }
+    .main_styles .price{
+        font-size: x-small;
+    }
     .main_styles .v-rating .v-icon {
         /*font-size: 15px !important;*/
         padding: 0!important;
@@ -103,5 +107,8 @@
     .main_styles .accent--text {
         color: #3667b9 !important;
         caret-color: #3667b9 !important;
+    }
+    .main_styles .v-card__text{
+        padding: 4px !important;
     }
 </style>

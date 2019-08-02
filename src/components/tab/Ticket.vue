@@ -1,27 +1,6 @@
 <template>
     <v-card class="ticket">
         <v-layout mt-3>
-            <!--<v-flex sm3>
-                <v-img
-                        height="200"
-                        src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
-                ></v-img>
-                <v-item-group>
-                    <v-layout wrap>
-                        <v-flex
-                                v-for="i in 10"
-                                :key="i" xs2 md2 sm2 m-1>
-                            <v-item>
-                                <v-img
-                                        src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
-                                        height="50"
-                                        class="text-right pa-2"
-                                ></v-img>
-                            </v-item>
-                        </v-flex>
-                    </v-layout>
-                </v-item-group>
-            </v-flex>-->
             <v-flex sm3>
                 <v-system-bar lights-out></v-system-bar>
                 <v-carousel
@@ -61,30 +40,18 @@
                                         height="50"
                                         class="text-right pa-2"
                                 ></v-img>
-                               <!-- <v-layout
-                                        align-center
-                                        fill-height
-                                        justify-center
-                                >
-                                    <v-scale-transition>
-                                        <v-icon
-                                                v-if="active"
-                                                color="white"
-                                                size="48"
-                                                v-text="'mdi-close-circle-outline'"
-                                        ></v-icon>
-                                    </v-scale-transition>
-                                </v-layout>-->
                             </v-card>
                         </v-slide-item>
                     </v-slide-group>
                 </v-sheet>
             </v-flex>
             <v-flex>
-                <v-container grid-list-lg pa-3>
+                <v-container grid-list-lg pa-1>
                     <v-layout column pt-1>
                         <v-flex class="text-left">
                             <h4><a>OD Barcelona</a></h4>
+<!--                            <router-link to="/hotel">Перейти к Foo</router-link>-->
+<!--                            <router-view></router-view>-->
                             <v-rating
                                     v-model="rating"
                                     background-color="#ffa726"
@@ -271,5 +238,8 @@
     .reserve{
         color: #d50000;
         font-size: 13px;
+    }
+    .ticket .v-slide-group__next, .v-slide-group__prev {
+        min-width: 16px !important;
     }
 </style>

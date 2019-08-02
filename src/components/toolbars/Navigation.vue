@@ -39,7 +39,7 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn class="ma-2" outlined color="red darken-1"> Button</v-btn>
+        <v-btn class="ma-2" flat outlined color="red darken-1"> Button</v-btn>
         <v-divider class="mx-2" inset vertical></v-divider>
         <v-menu
                 :open-on-hover="true"

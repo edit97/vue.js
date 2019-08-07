@@ -8,12 +8,12 @@
             class="nav_img"
         ></v-img>
         <v-divider class="mx-3" inset vertical></v-divider>
-        <v-toolbar-items>
-            <v-btn text>Link 1</v-btn>
-            <v-btn text>Link 2</v-btn>
-            <v-btn text>Link 3</v-btn>
-            <v-btn text>Link 4</v-btn>
-            <v-btn text>Link 5</v-btn>
+        <v-toolbar-items class="nav">
+            <v-btn text>Hotels + Homes</v-btn>
+            <v-btn text>Flights</v-btn>
+            <v-btn text>Airport transfer</v-btn>
+            <v-btn text>Family deals</v-btn>
+            <v-btn text>Agoda Homes</v-btn>
             <v-menu
                     :open-on-hover="true"
                     :offset-y="true"
@@ -43,8 +43,9 @@
         <v-divider class="mx-2" inset vertical></v-divider>
         <v-menu
                 :open-on-hover="true"
-                :offset-y="true"
-                class="menu"
+                offset-x
+                :nudge-top="1000"
+                :nudge-width="500"
         >
             <template v-slot:activator="{ on }">
                 <v-btn text small color="transparent" v-on="on">
@@ -106,8 +107,12 @@
   };
 </script>
 
-<style scoped>
-    /*.menu{*/
-    /*    z-index: 10!important;*/
-    /*}*/
+<style>
+    .v-btn__content {
+        text-transform: none !important;
+    }
+    .nav .v-btn__content {
+        font-size: smaller;
+        font-weight: bold;
+    }
 </style>

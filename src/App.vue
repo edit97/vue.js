@@ -11,11 +11,12 @@
               <v-container>
                  <tab></tab>
               </v-container>
+          </v-content>
+          <v-content>
               <v-container>
-                 <Hotel></Hotel>
+                  <Hotel></Hotel>
               </v-container>
           </v-content>
-
           <v-footer app></v-footer>
       </v-app>
   </div>

@@ -555,6 +555,7 @@
     }
     .v-btn:not(.v-btn--round).v-size--default {
         padding: 0 12px !important;
+        margin-right: 0.2rem;
     }
     .showMore{
         flex-wrap: wrap !important;

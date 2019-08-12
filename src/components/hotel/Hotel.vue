@@ -110,21 +110,113 @@
                        ></iframe>
                    </div>
 
-                    <v-btn color="#5392f9" outlined dark height="50" class="mr-2"><h4 class="m-0">9.4</h4></v-btn>
+                    <v-btn color="#5392f9" outlined dark height="40" class="mr-2 mb-2"><h5 class="m-0">9.4</h5></v-btn>
                     <div>
                         Exceptional<br>
                         <small>Location rating score</small>
                     </div>
                     <div>
-                        <small class="font-weight-bold"><v-icon>mdi-medal</v-icon>Exceptional location</small>
+                        <small class="font-weight-bold"><v-icon dense>mdi-medal</v-icon>Exceptional location</small>
                         <small>- Inside city center</small>
-                    <v-divider></v-divider>
-                    </div>
-                    <div>
-                        <small><v-icon>mdi-parking</v-icon>Parking</small>
-                        <small>Available</small>
                         <v-divider></v-divider>
                     </div>
+                    <div class="w-100">
+                        <small class="float-left"><v-icon dense>mdi-parking</v-icon>Parking</small>
+                        <small class="float-right green_text">Available</small>
+                    </div>
+                </v-container>
+            </v-card>
+        </v-flex>
+        <v-flex sm9>
+            <v-card class="m-2">
+                <v-container>
+                    <v-btn color="#ff567d" dark small><small>Agoda homes</small></v-btn>
+                    <v-btn color="#f05700" dark small class="mx-2"><small>Top Value</small></v-btn>
+                    <v-btn color="#32a923" dark small><small>Free Wi-Fi</small></v-btn>
+                    <v-layout mt-3>
+                        <h2>Vale Apartments Barcelona</h2>
+                        <v-tooltip color="black" top>
+                            <template v-slot:activator="{ on }">
+                                <v-btn style="font-size: 11px" height="20"  class="ma-2" tile text color="black" v-on="on">
+                                    <v-rating
+                                            v-model="rating"
+                                            background-color="pink lighten-3"
+                                            color="#ff567d" dense readonly empty-icon
+                                            size="20"
+                                    ></v-rating>
+                                </v-btn>
+                            </template>
+                            <v-layout>
+                                Pink star ratings are based on amenities
+                            </v-layout>
+                        </v-tooltip>
+                    </v-layout>
+                    <a href="#"><small class="text-dark">valencia, 191, Eixample, Barcelona, Spain, 08011 - </small> SEE MAP</a>
+                </v-container>
+            </v-card>
+            <v-card class="m-2">
+                <v-container >
+                    <v-layout class="text-center">
+                        <v-flex sm5 xs12>
+                            <v-icon large color="#5392f9">mdi-marker-check</v-icon>
+                            <div>
+                                <small class="font-weight-bold">Exceptional facilities on premise</small>
+                                <br>
+                                <p class="rating_text"><span>9.6</span> facilities on premise</p>
+                            </div>
+                        </v-flex>
+                        <v-flex sm-1>
+                            <v-divider class="m-0" ma-0 vertical></v-divider>
+                        </v-flex>
+                        <v-flex sm5 xs12 >
+                            <v-icon large color="#5392f9">mdi-room-service-outline</v-icon>
+                            <div>
+                                <small class="font-weight-bold">Exceptional service</small>
+                                <br>
+                                <p class="rating_text"><span>9.6</span> rating for service</p>
+                            </div>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-card>
+            <v-card class="m-2">
+                <v-container>
+                    <v-layout class="justify-content-between">
+                        <v-flex sm2 xs4 class="text-center">
+                            <v-tooltip color="black" top>
+                                <template v-slot:activator="{ on }">
+                                    <v-icon color="#32a923" class="w-100" large v-on="on">mdi-subway-variant</v-icon>
+                                    <small>590 meters to public transportation</small>
+                                </template>
+                                <v-layout>
+                                    590 meters to public transportation
+                                </v-layout>
+                            </v-tooltip>
+                        </v-flex>
+                        <v-flex sm2 xs4 class="text-center">
+                            <v-tooltip color="black" top>
+                                <template v-slot:activator="{ on }">
+                                    <v-icon color="#32a923" class="w-100" large v-on="on">mdi-airplane</v-icon>
+                                    <small>Airport transfer</small>
+                                </template>
+                                <v-layout>
+                                    Airport transfer available
+                                </v-layout>
+                            </v-tooltip>
+                        </v-flex>
+                        <v-flex sm3 xs4 class="text-center">
+                            <v-icon color="#32a923" class="w-100" large>mdi-wifi</v-icon>
+                            <small>Free Wi-Fi in all rooms!</small>
+                        </v-flex>
+                        <v-flex sm2 xs4 class="text-center">
+                            <v-icon color="#32a923" class="w-100" large>mdi-air-conditioner</v-icon>
+                            <small>Air conditioning</small>
+                        </v-flex>
+                        <v-flex sm2 xs4 class="text-center">
+                            <v-icon color="#32a923" class="w-100" large>mdi-home-city-outline</v-icon>
+                            <small>Balcony/terrace</small>
+                        </v-flex>
+                    </v-layout>
                 </v-container>
             </v-card>
         </v-flex>
@@ -137,7 +229,9 @@
 export default {
   name: "Hotel",
   data() {
-    return {};
+    return {
+      rating: 4,
+    };
   }
 };
 </script>
@@ -172,4 +266,14 @@ export default {
     padding: 16px;
     font-weight: 700;
 }
+    .green_text{
+        color: #85c150;
+    }
+    .rating_text{
+        color: gray;
+        font-size: smaller;
+    }
+    .rating_text span{
+        color: #1976d2;
+    }
 </style>

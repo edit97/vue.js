@@ -43,7 +43,7 @@
                                       <v-container grid-list-lg pa-0>
                                           <v-layout column pt-1>
                                               <v-flex class="text-left">
-                                                  <a>Vale Apartments Barcelona</a>
+                                                  <small><a class="font-weight-bold">Vale Apartments Barcelona</a></small>
                                                   <v-rating
                                                           v-model="rating"
                                                           background-color="pink lighten-3"
@@ -61,7 +61,7 @@
                                                       </div>
                                                   </v-flex>
                                               </v-flex>
-                                              <v-flex class="text-right" mr-1>
+                                              <v-flex class="text-right" pt-0 mr-1>
                                                   <h6 class="m-0">372 $</h6>
                                                   <p class="price m-0">Цены за ночь от</p>
                                               </v-flex>
@@ -133,7 +133,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
     .sale{
         color: #e12d2d;
     }

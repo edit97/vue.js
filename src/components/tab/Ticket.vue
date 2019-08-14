@@ -49,9 +49,9 @@
                 <v-container grid-list-lg pa-1>
                     <v-layout column pt-1>
                         <v-flex class="text-left">
-                            <h4><a>OD Barcelona</a></h4>
-<!--                            <router-link to="/hotel">Перейти к Foo</router-link>-->
-<!--                            <router-view></router-view>-->
+                            <router-link :to="{name:'Hotel',params:{id: 1}}">
+                                <h4><a>OD Barcelona</a></h4>
+                            </router-link>
                             <v-rating
                                     v-model="rating"
                                     background-color="#ffa726"

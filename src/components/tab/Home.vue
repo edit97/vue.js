@@ -111,6 +111,35 @@
                               v-for="i in 3"
                               :key="i"
                       ></ticket>
+                      <v-divider class="my-5"></v-divider>
+                      <strong class="ma-1">People who search for Barcelona also considered staying in these cities.</strong>
+                      <v-layout wrap>
+                          <v-flex
+                                  v-for="item in recommend"
+                                  :key="item"
+                                  sm4 px-1
+                          >
+                              <v-hover class="m-2" v-slot:default="{ hover }">
+                                  <v-card class="mx-auto" color="grey lighten-4">
+                                      <v-img
+                                              :src="item.img"
+                                      >
+                                          <v-fade-transition>
+                                              <div
+                                                      class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
+                                                      style="height: 100%;"
+                                                      v-if="!hover"
+                                              ></div>
+
+                                          </v-fade-transition>
+                                          <v-card-actions class="text-white align-end fill-height">
+                                              <strong>{{item.text}}</strong>
+                                          </v-card-actions>
+                                      </v-img>
+                                  </v-card>
+                              </v-hover>
+                          </v-flex>
+                      </v-layout>
                   </v-card>
               </v-flex>
           </v-layout>
@@ -119,14 +148,53 @@
 </template>
 
 <script>
-import Ticket from './Ticket';
-export default {
+  import Ticket from './Ticket';
+
+  export default {
   name: "Home",
   data(){
     return{
       rating: 4,
       lunch: '',
       items: ['Лучшие результаты', 'По возрастанию цены', 'Варианты с высокими оценками', 'Секретные предложения'],
+      recommend: [
+        {
+          img: 'https://pix6.agoda.net/geo/city/73409/1_73409_02.jpg?s=354x200&p=true',
+          text: 'Badalona, Spain'
+        },
+        {
+          img: 'https://pix6.agoda.net/geo/city/12521/1_12521_02.jpg?s=354x200&p=true',
+          text: 'Malaga, Spain'
+        },
+        {
+          img: 'https://pix6.agoda.net/geo/city/16577/1_16577_02.jpg?s=354x200&p=true',
+          text: 'Seville, Spain'
+        },
+        {
+          img: 'https://pix6.agoda.net/geo/city/9170/1_9170_02.jpg?s=354x200&p=true',
+          text: 'Granada, Spain'
+        },
+        {
+          img: 'https://pix6.agoda.net/geo/city/5531/1_5531_02.jpg?s=354x200&p=true',
+          text: 'Madrid, Spain'
+        },
+        {
+          img: 'https://pix6.agoda.net/geo/city/1623/1_1623_02.jpg?s=354x200&p=true',
+          text: 'Valencia, Spain'
+        },
+        {
+          img: 'https://pix6.agoda.net/geo/city/16716/1_16716_02.jpg?s=354x200&p=true',
+          text: 'Majorca, Spain'
+        },
+        {
+          img: 'https://pix6.agoda.net/geo/city/14186/1_14186_02.jpg?s=354x200&p=true',
+          text: 'Alicante - Costa Blanca, Spain'
+        },
+        {
+          img: 'https://pix6.agoda.net/geo/city/2976/1_2976_02.jpg?s=354x200&p=true',
+          text: 'Ibiza, Spain'
+        },
+      ],
     }
   },
   components: {Ticket,}
@@ -169,5 +237,13 @@ export default {
     }
     .main_styles .v-card__text{
         padding: 4px !important;
+    }
+    .v-card--reveal {
+        align-items: center;
+        bottom: 0;
+        justify-content: center;
+        opacity: 0.4;
+        position: absolute;
+        width: 100%;
     }
 </style>

@@ -505,7 +505,6 @@
       window.addEventListener('scroll', () => {
         window.pageYOffset >= 120 ? this.fixed =true : this.fixed = false;
       });
-
     }
   };
 </script>

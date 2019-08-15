@@ -115,8 +115,8 @@
                       <strong class="ma-1">People who search for Barcelona also considered staying in these cities.</strong>
                       <v-layout wrap>
                           <v-flex
-                                  v-for="item in recommend"
-                                  :key="item"
+                                  v-for="(item, index) in recommend"
+                                  :key="index"
                                   sm4 px-1
                           >
                               <v-hover class="m-2" v-slot:default="{ hover }">

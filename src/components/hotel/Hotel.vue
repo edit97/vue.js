@@ -3,9 +3,8 @@
         <v-app id="inspire">
         <v-card class="hotel">
             <v-app-bar
-                    absolute
+                    :fixed="fixed"
                     color="white"
-                    elevate-on-scroll
                     scroll-target="#scrolling-techniques-7"
             >
                 <template v-slot:extension>
@@ -324,7 +323,7 @@
                     </v-content>
                 </v-content>
             </v-container>
-            <v-tabs-items v-model="tab">
+            <v-tabs-items v-model="tab" vertical>
                 <v-tab-item>
                     <v-container>
                         <v-layout>
@@ -335,35 +334,154 @@
                             <v-flex sm9 py-5 ml-3>
                                 <v-divider></v-divider>
                                 <v-layout class="justify-content-between py-1">
-                                    <v-icon large>mdi-human-female-boy</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                    <div>Babysitting service</div>
-                                    <div>Family room</div>
-                                    <div>Kids club</div>
+                                    <div>
+                                        <v-icon class="align-top mr-2" large>mdi-earth</v-icon>
+                                        <v-divider vertical class="m-0"></v-divider>
+                                    </div>
+                                    <v-list>
+                                        <v-list-item>
+                                            <v-img
+                                                    src="http://www.apsf.ru/style/flag_rf.png"
+                                                    contain
+                                                    height="20"
+                                                    max-width="30"
+                                                    class="mr-2"
+                                            ></v-img>
+                                            Russia
+                                        </v-list-item>
+                                        <v-list-item>
+                                            <v-img
+                                                    src="https://cdn.webshopapp.com/shops/94414/files/53448306/armenia-flag-icon-free-download.jpg"
+                                                    contain
+                                                    height="20"
+                                                    max-width="30"
+                                                    class="mr-2"
+                                            ></v-img>
+                                            Armenia
+                                        </v-list-item>
+                                    </v-list>
+                                    <v-list>
+                                        <v-list-item>
+                                            <v-img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg"
+                                                    contain
+                                                    height="20"
+                                                    max-width="30"
+                                                    class="mr-2"
+                                            ></v-img>
+                                            English
+                                        </v-list-item>
+                                        <v-list-item>
+                                            <v-img
+                                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjPtyPVWO2Li5t-2yc2zG31bJsZxE7JunePSu1xgYu7s2xB932"
+                                                    contain
+                                                    height="20"
+                                                    max-width="30"
+                                                    class="mr-2"
+                                            ></v-img>
+                                            French
+                                        </v-list-item>
+                                    </v-list>
+                                    <v-list>
+                                        <v-list-item>
+                                            <v-img
+                                                    src="https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg"
+                                                    contain
+                                                    height="20"
+                                                    max-width="30"
+                                                    class="mr-2"
+                                            ></v-img>
+                                            Italian
+                                        </v-list-item>
+                                        <v-list-item>
+                                            <v-img
+                                                    src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1280px-Flag_of_Spain.svg.png"
+                                                    contain
+                                                    height="20"
+                                                    max-width="30"
+                                                    class="mr-2"
+                                            ></v-img>
+                                            Spanish
+                                        </v-list-item>
+                                    </v-list>
                                 </v-layout>
                                 <v-layout class="justify-content-between py-1">
-                                    <v-icon large>mdi-earth</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                    <div>Babysitting service</div>
-                                    <div>Family room</div>
-                                    <div>Kids club</div>
+                                    <div>
+                                        <v-icon class="align-top mr-2" large>mdi-wifi</v-icon>
+                                        <v-divider vertical class="m-0"></v-divider>
+                                    </div>
+                                    <div>Free Wi-Fi in all rooms!</div>
+                                    <div>Wi-Fi in public areas</div>
                                 </v-layout>
                                 <v-layout class="justify-content-between py-1">
-                                    <v-icon large>mdi-wifi</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                    <div>Free Wi-Fi in all rooms!</div>
-                                    <div>Free Wi-Fi in all rooms!</div>
+                                    <div>
+                                        <v-icon class="align-top mr-2" large>mdi-car</v-icon>
+                                        <v-divider vertical class="m-0"></v-divider>
+                                    </div>
+                                    <div>Airport transfer</div>
+                                    <div>Bicycle rental</div>
                                 </v-layout>
                             </v-flex>
                         </v-layout>
                         <v-layout>
                             <v-flex sm3 py-5 mr-3>
                                 <v-divider></v-divider>
-                                <h5>Nearest essentials</h5>
+                                <h5>What's nearby</h5>
                             </v-flex>
                             <v-flex sm9 py-5 ml-3>
                                 <v-divider></v-divider>
-                                <v-icon>mdi-human-female-boy</v-icon>
+                                <v-layout class="justify-content-between py-1">
+                                    <div>
+                                        <v-icon class="align-top mr-2" large>mdi-map-marker</v-icon>
+                                        <v-divider vertical class="m-0"></v-divider>
+                                    </div>
+                                    <div>
+                                        <strong>Popular landmarks</strong>
+                                        <div>
+                                            <v-tooltip color="black" bottom>
+                                                <template v-slot:activator="{ on }">
+                                                    <v-btn  height="20"  tile text color="#1976d2" v-on="on">
+                                                        ЗавтCasa Batllo - 560 mрак
+                                                    </v-btn>
+                                                </template>
+                                                <v-img
+                                                        src="https://picsum.photos/id/11/500/300"
+                                                        lazy-src="https://picsum.photos/id/11/10/6"
+                                                        aspect-ratio="1"
+                                                        class="grey lighten-2"
+                                                        min-width="300"
+                                                        min-height="80"
+                                                ></v-img>
+                                            </v-tooltip>
+                                        </div>
+                                        <v-tooltip color="black"  bottom>
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn  height="20" tile text color="#1976d2" v-on="on">
+                                                    La Pedrera Casa Mila - 720 m
+                                                </v-btn>
+                                            </template>
+                                            <v-img
+                                                    src="https://picsum.photos/id/11/500/300"
+                                                    lazy-src="https://picsum.photos/id/11/10/6"
+                                                    aspect-ratio="1"
+                                                    class="grey lighten-2"
+                                                    min-width="300"
+                                                    min-height="80"
+                                            ></v-img>
+                                        </v-tooltip>
+                                        <!--                                        <p>Casa Batllo - 560 m</p>-->
+                                        <!--                                        <p>La Pedrera Casa Mila - 720 m</p>-->
+                                        <p>La Boqueria - 1.39 km</p>
+                                        <p>Gothic Quarter (Barri Gotic) - 1.71 km</p>
+                                    </div>
+                                    <div>
+                                        <strong>Nearby landmarks</strong>
+                                        <p>Cellarer - 50 m</p>
+                                        <p>Xampany - 120 m</p>
+                                        <p>Opera Lounge - 150 m</p>
+                                        <p>BEB Bikes Rental - 160 m</p>
+                                    </div>
+                                </v-layout>
                             </v-flex>
                         </v-layout>
                     </v-container>
@@ -373,69 +491,121 @@
                         <v-layout>
                             <v-flex sm3 py-5 mr-3>
                                 <v-divider></v-divider>
-                                <h5>What they offer</h5>
+                                <h5>Property's guest policies</h5>
+                            </v-flex>
+                            <v-flex sm9 py-5 ml-3>
+                                <v-divider></v-divider>
+                                <strong>Children and extra beds</strong>
+                                <p>All children are welcome.</p>
+                                <strong>Others</strong>
+                                <li>When booking more than 5 rooms, different policies and additional supplements may apply.</li>
+                                <p>Extra beds are dependent on the room you choose. Please ask the property for more details.</p>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-tab-item>
+                <v-tab-item>
+                    <v-container>
+                    <p class="display-1">Reviews of Vale Apartments Barcelona from real guests</p>
+                        <v-col class="d-inline-flex" cols="12" sm="6">
+                            <v-select
+                                    :items="reviews.languages"
+                                    label="All languages"
+                                    prepend-inner-icon="mdi-earth"
+                                    outlined
+                            ></v-select>
+                        </v-col>
+                        <v-col class="d-inline-flex" cols="12" sm="6">
+                            <v-select
+                                    :items="reviews.guests"
+                                    label="All guests"
+                                    prepend-inner-icon="mdi-account-group-outline"
+                                    outlined
+                            ></v-select>
+                        </v-col>
+                        <v-container v-for="i in 4" :key="i">
+                            <v-divider></v-divider>
+                            <v-layout my-4>
+                                <v-flex sm3>
+                                    <div class="blue_text"><span class="display-1 ">10.0</span><span class="subtitle-1"> Exceptional</span></div>
+                                </v-flex>
+                                <v-flex sm9>
+                                    <v-card
+                                            class="mx-auto pa-5"
+                                            color="#F9F9F9">
+                                        <strong>"Exceptional”</strong>
+                                        <p class="body-2"><v-btn color="#85c150" class="mr-2" dark small fab>+</v-btn>Well located. Good food nearby. Walking distance to town center.
+                                            Many bus routes within blocks. Reception on premises. They were very accommodating.
+                                            Helped print boarding passes and arranging
+                                        </p>
+                                        <p>...</p>
+                                        <p class="body-2"><v-btn color="black" class="mr-2" dark small fab>-</v-btn>Small amount of street noise and some am construction next door.
+                                            Ok between midnight to 8am.
+                                        </p>
+                                        <p class="caption">Reviewed June 20, 2019</p>
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
+                    </v-container>
+                </v-tab-item>
+                <v-tab-item>
+                    <v-container class="d-flex justify-center">
+                        <iframe
+                                width="860"
+                                height="420"
+                                id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                frameborder="0"
+                                scrolling="no"
+                                marginheight="0"
+                                marginwidth="0"
+                        ></iframe>
+                    </v-container>
+                </v-tab-item>
+                <v-tab-item>
+                    <v-container>
+                        <v-layout>
+                            <v-flex sm3 py-5 mr-3>
+                                <v-divider></v-divider>
+                                <h5>Some helpful facts</h5>
                             </v-flex>
                             <v-flex sm9 py-5 ml-3>
                                 <v-divider></v-divider>
                                 <v-layout class="justify-content-between py-1">
-                                    <v-icon large>mdi-human-female-boy</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                    <div>Babysitting service</div>
-                                    <div>Family room</div>
-                                    <div>Kids club</div>
-                                </v-layout>
-                                <v-layout class="justify-content-between py-1">
-                                    <v-icon large>mdi-earth</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                    <div>Babysitting service</div>
-                                    <div>Family room</div>
-                                    <div>Kids club</div>
-                                </v-layout>
-                                <v-layout class="justify-content-between py-1">
-                                    <v-icon large>mdi-wifi</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                    <div>Free Wi-Fi in all rooms!</div>
-                                    <div>Free Wi-Fi in all rooms!</div>
+                                    <div>
+                                        <strong>Check-in/Check-out</strong>
+                                        <p>Check-in from:<strong>15:00</strong></p>
+                                        <p>Check-in until:<strong>00:00</strong></p>
+                                        <p>Check-in from:<strong>09:00</strong></p>
+                                        <p>Check-in until:<strong>11:00</strong></p>
+                                    </div>
                                 </v-layout>
                             </v-flex>
                         </v-layout>
                         <v-layout>
                             <v-flex sm3 py-5 mr-3>
                                 <v-divider></v-divider>
-                                <h5>1111111111111111111</h5>
+                                <h5>Announcements</h5>
                             </v-flex>
                             <v-flex sm9 py-5 ml-3>
                                 <v-divider></v-divider>
-                                <v-icon large>mdi-human-female-boy</v-icon>
+                                <p>
+                                    Please note, when booking more than 2 apartments, different policies and
+                                    additional supplements may apply. A security deposit of EUR 500 is required
+                                    upon arrival for incidental charges. This deposit is fully refundable upon
+                                    check-out and subject to a damage inspection of the accommodation. Please
+                                    inform Vale Apartments Barcelona of your expected arrival time in advance.
+                                    You can use the Special Requests box when booking, or contact the property
+                                    directly using the contact details in your confirmation. This property does
+                                    not accommodate bachelor(ette) or similar parties. License number:
+                                </p>
+                                <strong>HUTB-010159, HUTB-010160, HUTB-010161, HUTB-010162HUTB-010158HUTB-010157, HUTB-010163</strong>
                             </v-flex>
                         </v-layout>
                     </v-container>
                 </v-tab-item>
             </v-tabs-items>
-            <v-container v-for="i in 4" :key="i">
-                <v-divider></v-divider>
-                <v-layout my-4>
-                    <v-flex sm3>
-                        <div class="blue_text"><span class="display-1 ">10.0</span><span class="subtitle-1"> Exceptional</span></div>
-                    </v-flex>
-                    <v-flex sm9>
-                        <v-card
-                                class="mx-auto pa-5"
-                                color="#F9F9F9">
-                            <strong>"Exceptional”</strong>
-                            <p class="body-2"><v-btn color="#85c150" class="mr-2" dark small fab>+</v-btn>Well located. Good food nearby. Walking distance to town center.
-                                Many bus routes within blocks. Reception on premises. They were very accommodating.
-                                Helped print boarding passes and arranging
-                            </p>
-                            <p>...</p>
-                            <p class="body-2"><v-btn color="black" class="mr-2" dark small fab>-</v-btn>Small amount of street noise and some am construction next door.
-                                Ok between midnight to 8am.
-                            </p>
-                            <p class="caption">Reviewed June 20, 2019</p>
-                        </v-card>
-                    </v-flex>
-                </v-layout>
-            </v-container>
         </v-card>
     </v-app>
     </div>
@@ -447,16 +617,27 @@
     name: "Hotel",
     data() {
       return {
+        fixed: false,
         rating: 4,
         hotel_menu: ['Facilities','Children and extra beds','Reviews','Map','Check-in'],
         tab: null,
-        items: [
-          'web', 'shopping', 'videos', 'images', 'news',
-        ],
+        reviews: {
+          languages: [
+            'All languages', 'English', 'Français', 'Español', 'Italiano', 'Nederlands', 'Deutsch', 'Português (PT)', '日本語', '繁體中文 (香港)', 'עברית'
+          ],
+          guests: [
+            'All guests (348)', 'Couple (10)', 'Solo traveler (4)', 'Family with young children (141)', 'Group (193)',
+          ],
+        },
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor' +
             ' incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud' +
             ' exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       };
+    },
+    created() {
+      window.addEventListener('scroll', () => {
+        window.pageYOffset >= 120 ? this.fixed = true : this.fixed = false;
+      });
     }
   };
 </script>

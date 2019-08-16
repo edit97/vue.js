@@ -5,7 +5,7 @@
 
           <search></search>
 
-          <filters></filters>
+<!--          <filters></filters>-->
 
 
           <router-view></router-view>

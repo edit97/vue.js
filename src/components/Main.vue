@@ -1,5 +1,6 @@
 <template>
     <v-content>
+        <filters></filters>
         <v-container>
             <tab></tab>
         </v-container>
@@ -8,9 +9,10 @@
 
 <script>
   import Tab from './tab/Tab';
+  import Filters from './toolbars/Filters';
   export default {
     name: 'mainPage',
-    components: { Tab},
+    components: {Filters, Tab},
   };
 </script>
 

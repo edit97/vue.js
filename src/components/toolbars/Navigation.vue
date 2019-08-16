@@ -50,7 +50,7 @@
             <template v-slot:activator="{ on }">
                 <v-btn text small color="transparent" v-on="on">
                     <v-img
-                            src="http://www.sclance.com/pngs/american-flag-icon-png/american_flag_icon_png_34193.png"
+                            src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg"
                             contain
                             height="20"
                             max-width="30"

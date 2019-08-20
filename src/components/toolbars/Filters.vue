@@ -1,8 +1,8 @@
 <template>
     <v-app-bar :fixed="fixed">
-        <v-container d-flex pa-0 class="filters">
-            <v-flex row class="filters_select">
-                <v-toolbar-title mr-2>Filters</v-toolbar-title>
+        <v-container pa-0 class="filters d-flex">
+            <v-flex  class="filters_select">
+                <v-toolbar-title class="d-inline" mr-2>Filters</v-toolbar-title>
                 <v-menu offset-y v-model="popular" min-width="400" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
                         <v-btn
@@ -353,6 +353,7 @@
                     hide-details
                     rounded
                     solo
+                    class="d-inline-block"
             ></v-text-field>
         </v-container>
     </v-app-bar>
@@ -510,6 +511,9 @@
 </script>
 
 <style>
+    /*.filters{*/
+    /*    display: flex;*/
+    /*}*/
     .filters_select .v-input__slot{
         margin-bottom: 0 !important;
         width: 160px!important;

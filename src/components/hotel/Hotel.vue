@@ -8,27 +8,32 @@
                     scroll-target="#scrolling-techniques-7"
             >
                 <template v-slot:extension>
-                    <v-tabs
-                            v-model="tab"
-                            align-with-title
-                            background-color="transparent"
-                    >
-                        <v-tabs-slider color="yellow"></v-tabs-slider>
+                    <v-container pa-0>
+                        <v-tabs
+                                v-model="tab"
+                                align-with-title
+                                background-color="transparent"
+                        >
+                            <v-tabs-slider color="primary"></v-tabs-slider>
 
-                        <v-tab v-for="(item, index) in hotel_menu" :key="index">
-                            {{ item }}
-                        </v-tab>
-                    </v-tabs>
+                            <v-tab v-for="(item, index) in hotel_menu" :key="index">
+                                {{ item }}
+                            </v-tab>
+                            <v-spacer></v-spacer>
+                            <v-btn  text  @click="top()">Back to top</v-btn>
+                        </v-tabs>
+                    </v-container>
                 </template>
             </v-app-bar>
             <v-container>
                 <v-content>
                     <v-layout>
-                        <v-hover class="m-2" v-slot:default="{ hover }">
+                        <v-hover class="pa-2" v-slot:default="{ hover }">
                             <v-flex sm8>
                                 <v-card class="mx-auto" color="grey lighten-4">
                                     <v-img
                                             src="//q-xx.bstatic.com/xdata/images/hotel/840x460/60112138.jpg?k=42b08d9b45efa1743135bd003d7b225110a174b2bdf9c0263ba8e7e3092bbfa1"
+                                            max-height="400"
                                     >
                                         <v-fade-transition>
                                             <div
@@ -109,16 +114,16 @@
 
                     <v-layout>
                         <v-flex sm3>
-                            <v-card class="m-2">
+                            <v-card class="ma-2">
                                 <v-container class="row mx-1">
-                                    <v-btn color="#5392f9" dark height="50" class="mr-2"><h3 class="m-0">9.5</h3></v-btn>
+                                    <v-btn color="#5392f9" dark height="50" class="mr-2"><h3 class="ma-0">9.5</h3></v-btn>
                                     <div>
                                         Exceptional<br>
                                         <small>/10 <span>(348 reviews)</span></small>
                                     </div>
                                 </v-container>
                             </v-card>
-                            <v-card class="m-2">
+                            <v-card class="ma-2">
                                 <v-container class="row mx-1" wrap>
                                     <div class="mb-2">
                                         <iframe
@@ -151,7 +156,7 @@
                             </v-card>
                         </v-flex>
                         <v-flex sm9>
-                            <v-card class="m-2">
+                            <v-card class="ma-2">
                                 <v-container>
                                     <v-btn color="#ff567d" dark small><small>Agoda homes</small></v-btn>
                                     <v-btn color="#f05700" dark small class="mx-2"><small>Top Value</small></v-btn>
@@ -177,7 +182,7 @@
                                     <a href="#"><small class="text-dark">valencia, 191, Eixample, Barcelona, Spain, 08011 - </small> SEE MAP</a>
                                 </v-container>
                             </v-card>
-                            <v-card class="m-2">
+                            <v-card class="ma-2">
                                 <v-container >
                                     <v-layout class="text-center">
                                         <v-flex sm5 xs12>
@@ -202,13 +207,13 @@
                                     </v-layout>
                                 </v-container>
                             </v-card>
-                            <v-card class="m-2">
+                            <v-card class="ma-2">
                                 <v-container>
                                     <v-layout class="justify-content-between">
                                         <v-flex sm2 xs4 class="text-center">
                                             <v-tooltip color="black" top>
                                                 <template v-slot:activator="{ on }">
-                                                    <v-icon color="#32a923" class="w-100" large v-on="on">mdi-subway-variant</v-icon>
+                                                    <v-icon color="#32a923" class="d-block" large v-on="on">mdi-subway-variant</v-icon>
                                                     <small>590 meters to public transportation</small>
                                                 </template>
                                                 <v-layout>
@@ -219,7 +224,7 @@
                                         <v-flex sm2 xs4 class="text-center">
                                             <v-tooltip color="black" top>
                                                 <template v-slot:activator="{ on }">
-                                                    <v-icon color="#32a923" class="w-100" large v-on="on">mdi-airplane</v-icon>
+                                                    <v-icon color="#32a923" class="d-block" large v-on="on">mdi-airplane</v-icon>
                                                     <small>Airport transfer</small>
                                                 </template>
                                                 <v-layout>
@@ -228,15 +233,15 @@
                                             </v-tooltip>
                                         </v-flex>
                                         <v-flex sm3 xs4 class="text-center">
-                                            <v-icon color="#32a923" class="w-100" large>mdi-wifi</v-icon>
+                                            <v-icon color="#32a923" class="d-block" large>mdi-wifi</v-icon>
                                             <small>Free Wi-Fi in all rooms!</small>
                                         </v-flex>
                                         <v-flex sm2 xs4 class="text-center">
-                                            <v-icon color="#32a923" class="w-100" large>mdi-air-conditioner</v-icon>
+                                            <v-icon color="#32a923" class="d-block" large>mdi-air-conditioner</v-icon>
                                             <small>Air conditioning</small>
                                         </v-flex>
                                         <v-flex sm2 xs4 class="text-center">
-                                            <v-icon color="#32a923" class="w-100" large>mdi-home-city-outline</v-icon>
+                                            <v-icon color="#32a923" class="d-block" large>mdi-home-city-outline</v-icon>
                                             <small>Balcony/terrace</small>
                                         </v-flex>
                                     </v-layout>
@@ -252,8 +257,8 @@
                                         height="300px"
                                         src="//q-xx.bstatic.com/xdata/images/hotel/840x460/60112138.jpg?k=42b08d9b45efa1743135bd003d7b225110a174b2bdf9c0263ba8e7e3092bbfa1"
                                 >
-                                    <v-card-title  class="align-end fill-height">
-                                        <h2 class=" bg-dark p-3">Vale Apartments Barcelona</h2>
+                                    <v-card-title class="align-end fill-height">
+                                        <h2 class="pa-5 heading_overlay_text">Vale Apartments Barcelona</h2>
                                     </v-card-title>
                                 </v-img>
                             </v-card>
@@ -263,67 +268,26 @@
                             <v-flex sm3 py-5 mr-3>
                                 <h5>An overview</h5>
                             </v-flex>
-                            <v-flex sm9 py-5 ml-3>
+                            <v-flex ml-3 py-5 sm9>
                                 <span class="font-weight-bold">Vspa Apartments Barcelona</span>
-                                offers accommodations in Barcelona. Casa Batllo is 1969 feet away. Free WiFi is offered .
-                                The accommodations features a flat-screen TV and a modern system that allows to control the lights
-                                via a tablet. There is eco-friendly system for the air conditioning and warm water. There is a seating
+                                offers accommodations in Barcelona. Casa Batllo is 1969 feet away. Free WiFi is offered
+                                .
+                                The accommodations features a flat-screen TV and a modern system that allows to control
+                                the lights
+                                via a tablet. There is eco-friendly system for the air conditioning and warm water.
+                                There is a seating
                                 and/or dining area in some apartments. There is
                                 <span>also a kitchen, fitted with a dishwasher. An oven and microwave are also available,
-                  as well as a coffee machine. There is a private bathroom with a bath or shower in each of
-                  them. Bed linen and towels are provided. La Pedrera is 2297 feet from Vale Apartments Barcelona .
-                  The nearest airport is Barcelona El Prat Airport, 7.5 mi from Vale Apartments Barcelona.
-              </span>
+                                  as well as a coffee machine. There is a private bathroom with a bath or shower in each of
+                                  them. Bed linen and towels are provided. La Pedrera is 2297 feet from Vale Apartments Barcelona .
+                                  The nearest airport is Barcelona El Prat Airport, 7.5 mi from Vale Apartments Barcelona.
+                              </span>
                             </v-flex>
                         </v-layout>
-                        <!--<v-layout>
-                            <v-flex sm3 py-5 mr-3>
-                                <v-divider></v-divider>
-                                <h5>What they offer</h5>
-                            </v-flex>
-                            <v-flex sm9 py-5 ml-3>
-                                <v-divider></v-divider>
-                                <v-layout class="justify-content-between py-1">
-                                    <v-icon large>mdi-human-female-boy</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                    <div>Babysitting service</div>
-                                    <div>Family room</div>
-                                    <div>Kids club</div>
-                                </v-layout>
-                                <v-layout class="justify-content-between py-1">
-                                    <v-icon large>mdi-earth</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                    <div>Babysitting service</div>
-                                    <div>Family room</div>
-                                    <div>Kids club</div>
-                                </v-layout>
-                                <v-layout class="justify-content-between py-1">
-                                    <v-icon large>mdi-wifi</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                    <div>Free Wi-Fi in all rooms!</div>
-                                    <div>Free Wi-Fi in all rooms!</div>
-                                </v-layout>
-                            </v-flex>
-                        </v-layout>
-                        <v-layout>
-                            <v-flex sm3 py-5 mr-3>
-                                <v-divider></v-divider>
-                                <h5>Nearest essentials</h5>
-                            </v-flex>
-                            <v-flex sm9 py-5 ml-3>
-                                <v-divider></v-divider>
-                                <v-icon>mdi-human-female-boy</v-icon>
-                            </v-flex>
-                        </v-layout>-->
-                        <!--<v-tab-item>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </v-tab-item>-->
                     </v-content>
                 </v-content>
             </v-container>
-            <v-tabs-items v-model="tab" vertical>
+            <v-tabs-items v-model="tab" >
                 <v-tab-item>
                     <v-container>
                         <v-layout>
@@ -469,10 +433,42 @@
                                                     min-height="80"
                                             ></v-img>
                                         </v-tooltip>
-                                        <!--                                        <p>Casa Batllo - 560 m</p>-->
-                                        <!--                                        <p>La Pedrera Casa Mila - 720 m</p>-->
+                                        <div>
+                                            <v-tooltip color="black"  bottom>
+                                                <template v-slot:activator="{ on }">
+                                                    <v-btn  height="20" tile text color="#1976d2" v-on="on">
+                                                        La Boqueria - 1.39 km
+                                                    </v-btn>
+                                                </template>
+                                                <v-img
+                                                        src="https://picsum.photos/id/11/500/300"
+                                                        lazy-src="https://picsum.photos/id/11/10/6"
+                                                        aspect-ratio="1"
+                                                        class="grey lighten-2"
+                                                        min-width="300"
+                                                        min-height="80"
+                                                ></v-img>
+                                            </v-tooltip>
+                                        </div>
+                                        <v-tooltip color="black"  bottom>
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn  height="20" tile text color="#1976d2" v-on="on">
+                                                    Gothic Quarter (Barri Gotic) - 1.71 km
+                                                </v-btn>
+                                            </template>
+                                            <v-img
+                                                    src="https://picsum.photos/id/11/500/300"
+                                                    lazy-src="https://picsum.photos/id/11/10/6"
+                                                    aspect-ratio="1"
+                                                    class="grey lighten-2"
+                                                    min-width="300"
+                                                    min-height="80"
+                                            ></v-img>
+                                        </v-tooltip>
+                                        <!--<p>Casa Batllo - 560 m</p>
+                                        <p>La Pedrera Casa Mila - 720 m</p>
                                         <p>La Boqueria - 1.39 km</p>
-                                        <p>Gothic Quarter (Barri Gotic) - 1.71 km</p>
+                                        <p>Gothic Quarter (Barri Gotic) - 1.71 km</p>-->
                                     </div>
                                     <div>
                                         <strong>Nearby landmarks</strong>
@@ -608,6 +604,72 @@
             </v-tabs-items>
         </v-card>
     </v-app>
+        <v-layout class="text-center my-5">
+            <v-item-group>
+                <div class="headline">Top destinations</div>
+                <v-layout row class="justify-center">
+                    <v-flex
+                            v-for="(item, index) in top"
+                            :key="index"
+                            sm1 px-1
+                    >
+                        <v-hover class="m-2" v-slot:default="{ hover }">
+                            <v-card class="mx-auto">
+                                <v-img
+                                        :src="item.img"
+                                        style="height: 150px;"
+                                >
+                                    <v-fade-transition>
+                                        <div
+                                                class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
+                                                v-if="hover"
+                                                style="height: 150px;"
+                                        ></div>
+
+                                    </v-fade-transition>
+                                    <v-card-actions class="white--text align-end fill-height">
+                                        <div class="subtitle-2">{{item.text}}</div>
+                                    </v-card-actions>
+                                </v-img>
+                            </v-card>
+                        </v-hover>
+                    </v-flex>
+                </v-layout>
+            </v-item-group>
+        </v-layout>
+        <v-layout class="text-center my-5">
+            <v-item-group>
+                <div class="headline">Trending cities</div>
+                <v-layout row class="justify-center">
+                    <v-flex
+                            v-for="(item, index) in trending"
+                            :key="index"
+                            sm1 px-1
+                    >
+                        <v-hover class="m-2" v-slot:default="{ hover }">
+                            <v-card class="mx-auto">
+                                <v-img
+                                        :src="item.img"
+                                        style="height: 150px;"
+                                >
+                                    <v-fade-transition>
+                                        <div
+                                                class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
+                                                v-if="hover"
+                                                style="height: 150px;"
+                                        ></div>
+
+                                    </v-fade-transition>
+                                    <v-card-actions class="white--text align-end fill-height">
+                                        <div class="subtitle-2">{{item.text}}</div>
+                                    </v-card-actions>
+                                </v-img>
+                            </v-card>
+                        </v-hover>
+                    </v-flex>
+                </v-layout>
+            </v-item-group>
+        </v-layout>
     </div>
 </template>
 
@@ -629,16 +691,91 @@
             'All guests (348)', 'Couple (10)', 'Solo traveler (4)', 'Family with young children (141)', 'Group (193)',
           ],
         },
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor' +
-            ' incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud' +
-            ' exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        top: [
+          {
+            img: 'https://pix6.agoda.net/geo/country/181/3_181_united_states_of_america_02.jpg?s=345x345&ar=1x1&',
+            text: 'United States'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/country/198/3_198_malaysia_02.jpg?s=345x345&ar=1x1&',
+            text: 'Malaysia'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/country/70/3_70_philippines_02.jpg?s=345x345&ar=1x1&',
+            text: 'Philippines'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/country/114/3_114_singapore_02.jpg?s=345x345&ar=1x1&',
+            text: 'Singapore'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/country/106/3_106_thailand_02.jpg?s=345x345&ar=1x1&',
+            text: 'Thailand'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/country/192/3_192_indonesia_02.jpg?s=345x345&ar=1x1&',
+            text: 'Indonesia'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/country/139/3_139_australia_02.jpg?s=345x345&ar=1x1&',
+            text: 'Australia'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/country/35/3_35_india_02.jpg?s=345x345&ar=1x1&',
+            text: 'India'
+          },
+        ],
+        trending: [
+          {
+            img: 'https://pix6.agoda.net/geo/city/16808/1_16808_02.jpg?s=345x345&ar=1x1&p=true',
+            text: 'Hong Kong'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/city/13740/1_13740_02.jpg?s=345x345&ar=1x1&p=true',
+            text: 'Nagoya'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/city/21397/1_21397_02.jpg?s=345x345&ar=1x1&p=true',
+            text: 'Macau'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/city/12772/1_12772_02.jpg?s=345x345&ar=1x1&p=true',
+            text: 'Los Angeles (CA)'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/city/4001/1_4001_02.jpg?s=345x345&ar=1x1&p=true',
+            text: 'Cebu'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/city/318/1_318_02.jpg?s=345x345&ar=1x1&p=true',
+            text: 'New York (NY)'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/city/18347/1_18347_02.jpg?s=345x345&ar=1x1&p=true',
+            text: 'Tainan'
+          },
+          {
+            img: 'https://pix6.agoda.net/geo/city/17172/1_17172_02.jpg?s=345x345&ar=1x1&p=true',
+            text: 'Busan'
+          },
+        ],
       };
+    },
+    methods: {
+      // top(){
+      //   window.scrollTo( 0, 0 );
+      // },
     },
     created() {
       window.addEventListener('scroll', () => {
         window.pageYOffset >= 120 ? this.fixed = true : this.fixed = false;
       });
-    }
+    },
+    updated(){
+      if(this.tab !== 0){
+        window.scrollTo( 0, 1600 );
+      }
+    },
   };
 </script>
 
@@ -684,8 +821,16 @@
     }
      .hotel .v-toolbar__content{
         max-height: 0 !important;
+         padding-top: 0 !important;
+    }
+    .hotel .v-tabs--align-with-title>.v-tabs-bar {
+         padding-left: 0 !important;
     }
     .blue_text{
         color: #1976d2;
+    }
+    .heading_overlay_text{
+        background-color: black;
+        opacity: 0.5;
     }
 </style>

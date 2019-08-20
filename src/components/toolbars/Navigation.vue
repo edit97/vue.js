@@ -39,14 +39,9 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn class="ma-2" flat outlined color="red darken-1"> Button</v-btn>
+        <v-btn class="ma-2" outlined color="red darken-1"> List your place</v-btn>
         <v-divider class="mx-2" inset vertical></v-divider>
-        <v-menu
-                :open-on-hover="true"
-                offset-x
-                :nudge-top="1000"
-                :nudge-width="500"
-        >
+        <v-menu>
             <template v-slot:activator="{ on }">
                 <v-btn text small color="transparent" v-on="on">
                     <v-img
@@ -56,7 +51,7 @@
                             max-width="30"
                             class="mr-2"
                     ></v-img>
-                    <v-icon>&#36;</v-icon>
+                    <v-icon color="black">&#36;</v-icon>
                 </v-btn>
             </template>
 
@@ -87,7 +82,7 @@
 
         <v-divider class="mx-2" inset vertical></v-divider>
         <v-btn text color="primary">LogIn</v-btn>
-        <v-btn class="ma-2" outlined color="primary"> Create</v-btn>
+        <v-btn class="ma-2" outlined color="primary"> Create account</v-btn>
     </v-app-bar>
 </template>
 

@@ -14,7 +14,8 @@
                   padless
           >
               <v-card flat tile light
-                      class="grey lighten-2 w-100"
+                      color="#eeeeee"
+                      class="footer"
               >
                   <v-container>
                       <v-layout class="justify-content-between">
@@ -70,14 +71,12 @@
                           </v-flex>
                       </v-layout>
                   </v-container>
-
-
-                  <v-card-text class="white--text text-center bg-dark py-3">
-                      All material herein © 2005–{{ new Date().getFullYear() }} Agoda Company Pte. Ltd. All Rights Reserved.
-                      <br>
-                      Agoda is part of Booking Holdings Inc., the world leader in online travel & related services.
-                  </v-card-text>
               </v-card>
+              <v-layout dark class="justify-center py-3">
+                  All material herein © 2005–{{ new Date().getFullYear() }} Agoda Company Pte. Ltd. All Rights Reserved.
+                  <br>
+                  Agoda is part of Booking Holdings Inc., the world leader in online travel & related services.
+              </v-layout>
           </v-footer>
       </v-app>
   </div>
@@ -133,4 +132,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+    .footer{
+        width: 100%;
+    }
+</style>

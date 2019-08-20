@@ -1,7 +1,7 @@
 <template>
   <div class="mapouter">
     <div class="gmap_canvas">
-          <v-layout row>
+          <v-layout>
               <v-flex xs12 md12 sm12 lg3 pl-4 mt-3>
                   <v-card tile flat>
                       <div class="main_styles">
@@ -17,8 +17,8 @@
                           ></iframe>
                           <v-card color="#f3f9f2" class="my-2">
                               <v-card-text>
-                                  <v-flex row m-0>
-                                      <v-btn fab dark large class="mr-1" color="#32a923">
+                                  <v-flex row ma-0>
+                                      <v-btn fab dark class="mr-1" color="#32a923">
                                           <v-icon dark>mdi-coffee</v-icon>
                                       </v-btn>
                                       <small class="pt-2"> <span>Показать варианты с <br> бесплатным завтраком</span></small>
@@ -117,10 +117,10 @@
                           <v-flex
                                   v-for="(item, index) in recommend"
                                   :key="index"
-                                  sm4 px-1
+                                  sm4 pa-1
                           >
                               <v-hover class="m-2" v-slot:default="{ hover }">
-                                  <v-card class="mx-auto" color="grey lighten-4">
+                                  <v-card class="mx-auto" >
                                       <v-img
                                               :src="item.img"
                                       >
@@ -132,7 +132,7 @@
                                               ></div>
 
                                           </v-fade-transition>
-                                          <v-card-actions class="text-white align-end fill-height">
+                                          <v-card-actions class="white--text align-end fill-height">
                                               <strong>{{item.text}}</strong>
                                           </v-card-actions>
                                       </v-img>

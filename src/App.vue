@@ -9,6 +9,7 @@
 
 
           <router-view></router-view>
+
           <v-footer
                   dark
                   padless
@@ -127,7 +128,7 @@ export default {
   components: {
     Navigation,
     Search,
-    Filters,
+    // Filters,
   }
 };
 </script>

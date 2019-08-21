@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar :scroll-threshold="20">
+    <v-app-bar max-height="60" :scroll-threshold="20">
         <v-img
             src="https://cdn6.agoda.net/images/MVC/default/agoda-logo.png"
             contain
@@ -26,20 +26,15 @@
                 </template>
 
                 <v-list>
-                    <v-list-item
-                            v-for="n in 2"
-                            :key="n"
-                            @click="() => {}"
-                    >
-                        <v-list-item-title>Option {{ n }}</v-list-item-title>
-                    </v-list-item>
+                    <v-list-item>Car rentals</v-list-item>
+                    <v-list-item>Things to do</v-list-item>
                 </v-list>
             </v-menu>
         </v-toolbar-items>
 
         <v-spacer></v-spacer>
 
-        <v-btn class="ma-2" outlined color="red darken-1"> List your place</v-btn>
+        <v-btn class="ma-2 font-weight-bold nav_btn" large outlined color="red darken-1">LIST YOUR PLACE</v-btn>
         <v-divider class="mx-2" inset vertical></v-divider>
         <v-menu>
             <template v-slot:activator="{ on }">
@@ -51,7 +46,7 @@
                             max-width="30"
                             class="mr-2"
                     ></v-img>
-                    <v-icon color="black">&#36;</v-icon>
+                    <v-icon small color="black">&#36;</v-icon>
                 </v-btn>
             </template>
 
@@ -64,7 +59,7 @@
                             max-width="30"
                             class="mr-2"
                     ></v-img>
-                    <v-icon>&#8381;</v-icon>
+                    <v-icon small>&#8381;</v-icon>
                 </v-list-item>
                 <v-list-item>
                     <v-img
@@ -74,15 +69,15 @@
                             max-width="30"
                             class="mr-2"
                     ></v-img>
-                    <v-icon>&#1423;</v-icon>
+                    <v-icon small>&#1423;</v-icon>
                 </v-list-item>
             </v-list>
         </v-menu>
 
 
         <v-divider class="mx-2" inset vertical></v-divider>
-        <v-btn text color="primary">LogIn</v-btn>
-        <v-btn class="ma-2" outlined color="primary"> Create account</v-btn>
+        <v-btn text large color="primary" class="font-weight-bold nav_btn">SIGN IN</v-btn>
+        <v-btn class="ma-2 nav_btn font-weight-bold" large outlined color="primary">CREATE ACCOUNT</v-btn>
     </v-app-bar>
 </template>
 
@@ -109,5 +104,8 @@
     .nav .v-btn__content {
         font-size: smaller;
         font-weight: bold;
+    }
+    .nav_btn{
+        letter-spacing: inherit !important;
     }
 </style>

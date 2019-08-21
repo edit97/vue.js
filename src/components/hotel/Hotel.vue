@@ -146,12 +146,12 @@
                                     <div>
                                         <small class="font-weight-bold"><v-icon dense>mdi-medal</v-icon>Exceptional location</small>
                                         <small>- Inside city center</small>
-                                        <v-divider></v-divider>
+                                        <v-divider class="my-1"></v-divider>
                                     </div>
-                                    <div class="w-100">
-                                        <small class="float-left"><v-icon dense>mdi-parking</v-icon>Parking</small>
-                                        <small class="float-right green_text">Available</small>
-                                    </div>
+                                    <v-layout class="justify-lg-space-between">
+                                        <small ><v-icon dense>mdi-parking</v-icon>Parking</small>
+                                        <small class="green_text">Available</small>
+                                    </v-layout>
                                 </v-container>
                             </v-card>
                         </v-flex>

@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar  color="#20274d" :scroll-threshold="40">
+    <v-app-bar  color="#20274d" max-height="70" :scroll-threshold="40">
         <v-container class="d-flex search">
             <v-text-field
                     label="Prepend inner" prepend-inner-icon="mdi-magnify"

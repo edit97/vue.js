@@ -1,6 +1,6 @@
 <template>
-    <v-card class="ticket">
-        <v-layout mt-3>
+    <v-card outlined flat class="ticket">
+        <v-layout>
             <v-flex sm4>
                 <v-item-group
                         v-model="selected"
@@ -32,47 +32,158 @@
                         </v-col>
                     </v-row>
                 </v-item-group>
-                <!--<v-carousel
-                        :continuous="false"
-                        :cycle="cycle"
-                        :show-arrows="false"
-                        hide-delimiter-background
-                        hide-delimiters
-                        height="300"
-                >
-                    <v-carousel-item
+                <v-row class="px-3">
+                    <v-col
                             v-for="(item,i) in items"
                             :key="i"
-                            :src="slider_img"
-                            reverse-transition="fade-transition"
-                            transition="fade-transition"
-                    ></v-carousel-item>
-                </v-carousel>-->
-                <v-sheet light class="mx-auto">
-                    <v-slide-group
-                            v-model="model"
-                            :show-arrows="false"
-                            :center-active="true"
+                            cols="12"
+                            md="2"
+                            class="pa-0"
                     >
-                        <v-slide-item
-                                v-for="(item,i) in items"
-                                :key="i"
-                                v-slot:default="{ active, toggle }"
+                        <v-menu open-on-hover top offset-y>
+                            <template v-slot:activator="{ on }">
+                                <v-item v-slot:default="{ active, toggle }">
+                                    <v-img
+                                            :src="item"
+                                            height="50"
+                                            class="text-right pa-2"
+                                            v-on="on"
+                                    ></v-img>
+                                </v-item>
+                            </template>
+
+                            <v-img
+                                    :src="item"
+                                    height="350"
+                                    width="350"
+                                    class="text-right pa-2"
+                            ></v-img>
+                        </v-menu>
+                    </v-col>
+                    <v-col
+                            cols="12"
+                            md="2"
+                            class="pa-0"
+                            @click.stop="dialog = true"
+                    >
+                        <v-menu open-on-hover top offset-y >
+                            <template v-slot:activator="{ on }">
+                                <v-item v-slot:default="{ active, toggle }">
+                                    <div>
+                                        <v-img
+                                                src="https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768"
+                                                height="50"
+                                                class="text-right pa-2"
+                                                v-on="on"
+                                        >
+                                            <v-overlay
+                                                    absolute
+                                                    color="black"
+                                                    opacity="0.8"
+                                                    class="caption"
+                                            >
+                                                See All
+                                            </v-overlay>
+                                        </v-img>
+                                    </div>
+                                </v-item>
+                            </template>
+
+                            <v-img
+                                    src="https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768"
+                                    height="350"
+                                    width="350"
+                                    class="text-right pa-2"
+                            ></v-img>
+                        </v-menu>
+
+                        <v-dialog
+                                v-model="dialog"
+                                max-width="950"
+                                dark
                         >
-                            <v-card
-                                    :color="active ? 'primary' : 'grey lighten-1'"
-                                    height="50" width="60"
-                                    @click="slider(item.src)"
-                            >
-                                <v-img
-                                        :src="item"
-                                        height="50"
-                                        class="text-right pa-2"
-                                ></v-img>
+<!--                            <v-btn fab text>-->
+<!--                                <v-icon>mdi-close</v-icon>-->
+<!--                            </v-btn>-->
+                            <v-card color="black">
+                                <v-layout>
+                                    <v-flex lg7 md7 sm7 pa-5>
+                                        <v-carousel v-model="model" hide-delimiters height="400">
+                                            <v-carousel-item
+                                                    v-for="(item, index) in images[tag]"
+                                                    :key="index"
+                                                    :src="item"
+                                            ></v-carousel-item>
+                                        </v-carousel>
+                                        <v-chip-group
+                                                column
+                                                active-class="primary--text"
+                                                v-model="tag"
+                                        >
+                                            <v-chip
+                                                    v-for="(item, index) in tags"
+                                                    :key="item"
+                                                    outlined
+                                                    label
+                                            >
+                                                {{ item }} {{ (images[index].length) }}
+                                            </v-chip>
+                                        </v-chip-group>
+                                        <v-slide-group
+                                                v-model="model"
+                                                active-class="success"
+                                                show-arrows
+                                        >
+                                            <v-slide-item
+                                                    v-for="(item, index) in images[tag]"
+                                                    :key="index"
+                                                    v-slot:default="{ active, toggle }"
+                                            >
+                                                <v-img
+                                                        :src="item"
+                                                        height="60"
+                                                        width="80"
+                                                        @click="toggle"
+                                                        :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
+                                                ></v-img>
+                                            </v-slide-item>
+                                        </v-slide-group>
+                                    </v-flex>
+                                    <v-flex lg5 md5 sm5 pa-5>
+                                        <v-layout column justify-space-between fill-height>
+                                            <v-flex class="modal_text">
+                                                <p class="font-weight-bold">Property overview</p>
+                                                <p class="caption"><v-icon class="pr-1" small color="green darken-1">mdi-wifi</v-icon>Free Wi-Fi in all rooms!</p>
+                                                <p class="caption"><v-icon class="pr-1" small color="green darken-1">mdi-air-conditioner</v-icon>Air conditioning</p>
+                                                <p class="caption"><v-icon class="pr-1" small color="green darken-1">mdi-broom</v-icon>Daily housekeeping</p>
+                                                <p class="caption"><v-icon class="pr-1" small color="green darken-1">mdi-glass-wine</v-icon>Bar</p>
+                                                <p class="font-weight-bold">Nearby Attraction</p>
+                                                <div class="caption">La Pedrera Casa Mila<span class="float-right">1.23 km</span></div>
+                                                <div class="caption">Casa Batllo<span class="float-right">1.55 km</span></div>
+                                                <div class="caption">Camp Nou<span class="float-right">2.39 km</span></div>
+                                                <div class="caption">Parc Guell<span class="float-right">2.41 km</span></div>
+                                                <p class="font-weight-bold">Dining, drinking and snacking</p>
+                                                <p class="caption">Coffee/tea maker</p>
+                                                <p class="caption">Mini bar</p>
+                                            </v-flex>
+                                            <v-flex>
+                                                <v-layout class="justify-center fill-height align-end">
+                                                    <v-btn
+                                                            color="#5392f9"
+                                                            large bottom
+                                                            class="font-weight-bold align-center"
+                                                    >
+                                                        View property
+                                                    </v-btn>
+                                                </v-layout>
+                                            </v-flex>
+                                        </v-layout>
+                                    </v-flex>
+                                </v-layout>
                             </v-card>
-                        </v-slide-item>
-                    </v-slide-group>
-                </v-sheet>
+                        </v-dialog>
+                    </v-col>
+                </v-row>
             </v-flex>
             <v-flex sm-5>
                     <v-layout column pl-3 pt-1>
@@ -181,44 +292,47 @@
             </v-flex>
             <v-divider class="mx-3" inset vertical></v-divider>
             <v-flex sm3>
-                <v-col class="text-right fill-height align-center" pa-0>
-                    <v-chip
-                            color="red  accent-4"
-                            text-color="white"
-                            class="my-1 font-weight-bold"
-                            small label
-                    >
-                        ONLY 2 LEFT
-                    </v-chip>
-                    <v-tooltip color="black" top>
-                        <template v-slot:activator="{ on }">
-                            <v-chip
-                                    color="#d8eed5"
-                                    text-color="success"
-                                    class="my-0 font-weight-bold"
-                                    small label
-                                    v-on="on"
-                            >
-                                <v-avatar left>
-                                    <v-icon ma-0 x-small>mdi-arrow-bottom-right</v-icon>
-                                </v-avatar>
-                                <small> PRICE DROPPED BY 18%</small>
-                            </v-chip>
-                        </template>
-                        <span>Top tooltip</span>
-                    </v-tooltip>
-                    <div class="caption"><small>Nightly rates as low as</small></div>
-                    <div class="title past_price font-weight-bold">372</div>
-                    <div class="title price gray font-weight-bold">$ <span>238</span></div>
-                    <v-chip
-                            color="red  accent-4"
-                            text-color="white"
-                            class="my-1 font-weight-bold text-uppercase"
-                            small label
-                    >
-                        Make your offer
-                    </v-chip>
-                </v-col>
+                <v-layout column justify-end fill-height text-right>
+                    <v-spacer></v-spacer>
+                    <v-col>
+                        <v-chip
+                                color="red  accent-4"
+                                text-color="white"
+                                class="my-1 font-weight-bold"
+                                small label
+                        >
+                            ONLY 2 LEFT
+                        </v-chip>
+                        <v-tooltip color="black" top>
+                            <template v-slot:activator="{ on }">
+                                <v-chip
+                                        color="#d8eed5"
+                                        text-color="success"
+                                        class="my-0 font-weight-bold"
+                                        small label
+                                        v-on="on"
+                                >
+                                    <v-avatar left>
+                                        <v-icon ma-0 x-small>mdi-arrow-bottom-right</v-icon>
+                                    </v-avatar>
+                                    <small> PRICE DROPPED BY 18%</small>
+                                </v-chip>
+                            </template>
+                            <span>Top tooltip</span>
+                        </v-tooltip>
+                        <div class="caption"><small>Nightly rates as low as</small></div>
+                        <div class="title past_price font-weight-bold">372</div>
+                        <div class="title price gray font-weight-bold">$ <span>238</span></div>
+                        <v-chip
+                                color="red  accent-4"
+                                text-color="white"
+                                class="my-1 font-weight-bold text-uppercase"
+                                small label
+                        >
+                            Make your offer
+                        </v-chip>
+                    </v-col>
+                </v-layout>
             </v-flex>
         </v-layout>
     </v-card>
@@ -230,6 +344,8 @@
     data(){
       return {
         selected: [],
+        dialog: false,
+        tag: 0,
         rating: 5,
         colors: [
           'green',
@@ -246,54 +362,140 @@
           'Fourth',
           'Fifth',
         ],
+        tags: [
+          'All',
+          'Rooms',
+          'Property views',
+          'Facilities',
+          'Dining',
+          'Shopping',
+          'Nearby attraction',
+        ],
         items: [
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
           },
         ],
-        model: null,
-        slider_img: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        images: [
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/965a214863f754bcf101325fe52a8a6a.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/965a214863f754bcf101325fe52a8a6a.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/965a214863f754bcf101325fe52a8a6a.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+        ],
+        model: 0,
       }
     },
     created(){},
-    methods: {
-      slider(item){
-        this.slider_img = item;
-      },
-    }
+    methods: {},
   };
 </script>
 
@@ -305,6 +507,12 @@
     .ticket .v-slide-group__next, .v-slide-group__prev {
         min-width: 16px !important;
     }
+     .modal_text{
+        line-height: 3rem !important;
+    }
+     .active_class{
+        outline: 2px solid white;
+    }
     .past_price{
         color: gray;
         text-decoration: line-through;
@@ -315,5 +523,8 @@
     }
     .price span{
         color: #d50000;
+    }
+    .ticket .v-menu--inline {
+        display: block !important;
     }
 </style>

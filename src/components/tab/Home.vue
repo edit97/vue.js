@@ -42,7 +42,7 @@
                                       ></v-img>
                                   </v-flex>
                                   <v-flex>
-                                      <v-layout wrap class="justify-space-between" pa-2>
+                                      <v-layout column justify-space-between  fill-height pa-2>
                                           <div class="text-left">
                                               <a class="">Vale Apartments Barcelona</a>
                                               <v-rating
@@ -52,10 +52,10 @@
                                                       size="16"
                                               ></v-rating>
                                           </div>
-                                          <v-flex class="text-right fill-height align-end">
+                                          <div class="text-right">
                                               <h6 class="m-0">372 $</h6>
                                               <p class="price ma-0">Nightly rates as low as</p>
-                                          </v-flex>
+                                          </div>
                                       </v-layout>
                                   </v-flex>
                               </v-layout>
@@ -67,8 +67,8 @@
                   <v-card tile flat >
                       <v-card color="rgb(253, 238, 238)"  mt-4>
                           <v-card-text >
-                              <h5 class="sale">Торопитесь! 66% объектов размещения на нашем сайте уже распроданы!</h5>
-                              <p>Номера в городе Барселона пользуются спросом на выбранные вами даты. Забронируйте ваш, пока цены не выросли.</p>
+                              <h4 class="sale">Hurry! 80% of properties on our site are fully booked!</h4>
+                              <p>Reserve yours now before prices go up.</p>
                           </v-card-text>
                       </v-card>
                       <v-item-group>
@@ -143,7 +143,7 @@
     return{
       rating: 4,
       lunch: '',
-      items: ['Лучшие результаты', 'По возрастанию цены', 'Варианты с высокими оценками', 'Секретные предложения'],
+      items: ['Best match', 'Lowest price first', 'Distance', 'Top Reviewed', 'Secret deals'],
       recommend: [
         {
           img: 'https://pix6.agoda.net/geo/city/73409/1_73409_02.jpg?s=354x200&p=true',

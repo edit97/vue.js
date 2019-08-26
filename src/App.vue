@@ -86,7 +86,7 @@
 <script>
 import Navigation from "./components/toolbars/Navigation.vue";
 import Search from "./components/toolbars/Search.vue";
-import Filters from "./components/toolbars/Filters";
+// import Filters from "./components/toolbars/Filters";
 
 
 export default {

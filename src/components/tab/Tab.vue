@@ -1,7 +1,7 @@
 <template>
     <v-tabs fixed-tabs light class="tab_styles">
         <v-tab>
-           <span class="tab_title"> Отели и жилье</span>
+           <span class="tab_title">Hotels + Homestays</span>
         </v-tab>
         <v-tab-item>
             <v-card flat tile>
@@ -9,7 +9,7 @@
             </v-card>
         </v-tab-item>
         <v-tab>
-            <span class="tab_title">Отели</span>
+            <span class="tab_title">Hotels</span>
         </v-tab>
         <v-tab-item>
             <v-card flat tile>
@@ -17,19 +17,19 @@
             </v-card>
         </v-tab-item>
         <v-tab>
-            <span class="tab_title">Для семей</span>
+            <span class="tab_title">Family Friendly</span>
         </v-tab>
         <v-tab>
-            <span class="tab_title"> СО СКИДКОЙ!</span>
+            <span class="tab_title">Homestays</span>
         </v-tab>
         <v-flex row  class="tab_switch">
             <v-tooltip color="white" top >
                 <template v-slot:activator="{ on }">
                     <v-btn text small color="transparent" v-on="on">
-                        <p>Семейный режим</p>
+                        <p>Family Mode</p>
                     </v-btn>
                     <v-btn text small color="transparent" v-on="on">
-                        <v-switch v-model="value" label="value"></v-switch>
+                        <v-switch inset v-model="value" label="value"></v-switch>
                     </v-btn>
                 </template>
                 <v-layout>

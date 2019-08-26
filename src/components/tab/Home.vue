@@ -15,7 +15,7 @@
                                   marginheight="0"
                                   marginwidth="0"
                           ></iframe>
-                          <v-card color="#f3f9f2" class="my-3">
+                          <v-card flat color="#f3f9f2" class="my-3">
                               <v-card-text>
                                   <v-layout class="justify-space-around align-center" >
                                       <v-btn fab dark depressed small color="#32a923">
@@ -37,14 +37,14 @@
                                   <v-flex>
                                       <v-img
                                               height="120"
-                                              width="80"
+                                              width="100"
                                               src="//pix6.agoda.net/hotelImages/547243/0/80b6a83ff734e47aee6aa60dedddab1d.jpg?s=312x236&p=true"
                                       ></v-img>
                                   </v-flex>
                                   <v-flex>
-                                      <v-layout column justify-space-between  fill-height pa-2>
+                                      <v-layout column justify-space-between  fill-height pl-0 pa-2>
                                           <div class="text-left">
-                                              <a class="">Vale Apartments Barcelona</a>
+                                              <a class="black_text subtitle-2">Vale Apartments Barcelona</a>
                                               <v-rating
                                                       v-model="rating"
                                                       background-color="pink lighten-3"
@@ -65,7 +65,7 @@
               </v-flex>
               <v-flex xs12 sm12 lg9 px-4 mt-3>
                   <v-card tile flat >
-                      <v-card color="rgb(253, 238, 238)"  mt-4>
+                      <v-card color="rgb(253, 238, 238)" flat mt-4>
                           <v-card-text >
                               <h4 class="sale">Hurry! 80% of properties on our site are fully booked!</h4>
                               <p>Reserve yours now before prices go up.</p>
@@ -83,6 +83,7 @@
                                                   :color="active ? '#b7dcf5' : ''"
                                                   class="d-flex align-center tag_filter"
                                                   height="50"
+                                                  flat outlined
                                                   @click="toggle"
                                           >
                                               <v-card-text>

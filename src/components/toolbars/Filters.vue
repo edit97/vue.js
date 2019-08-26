@@ -16,8 +16,6 @@
                         </v-btn>
                     </template>
                     <v-list
-                            subheader
-                            two-line
                             flat dense
                     >
                         <v-subheader>Popular filters for Barcelona:</v-subheader>
@@ -30,7 +28,7 @@
                                     v-for="(item, index) in populars" :key="index"
                             >
                                 <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action>
+                                    <v-list-item-action class="ma-0">
                                         <v-checkbox
                                                 v-model="active"
                                                 color="primary"
@@ -46,7 +44,7 @@
                         </v-list-item-group>
                     </v-list>
                 </v-menu>
-                <v-menu offset-y v-model="price" min-width="500" :close-on-content-click="false">
+                <v-menu offset-y v-model="price" min-width="350" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
                         <v-btn
                                 color="#20274d"
@@ -58,10 +56,67 @@
                             <v-icon>mdi-menu-down</v-icon>
                         </v-btn>
                     </template>
-                    <v-list class="price">
-                        <v-card flat color="transparent">
-                            <v-subheader>Price per night:</v-subheader>
+                    <v-card
+                            class="mx-auto"
+                            min-width="400"
+                    >
+                        <v-toolbar
+                                flat
+                                dense
+                        >
+                            <v-toolbar-title>
+                                <span class="subtitle-2 font-weight-bold grey--text">Price per night:</span>
+                            </v-toolbar-title>
+                            <div class="flex-grow-1"></div>
+                            <v-btn text>
+                                Clear
+                            </v-btn>
+                        </v-toolbar>
 
+                        <v-card-text>
+                            <v-row
+                                    class="mb-4"
+                                    justify="space-between"
+                            >
+                                <v-col cols="2" sm="2" md="2" class="text-left pb-0">
+                                    <v-text-field
+                                            v-model.number="range[0]"
+                                            label="MIN"
+                                            height="48"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col>
+                                    <v-sparkline
+                                            :value="value"
+                                            color="#e0ecff"
+                                            :smooth="8 || false"
+                                            line-width="1"
+                                            fill
+                                            type="trend"
+                                    ></v-sparkline>
+                                </v-col>
+                                <v-col cols="2" sm="2" md="2" class="text-right pb-0">
+                                    <v-text-field
+                                            v-model="range[1]"
+                                            label="MAX"
+                                            height="48"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-range-slider
+                                    v-model="range"
+                                    :max="max"
+                                    :min="min"
+                                    hide-details
+                                    track-color="#e0ecff"
+                                    class="align-center mb-4"
+                            >
+                            </v-range-slider>
+                        </v-card-text>
+                    </v-card>
+                    <!--<v-list class="price">
+                        <v-card flat color="transparent">
+                            <v-subheader class="font-weight-bold">Price per night:</v-subheader>
                             <v-card-text>
                                 <v-layout>
                                     <v-flex class="px-4">
@@ -77,16 +132,17 @@
                                             <v-text-field
                                                     v-model="range[0]"
                                                     class="mt-0 pt-0"
-                                                    hide-details solo
+                                                    hide-details outlined
+                                                    label="MIN"
                                                     type="number"
-                                                    style="max-width: 80px; min-height: 30px"
+                                                    style="max-width: 80px; "
                                             ></v-text-field>
-                                            <v-divider></v-divider>
+                                            <v-divider class="mt-4"></v-divider>
                                             <v-text-field
                                                     v-model="range[1]"
                                                     class="mt-0 pt-0"
-                                                    hide-details solo
-                                                    single-line
+                                                    hide-details outlined
+                                                    label="MAX"
                                                     type="number"
                                                     style="max-width: 80px"
                                             ></v-text-field>
@@ -95,7 +151,7 @@
                                 </v-layout>
                             </v-card-text>
                         </v-card>
-                    </v-list>
+                    </v-list>-->
                 </v-menu>
                 <v-menu offset-y v-model="star" min-width="300" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
@@ -115,10 +171,10 @@
                         <v-list-item-group v-model="check_star" multiple>
                             <v-list-item v-for="(item, index) in rating" :key="index" :min-height="40">
                                 <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action class="m-0">
+                                    <v-list-item-action class="ma-0">
                                         <v-checkbox
                                                 v-model="active"
-                                                color="primary" class="m-0"
+                                                color="primary" class="ma-0"
                                                 @click="toggle"
                                         ></v-checkbox>
                                     </v-list-item-action>
@@ -164,7 +220,7 @@
                                     v-for="(item, index) in areas" :key="index"
                             >
                                 <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action>
+                                    <v-list-item-action class="ma-0">
                                         <v-checkbox
                                                 v-model="active"
                                                 color="primary"
@@ -209,7 +265,7 @@
                                 >
                                     <v-list-item>
                                         <template v-slot:default="{ active, toggle }">
-                                            <v-list-item-action>
+                                            <v-list-item-action class="ma-0">
                                                 <v-checkbox
                                                         v-model="active"
                                                         color="primary"
@@ -238,7 +294,7 @@
                                     >
                                         <v-list-item>
                                             <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action>
+                                                <v-list-item-action class="ma-0">
                                                     <v-checkbox
                                                             v-model="active"
                                                             color="primary"
@@ -267,7 +323,7 @@
                                     >
                                         <v-list-item>
                                             <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action>
+                                                <v-list-item-action class="ma-0">
                                                     <v-checkbox
                                                             v-model="active"
                                                             color="primary"
@@ -296,7 +352,7 @@
                                     >
                                         <v-list-item>
                                             <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action>
+                                                <v-list-item-action class="ma-0">
                                                     <v-checkbox
                                                             v-model="active"
                                                             color="primary"
@@ -325,7 +381,7 @@
                                     >
                                         <v-list-item>
                                             <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action>
+                                                <v-list-item-action class="ma-0">
                                                     <v-checkbox
                                                             v-model="active"
                                                             color="primary"
@@ -372,6 +428,7 @@
           {location: 'Smoking area', count: 4},
           {location: 'Front desk [24-hour]', count: 4},
         ],
+        value: [0, 0, 0, 9, 5, 10, 3, 5, 0, 0, 1, 8, 0, 0, 0],
         areas: [
           {area: 'Barcelona Airport', count: 12},
           {area: 'El Poblenou', count: 53},
@@ -511,9 +568,6 @@
 </script>
 
 <style>
-    /*.filters{*/
-    /*    display: flex;*/
-    /*}*/
     .filters_select .v-input__slot{
         margin-bottom: 0 !important;
         width: 160px!important;
@@ -524,11 +578,16 @@
         line-height: 3 !important;
         margin-right: 0.5rem;
     }
-    .filters .v-text-field.v-text-field--solo .v-input__control {
-        min-height: 40px !important;
+    .filters .v-text-field--outlined .v-input__control, .v-text-field--outlined .v-input__slot, .v-text-field--outlined
+    fieldset, .v-text-field--solo .v-input__control, .v-text-field--solo .v-input__slot, .v-text-field--solo fieldset,
+    .v-text-field__slot{
+        max-height: 40px !important;
     }
     .filters .v-text-field--rounded>.v-input__control>.v-input__slot {
         padding: 0 7px!important;
+    }
+    .v-slider__thumb{
+        cursor: grab;
     }
      .v-rating .v-icon {
          padding: 0 !important;
@@ -538,6 +597,9 @@
     }
     .price .v-text-field.v-text-field--solo .v-input__control {
         min-height: 35px !important;
+    }
+    .filters .v-text-field.v-text-field--solo .v-input__control {
+        min-height: 40px !important;
     }
     .region{
         height: 500px;

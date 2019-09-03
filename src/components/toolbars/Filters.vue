@@ -3,22 +3,28 @@
         <v-container pa-0 class="filters d-flex">
             <v-flex  class="filters_select">
                 <v-toolbar-title class="d-inline" mr-2>Filters</v-toolbar-title>
-                <v-menu offset-y v-model="popular" min-width="400" :close-on-content-click="false">
+                <v-menu offset-y v-model="popular" min-width="400" nudge-bottom="20" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
-                        <v-btn
-                                color="#20274d"
-                                dark rounded
+                        <v-chip
+                                class="caption font-weight-bold mr-1"
+                                :color="popularChipColor"
+                                text-color="white"
+                                :close="popularChipClose"
+                                @click:close="clearPopular"
                                 v-on="on"
                         >
-                            <v-icon>{{popularIcon }}</v-icon>
-                            Popular
-                            <v-icon>mdi-menu-down</v-icon>
-                        </v-btn>
+                            <v-avatar v-show="check_popular.length !== 0" :class="(check_popular.length === 0) ? '' : 'white black--text'" left>
+                                {{check_popular.length}}
+                            </v-avatar>
+                            <v-icon v-show="check_popular.length === 0" small left>mdi-octagram-outline</v-icon>
+                                Popular
+                            <v-icon v-show="check_popular.length === 0" small right>mdi-menu-down</v-icon>
+                        </v-chip>
                     </template>
                     <v-list
                             flat dense
                     >
-                        <v-subheader>Popular filters for Barcelona:</v-subheader>
+                        <v-subheader class="subtitle-2 font-weight-bold grey--text">Popular filters for Barcelona:</v-subheader>
 
                         <v-list-item-group
                                 multiple
@@ -28,47 +34,49 @@
                                     v-for="(item, index) in populars" :key="index"
                             >
                                 <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action class="ma-0">
+                                    <v-list-item-action class="ma-0 filter_checkbox">
                                         <v-checkbox
                                                 v-model="active"
                                                 color="primary"
                                                 @click="toggle"
+                                                class="ma-0"
                                         ></v-checkbox>
                                     </v-list-item-action>
-
-                                    <v-list-item-content>
-                                        <v-list-item-title>{{item.location}} ({{item.count}})</v-list-item-title>
-                                    </v-list-item-content>
+                                        <p class="caption" >{{item.location}} ({{item.count}})</p>
                                 </template>
                             </v-list-item>
                         </v-list-item-group>
                     </v-list>
                 </v-menu>
-                <v-menu offset-y v-model="price" min-width="350" :close-on-content-click="false">
+                <v-menu offset-y v-model="price" min-width="350" nudge-bottom="20" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
-                        <v-btn
-                                color="#20274d"
-                                dark rounded
+                        <v-chip
+                                class="caption font-weight-bold mr-1"
+                                :color="priceChipColor"
+                                text-color="white"
+                                :close="priceChipClose"
+                                @click:close="clearPrice"
                                 v-on="on"
                         >
-                            <v-icon>{{priceIcon}}</v-icon>
+                            <v-icon small left>mdi-tag</v-icon>
                             {{priceText}}
-                            <v-icon>mdi-menu-down</v-icon>
-                        </v-btn>
+                            <v-icon v-show="range[0] === 0 && range[1] === 2000" small right>mdi-menu-down</v-icon>
+                        </v-chip>
                     </template>
                     <v-card
                             class="mx-auto"
                             min-width="400"
                     >
-                        <v-toolbar
-                                flat
-                                dense
-                        >
+                        <v-toolbar flat dense>
                             <v-toolbar-title>
                                 <span class="subtitle-2 font-weight-bold grey--text">Price per night:</span>
                             </v-toolbar-title>
                             <div class="flex-grow-1"></div>
-                            <v-btn text>
+                            <v-btn
+                                    text
+                                    v-show="this.range[0] !== 0 || this.range[1] !== 2000"
+                                    @click="clearPrice()"
+                            >
                                 Clear
                             </v-btn>
                         </v-toolbar>
@@ -103,7 +111,16 @@
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
-                            <v-range-slider
+                            <v-flex sm8 md8 class="justify-center mx-auto">
+                                <el-slider
+                                        v-model="range"
+                                        :show-tooltip="false"
+                                        :max="2000"
+                                        range
+                                >
+                                </el-slider>
+                            </v-flex>
+                            <!--<v-range-slider
                                     v-model="range"
                                     :max="max"
                                     :min="min"
@@ -111,67 +128,35 @@
                                     track-color="#e0ecff"
                                     class="align-center mb-4"
                             >
-                            </v-range-slider>
+                            </v-range-slider>-->
                         </v-card-text>
                     </v-card>
-                    <!--<v-list class="price">
-                        <v-card flat color="transparent">
-                            <v-subheader class="font-weight-bold">Price per night:</v-subheader>
-                            <v-card-text>
-                                <v-layout>
-                                    <v-flex class="px-4">
-                                        <v-range-slider
-                                                v-model="range"
-                                                :max="max"
-                                                :min="min"
-                                                hide-details
-                                                class="align-center mb-4"
-                                        >
-                                        </v-range-slider>
-                                        <v-flex row>
-                                            <v-text-field
-                                                    v-model="range[0]"
-                                                    class="mt-0 pt-0"
-                                                    hide-details outlined
-                                                    label="MIN"
-                                                    type="number"
-                                                    style="max-width: 80px; "
-                                            ></v-text-field>
-                                            <v-divider class="mt-4"></v-divider>
-                                            <v-text-field
-                                                    v-model="range[1]"
-                                                    class="mt-0 pt-0"
-                                                    hide-details outlined
-                                                    label="MAX"
-                                                    type="number"
-                                                    style="max-width: 80px"
-                                            ></v-text-field>
-                                        </v-flex>
-                                    </v-flex>
-                                </v-layout>
-                            </v-card-text>
-                        </v-card>
-                    </v-list>-->
                 </v-menu>
-                <v-menu offset-y v-model="star" min-width="300" :close-on-content-click="false">
+                <v-menu offset-y v-model="star" min-width="300" nudge-bottom="20" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
-                        <v-btn
-                                color="#20274d"
-                                dark rounded
+                        <v-chip
+                                class="caption font-weight-bold mr-1"
+                                :color="starChipColor"
+                                text-color="white"
+                                :close="starChipClose"
+                                @click:close="clearStar"
                                 v-on="on"
                         >
-                            <v-icon>{{starIcon}}</v-icon>
+                            <v-avatar v-show="check_star.length !== 0" :class="(check_star.length === 0) ? '' : 'white black--text'" left>
+                                {{starIcon}}
+                            </v-avatar>
+                            <v-icon v-show="check_star.length === 0" small left>mdi-star</v-icon>
                             Stars
-                            <v-icon>mdi-menu-down</v-icon>
-                        </v-btn>
+                            <v-icon v-show="check_star.length === 0" small right>mdi-menu-down</v-icon>
+                        </v-chip>
                     </template>
                     <v-list subheader two-line flat dense>
-                        <v-subheader>Звездность:</v-subheader>
+                        <v-subheader class="subtitle-2 font-weight-bold grey--text">Star rating:</v-subheader>
 
                         <v-list-item-group v-model="check_star" multiple>
                             <v-list-item v-for="(item, index) in rating" :key="index" :min-height="40">
                                 <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action class="ma-0">
+                                    <v-list-item-action class="ma-0 filter_checkbox">
                                         <v-checkbox
                                                 v-model="active"
                                                 color="primary" class="ma-0"
@@ -192,17 +177,23 @@
                         </v-list-item-group>
                     </v-list>
                 </v-menu>
-                <v-menu offset-y v-model="area" min-width="300" :close-on-content-click="false">
+                <v-menu offset-y v-model="area" min-width="300" nudge-bottom="20" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
-                        <v-btn
-                                color="#20274d"
-                                dark rounded
+                        <v-chip
+                                class="caption font-weight-bold mr-1"
+                                :color="areaChipColor"
+                                text-color="white"
+                                :close="areaChipClose"
+                                @click:close="clearArea"
                                 v-on="on"
                         >
-                            <v-icon>{{areaIcon}}</v-icon>
+                            <v-avatar v-show="check_area.length !== 0" :class="(check_area.length === 0) ? '' : 'white black--text'" left>
+                                {{check_area.length}}
+                            </v-avatar>
+                            <v-icon v-show="check_area.length === 0" small left>mdi-map-marker</v-icon>
                             Area
-                            <v-icon>mdi-menu-down</v-icon>
-                        </v-btn>
+                            <v-icon v-show="check_area.length === 0" small right>mdi-menu-down</v-icon>
+                        </v-chip>
                     </template>
                     <v-list
                             subheader
@@ -210,7 +201,7 @@
                             flat dense
                             class="region"
                     >
-                        <v-subheader>Area:</v-subheader>
+                        <v-subheader class="subtitle-2 font-weight-bold grey--text">Area:</v-subheader>
 
                         <v-list-item-group
                                 v-model="check_area"
@@ -220,41 +211,43 @@
                                     v-for="(item, index) in areas" :key="index"
                             >
                                 <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action class="ma-0">
+                                    <v-list-item-action class="ma-0 filter_checkbox">
                                         <v-checkbox
                                                 v-model="active"
                                                 color="primary"
                                                 @click="toggle"
                                         ></v-checkbox>
                                     </v-list-item-action>
-
-                                    <v-list-item-content>
-                                        <v-list-item-title>{{item.area}} ({{item.count}})</v-list-item-title>
-                                    </v-list-item-content>
+                                    <p class="caption">{{item.area}} ({{item.count}})</p>
                                 </template>
                             </v-list-item>
                         </v-list-item-group>
                     </v-list>
                 </v-menu>
-                <v-menu offset-y v-model="more" max-width="800" :close-on-content-click="false">
+                <v-menu offset-y left v-model="more" max-width="800" nudge-bottom="20" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
-                        <v-btn
-                                color="#20274d"
-                                dark rounded
+                        <v-chip
+                                class="caption font-weight-bold mr-1"
+                                :color="moreChipColor"
+                                text-color="white"
+                                :close="moreChipClose"
+                                @click:close="clearMore"
                                 v-on="on"
                         >
-                            <v-icon>{{moreIcon}}</v-icon>
+                            <v-avatar v-show="moreShow" :class="(!moreShow) ? '' : 'white black--text'" left>
+                                {{moreIcon}}
+                            </v-avatar>
+<!--                            <v-icon v-show="check_more.length === 0" small left>{{moreIcon}}</v-icon>-->
                             More
-                            <v-icon>mdi-menu-down</v-icon>
-                        </v-btn>
+                            <v-icon v-show="!moreShow" small right>mdi-menu-down</v-icon>
+                        </v-chip>
                     </template>
                     <v-list
                             subheader
-                            two-line
                             flat dense
                             class="region"
                     >
-                        <v-subheader class="font-weight-bold">Room amenities:</v-subheader>
+                        <v-subheader class="subtitle-2 font-weight-bold grey--text">Room amenities:</v-subheader>
                         <v-list-item-group
                                 v-model="check_more.amenities"
                                 multiple
@@ -265,7 +258,7 @@
                                 >
                                     <v-list-item>
                                         <template v-slot:default="{ active, toggle }">
-                                            <v-list-item-action class="ma-0">
+                                            <v-list-item-action class="ma-0 filter_checkbox">
                                                 <v-checkbox
                                                         v-model="active"
                                                         color="primary"
@@ -273,9 +266,7 @@
                                                 ></v-checkbox>
                                             </v-list-item-action>
 
-                                            <v-list-item-content>
-                                                <v-list-item-title>{{item.amenities}}</v-list-item-title>
-                                            </v-list-item-content>
+                                            <p class="caption">{{item.amenities}}</p>
                                         </template>
                                     </v-list-item>
                                 </v-flex>
@@ -283,7 +274,7 @@
                         </v-list-item-group>
                         <v-divider></v-divider>
 
-                        <v-subheader class="font-weight-bold">Property facilities:</v-subheader>
+                        <v-subheader class="subtitle-2 font-weight-bold grey--text">Property facilities:</v-subheader>
                             <v-list-item-group
                                     v-model="check_more.facilities"
                                     multiple
@@ -294,7 +285,7 @@
                                     >
                                         <v-list-item>
                                             <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action class="ma-0">
+                                                <v-list-item-action class="ma-0 filter_checkbox">
                                                     <v-checkbox
                                                             v-model="active"
                                                             color="primary"
@@ -302,9 +293,7 @@
                                                     ></v-checkbox>
                                                 </v-list-item-action>
 
-                                                <v-list-item-content>
-                                                    <v-list-item-title>{{item.facilities}} ({{item.count}})</v-list-item-title>
-                                                </v-list-item-content>
+                                                <p class="caption">{{item.facilities}} ({{item.count}})</p>
                                             </template>
                                         </v-list-item>
                                     </v-flex>
@@ -312,7 +301,7 @@
                             </v-list-item-group>
                         <v-divider></v-divider>
 
-                        <v-subheader class="font-weight-bold">Room offers:</v-subheader>
+                        <v-subheader class="subtitle-2 font-weight-bold grey--text">Room offers:</v-subheader>
                         <v-list-item-group
                                     v-model="check_more.offers"
                                     multiple
@@ -323,7 +312,7 @@
                                     >
                                         <v-list-item>
                                             <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action class="ma-0">
+                                                <v-list-item-action class="ma-0 filter_checkbox">
                                                     <v-checkbox
                                                             v-model="active"
                                                             color="primary"
@@ -331,9 +320,7 @@
                                                     ></v-checkbox>
                                                 </v-list-item-action>
 
-                                                <v-list-item-content>
-                                                    <v-list-item-title>{{item.offers}} ({{item.count}})</v-list-item-title>
-                                                </v-list-item-content>
+                                                <p class="caption">{{item.offers}} ({{item.count}})</p>
                                             </template>
                                         </v-list-item>
                                     </v-flex>
@@ -341,7 +328,7 @@
                             </v-list-item-group>
                         <v-divider></v-divider>
 
-                        <v-subheader class="font-weight-bold">Property type:</v-subheader>
+                        <v-subheader class="subtitle-2 font-weight-bold grey--text">Property type:</v-subheader>
                         <v-list-item-group
                                     v-model="check_more.type"
                                     multiple
@@ -352,7 +339,7 @@
                                     >
                                         <v-list-item>
                                             <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action class="ma-0">
+                                                <v-list-item-action class="ma-0 filter_checkbox">
                                                     <v-checkbox
                                                             v-model="active"
                                                             color="primary"
@@ -360,9 +347,7 @@
                                                     ></v-checkbox>
                                                 </v-list-item-action>
 
-                                                <v-list-item-content>
-                                                    <v-list-item-title>{{item.type}} ({{item.count}})</v-list-item-title>
-                                                </v-list-item-content>
+                                                <p class="caption">{{item.type}} ({{item.count}})</p>
                                             </template>
                                         </v-list-item>
                                     </v-flex>
@@ -370,7 +355,7 @@
                             </v-list-item-group>
                         <v-divider></v-divider>
 
-                        <v-subheader class="font-weight-bold">Payment options:</v-subheader>
+                        <v-subheader class="subtitle-2 font-weight-bold grey--text">Payment options:</v-subheader>
                         <v-list-item-group
                                     v-model="check_more.options"
                                     multiple
@@ -381,7 +366,7 @@
                                     >
                                         <v-list-item>
                                             <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action class="ma-0">
+                                                <v-list-item-action class="ma-0 filter_checkbox">
                                                     <v-checkbox
                                                             v-model="active"
                                                             color="primary"
@@ -389,9 +374,7 @@
                                                     ></v-checkbox>
                                                 </v-list-item-action>
 
-                                                <v-list-item-content>
-                                                    <v-list-item-title>{{item.options}} ({{item.count}})</v-list-item-title>
-                                                </v-list-item-content>
+                                                <p class="caption">{{item.options}} ({{item.count}})</p>
                                             </template>
                                         </v-list-item>
                                     </v-flex>
@@ -516,19 +499,64 @@
         rating: [5,4,3,2,1],
       }
     },
+    methods: {
+      clearPopular () {
+        this.check_popular = [];
+      },
+      clearPrice(){
+        this.range = [0, 2000];
+      },
+      clearStar(){
+        this.check_star = [];
+      },
+      clearArea(){
+        this.check_area = [];
+      },
+      clearMore(){
+        this.check_more = {
+                  amenities: [],
+                  facilities: [],
+                  offers: [],
+                  type: [],
+                  options: [],
+            }
+      },
+    },
     computed: {
-      priceIcon(){
+      popularChipColor(){
+        return (!this.popular && this.check_popular.length === 0) ? '#20274d': '#425ff9';
+      },
+      popularChipClose(){
+        return (this.check_popular.length === 0) ? !!0 : !!1;
+      },
+
+      priceChipColor(){
+        return (!this.price && this.range[0] === 0 && this.range[1] === 2000) ? '#20274d': '#425ff9';
+      },
+      priceChipClose(){
+        return (this.range[0] === 0 && this.range[1] === 2000) ? !!0 : !!1;
+      },
+      priceText()  {
         if (this.range[0] === 0 && this.range[1] === 2000) {
-          return 'mdi-tag';
+          return 'Your budget';
         }
-        return ``
+        return `$${this.range[0]} - $${this.range[1]}`
       },
-      popularIcon() {
-        if (this.check_popular.length === 0) {
-          return 'mdi-octagram-outline';
-        }
-        return `${this.check_popular.length}`
+
+      areaChipColor(){
+        return (!this.area && this.check_area.length === 0) ? '#20274d': '#425ff9';
       },
+      areaChipClose(){
+        return (this.check_area.length === 0) ? !!0 : !!1;
+      },
+
+      moreChipColor(){
+        return (!this.more && !this.moreShow) ? '#20274d': '#425ff9';
+      },
+      moreChipClose(){
+        return (!this.moreShow) ? !!0 : !!1;
+      },
+
       starIcon() {
         if (this.check_star.length === 0) {
           return 'mdi-star';
@@ -540,23 +568,24 @@
         }
         return `${this.check_star}`
       },
-      areaIcon() {
-        if (this.check_area.length === 0) {
-          return 'mdi-map-marker';
-        }
-        return `${this.check_area.length}`
+      starChipColor(){
+        return (!this.star && this.check_star.length === 0) ? '#20274d': '#425ff9';
       },
+      starChipClose(){
+        return (this.check_star.length === 0) ? !!0 : !0;
+      },
+
       moreIcon() {
         if (this.check_more.amenities.length === 0 && this.check_more.facilities.length === 0 && this.check_more.offers.length === 0 && this.check_more.type.length === 0 && this.check_more.options.length === 0) {
           return '';
         }
         return `${this.check_more.amenities.length + this.check_more.facilities.length + this.check_more.offers.length + this.check_more.type.length + this.check_more.options.length}`
       },
-      priceText()  {
-        if (this.range[0] === 0 && this.range[1] === 2000) {
-          return 'Your budget';
+      moreShow() {
+        if (this.check_more.amenities.length === 0 && this.check_more.facilities.length === 0 && this.check_more.offers.length === 0 && this.check_more.type.length === 0 && this.check_more.options.length === 0) {
+          return !!0;
         }
-        return `$${this.range[0]} - $${this.range[1]}`
+        return !0
       },
     },
     created() {
@@ -568,6 +597,12 @@
 </script>
 
 <style>
+     .v-input--selection-controls__ripple {
+        color: transparent !important;
+    }
+     .filter_checkbox .v-icon.v-icon {
+         font-size: 18px !important;
+     }
     .filters_select .v-input__slot{
         margin-bottom: 0 !important;
         width: 160px!important;
@@ -578,50 +613,47 @@
         line-height: 3 !important;
         margin-right: 0.5rem;
     }
-    .filters .v-text-field--outlined .v-input__control, .v-text-field--outlined .v-input__slot, .v-text-field--outlined
-    fieldset, .v-text-field--solo .v-input__control, .v-text-field--solo .v-input__slot, .v-text-field--solo fieldset,
+    .filters .v-text-field--outlined .v-input__control, .filters .v-text-field--outlined .v-input__slot, .filters .v-text-field--outlined
+    fieldset, .filters .v-text-field--solo .v-input__control, .filters .v-text-field--solo .v-input__slot, .filters .v-text-field--solo fieldset,
     .v-text-field__slot{
         max-height: 40px !important;
     }
     .filters .v-text-field--rounded>.v-input__control>.v-input__slot {
         padding: 0 7px!important;
     }
-    .v-slider__thumb{
-        cursor: grab;
-    }
      .v-rating .v-icon {
          padding: 0 !important;
     }
      .v-list--two-line .v-list-item, .v-list-item--two-line {
-        min-height: 40px !important;
+        min-height: 32px !important;
     }
-    .price .v-text-field.v-text-field--solo .v-input__control {
-        min-height: 35px !important;
-    }
+    /*.price .v-text-field.v-text-field--solo .v-input__control {*/
+    /*    min-height: 35px !important;*/
+    /*}*/
     .filters .v-text-field.v-text-field--solo .v-input__control {
-        min-height: 40px !important;
+        min-height: 32px !important;
     }
     .region{
         height: 500px;
         overflow-y: auto;
         background-color: white;
     }
-    .filters .v-btn__content {
-        font-size: smaller !important;
-        font-weight: bold !important;
-    }
-    .filters .mdi:before, .mdi-set {
-        font-size: medium !important;
-    }
-    .filters .v-btn__content .v-icon {
-        font-size: inherit !important;
-        font-weight: bold !important;
-        margin-right: 5px !important;
-    }
-    .v-btn:not(.v-btn--round).v-size--default {
-        padding: 0 12px !important;
-        margin-right: 0.2rem;
-    }
+    /*.filters .v-btn__content {*/
+    /*    font-size: smaller !important;*/
+    /*    font-weight: bold !important;*/
+    /*}*/
+    /*.filters .mdi:before, .mdi-set {*/
+    /*    font-size: medium !important;*/
+    /*}*/
+    /*.filters .v-btn__content .v-icon {*/
+    /*    font-size: inherit !important;*/
+    /*    font-weight: bold !important;*/
+    /*    margin-right: 5px !important;*/
+    /*}*/
+    /*.v-btn:not(.v-btn--round).v-size--default {*/
+    /*    padding: 0 12px !important;*/
+    /*    margin-right: 0.2rem;*/
+    /*}*/
     .showMore{
         flex-wrap: wrap !important;
     }

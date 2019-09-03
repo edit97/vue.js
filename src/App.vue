@@ -1,12 +1,13 @@
 <template>
   <div id="app">
       <v-app>
+          <v-overlay :value="$store.state.overlay" z-index="1"></v-overlay>
+
           <navigation></navigation>
 
           <search></search>
 
 <!--          <filters></filters>-->
-
 
           <router-view></router-view>
 
@@ -19,61 +20,76 @@
                       class="footer"
               >
                   <v-container>
-                      <v-layout class="justify-content-between">
+                      <v-layout class="justify-space-between">
                           <v-flex sm2 xs12>
-                              <v-btn
-                                      v-for="item in home"
-                                      :key="item"
-                                      class="mx-4"
-                                      text small
-                              >
-                                  {{item}}
-                              </v-btn>
+                              <v-list color="#eeeeee"  dense>
+                                  <v-list-item-group>
+                                      <v-list-item
+                                              v-for="item in about"
+                                              :key="item"
+                                              dance
+                                      >
+                                          <v-list-item-title>{{item}}</v-list-item-title>
+                                      </v-list-item>
+                                  </v-list-item-group>
+                              </v-list>
                           </v-flex>
                           <v-flex sm2 xs12>
-                              <v-btn
-                                      v-for="item in about"
-                                      :key="item"
-                                      class="mx-4"
-                                      text small
-                              >
-                                  {{item}}
-                              </v-btn>
+                              <v-list color="#eeeeee"  dense>
+                                  <v-list-item-group>
+                                      <v-list-item
+                                              v-for="item in home"
+                                              :key="item"
+                                              dance
+                                      >
+                                          <v-list-item-title>{{item}}</v-list-item-title>
+                                      </v-list-item>
+                                  </v-list-item-group>
+                              </v-list>
                           </v-flex>
                           <v-flex sm2 xs12>
-                              <v-btn
-                                      v-for="item in destinations"
-                                      :key="item"
-                                      class="mx-4"
-                                      text small
-                              >
-                                  {{item}}
-                              </v-btn>
+                              <v-list color="#eeeeee"  dense>
+                                  <v-list-item-group>
+                                      <v-list-item
+                                              v-for="item in destinations"
+                                              :key="item"
+                                              dance
+                                      >
+                                          <v-list-item-title>{{item}}</v-list-item-title>
+                                      </v-list-item>
+                                  </v-list-item-group>
+                              </v-list>
                           </v-flex>
                           <v-flex sm2 xs12>
-                              <v-btn
-                                      v-for="item in partner"
-                                      :key="item"
-                                      class="mx-4"
-                                      text small
-                              >
-                                  {{item}}
-                              </v-btn>
+                              <v-list color="#eeeeee"  dense>
+                                  <v-list-item-group>
+                                      <v-list-item
+                                              v-for="item in partner"
+                                              :key="item"
+                                              dance
+                                      >
+                                          <v-list-item-title>{{item}}</v-list-item-title>
+                                      </v-list-item>
+                                  </v-list-item-group>
+                              </v-list>
                           </v-flex>
                           <v-flex sm2 xs12>
-                              <v-btn
-                                      v-for="item in app"
-                                      :key="item"
-                                      class="mx-4"
-                                      text small
-                              >
-                                  {{item}}
-                              </v-btn>
+                              <v-list color="#eeeeee"  dense>
+                                  <v-list-item-group>
+                                      <v-list-item
+                                              v-for="item in app"
+                                              :key="item"
+                                              dance
+                                      >
+                                          <v-list-item-title>{{item}}</v-list-item-title>
+                                      </v-list-item>
+                                  </v-list-item-group>
+                              </v-list>
                           </v-flex>
                       </v-layout>
                   </v-container>
               </v-card>
-              <v-layout dark class="justify-center py-3">
+              <v-layout dark class="justify-center text-center py-3">
                   All material herein © 2005–{{ new Date().getFullYear() }} Agoda Company Pte. Ltd. All Rights Reserved.
                   <br>
                   Agoda is part of Booking Holdings Inc., the world leader in online travel & related services.
@@ -93,6 +109,7 @@ export default {
   name: "app",
   data(){
     return{
+      // overlay: false,
       home: [
         'Home',
         'Help center',

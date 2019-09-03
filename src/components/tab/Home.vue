@@ -53,7 +53,7 @@
                                               ></v-rating>
                                           </div>
                                           <div class="text-right">
-                                              <h6 class="m-0">372 $</h6>
+                                              <h5 class="m-0">372 $</h5>
                                               <p class="price ma-0">Nightly rates as low as</p>
                                           </div>
                                       </v-layout>
@@ -63,7 +63,7 @@
                       </div>
                   </v-card>
               </v-flex>
-              <v-flex xs12 sm12 lg9 px-4 mt-3>
+              <v-flex xs12 sm12 md9 lg9 px-4 mt-3>
                   <v-card tile flat >
                       <v-card color="rgb(253, 238, 238)" flat mt-4>
                           <v-card-text >
@@ -98,6 +98,7 @@
                               </v-layout>
                           </v-container>
                       </v-item-group>
+                      <Property_card></Property_card>
                       <ticket></ticket>
                       <v-divider class="my-5"></v-divider>
                       <strong class="ma-1">People who search for Barcelona also considered staying in these cities.</strong>
@@ -137,6 +138,7 @@
 
 <script>
   import Ticket from './Ticket';
+  import Property_card from './Property_Card';
 
   export default {
   name: "Home",
@@ -185,7 +187,7 @@
       ],
     }
   },
-  components: {Ticket,}
+  components: {Property_card, Ticket,}
 };
 </script>
 
@@ -211,7 +213,7 @@
     .main_styles a{
         font-size: 14px;
     }
-    .main_styles h6{
+    .main_styles h5{
         color: #e91e63;
         font-weight: bold;
     }

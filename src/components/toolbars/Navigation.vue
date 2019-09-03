@@ -46,7 +46,7 @@
                             max-width="30"
                             class="mr-2"
                     ></v-img>
-                    <v-icon small color="black">&#36;</v-icon>
+                    <p class="body-1 black--text" >&#36;</p>
                 </v-btn>
             </template>
 
@@ -59,7 +59,7 @@
                             max-width="30"
                             class="mr-2"
                     ></v-img>
-                    <v-icon small>&#8381;</v-icon>
+                    <p class="body-1 black--text">&#8381;</p>
                 </v-list-item>
                 <v-list-item>
                     <v-img
@@ -69,7 +69,7 @@
                             max-width="30"
                             class="mr-2"
                     ></v-img>
-                    <v-icon small>&#1423;</v-icon>
+                    <p class="body-1 black--text">&#1423;</p>
                 </v-list-item>
             </v-list>
         </v-menu>

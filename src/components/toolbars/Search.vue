@@ -147,7 +147,7 @@
                                 @click="searchMenu()"
                         ></v-text-field>
                     </template>
-                    <div class="top_arrow">
+                    <div class="">
                         <v-list subheader flat >
                             <v-layout>
                                 <v-flex class="search_menu">
@@ -177,7 +177,13 @@
                                 <v-flex sm6 class="search_menu" v-show="menu_family">
                                     <v-content class=" pa-3">
                                         <v-layout class="menu_counter">
-                                            <el-input-number v-model="family_travelers.rooms" @change="handleChange" :min="1" :max="10"></el-input-number>
+                                            <el-input-number
+                                                    v-model="family_travelers.rooms"
+                                                    @change="handleChange"
+                                                    :min="1" :max="10"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
                                             <!--<v-btn text icon
                                                    color="primary"
                                                    @click.prevent="decrement_family"
@@ -194,27 +200,40 @@
                                             > <p class="headline ma-0">+</p> </v-btn>-->
                                         </v-layout>
 
-                                        <v-divider class="my-0"></v-divider>
+                                        <v-divider class="my-2"></v-divider>
 
                                         <v-layout class="menu_counter">
-                                            <v-btn text icon
+                                            <el-input-number
+                                                    v-model="family_travelers.adults"
+                                                    @change="handleChange"
+                                                    :min="1" :max="10"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
+                                           <!-- <v-btn text icon
                                                    color="primary"
                                                    @click.prevent="decrement_adults"
                                             >
                                                 <p class="headline ma-0">-</p> </v-btn>
-
                                             <div class="d-flex gray_color">
                                                 <p class="headline ma-0 pr-1">{{family_travelers.adults}}</p> <span class="pt-2">Adults</span>
                                             </div>
                                             <v-btn text icon
                                                    color="primary"
                                                    @click.prevent="increment_adults"
-                                            > <p class="headline ma-0">+</p> </v-btn>
+                                            > <p class="headline ma-0">+</p> </v-btn>-->
                                         </v-layout>
 
                                         <v-divider></v-divider>
                                         <v-layout class="menu_counter">
-                                            <v-btn text icon
+                                            <el-input-number
+                                                    v-model="family_travelers.children"
+                                                    @change="handleChange"
+                                                    :min="0" :max="4"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
+                                           <!-- <v-btn text icon
                                                    color="primary"
                                                    @click.prevent="decrement_children"
                                             > <p class="headline ma-0">-</p> </v-btn>
@@ -225,7 +244,7 @@
                                             <v-btn text icon
                                                    color="primary"
                                                    @click.prevent="increment_children"
-                                            > <p class="headline ma-0">+</p> </v-btn>
+                                            > <p class="headline ma-0">+</p> </v-btn>-->
                                         </v-layout>
 
                                         <v-divider></v-divider>
@@ -412,5 +431,64 @@
         position: absolute;
         left: 50px;
         top: -1px;
+    }
+    .v-el-date-picker {
+        width: 100% !important;
+        height: 56px !important;
+        padding: 0 12px;
+        background: transparent !important;
+        min-height: 56px;
+        cursor: text;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: "Roboto", sans-serif;
+        line-height: 1.5;
+        /*border-color: rgba(0, 0, 0, 0.24);*/
+    }
+  /*  v-el-date-picker:hover {
+         border-color: rgba(0, 0, 0, 0.86);
+     }
+    v-el-date-picker:focus {
+         border-color: #1976d2 !important;
+         caret-color: #1976d2 !important;
+         border-width: 2px;
+     }
+    v-el-date-picker:focus .el-input.is-active .el-input__inner, .el-input__inner {
+         border-color: #1976d2 !important;
+         caret-color: #1976d2 !important;
+     }
+    .el-range-editor.is-active, .el-range-editor.is-active:hover {
+        border-color: #1976d2;
+        border-width: 2px;
+    }*/
+    .el-date-editor .el-range-input::placeholder {
+        height: 20px;
+        line-height: 20px;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 16px;
+        min-height: 8px;
+    }
+    .el-date-editor .el-range-input::-webkit-input-placeholder {
+        height: 20px;
+        line-height: 20px;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 16px;
+        min-height: 8px;
+    }
+    .el-date-editor .el-range-separator {
+        padding: 0 5px !important;
+        line-height: 32px !important;
+        width: 5% !important;
+        color: #303133 !important;
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        line-height: 46px !important;
+    }
+    .el-date-editor .el-range-input {
+        line-height: 20px;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: Roboto, sans-serif;
+        font: inherit !important;
     }
 </style>

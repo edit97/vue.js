@@ -9,6 +9,8 @@
 
 <!--          <filters></filters>-->
 
+<!--          <MainPage></MainPage>-->
+
           <router-view></router-view>
 
           <v-footer
@@ -102,6 +104,7 @@
 <script>
 import Navigation from "./components/toolbars/Navigation.vue";
 import Search from "./components/toolbars/Search.vue";
+import MainPage from './components/Main';
 // import Filters from "./components/toolbars/Filters";
 
 
@@ -143,6 +146,7 @@ export default {
     }
   },
   components: {
+    MainPage,
     Navigation,
     Search,
     // Filters,

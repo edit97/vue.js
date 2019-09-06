@@ -68,22 +68,6 @@
                                                     See All
                                                 </v-overlay>
                                             </v-img>
-                                            <!--<v-menu open-on-hover top offset-y >
-                                                <template v-slot:activator="{ on }">
-                                                    <v-item v-slot:default="{ active, toggle }">
-                                                        <div>
-
-                                                        </div>
-                                                    </v-item>
-                                                </template>
-
-                                                <v-img
-                                                        src="https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768"
-                                                        height="350"
-                                                        width="350"
-                                                        class="text-right pa-2"
-                                                ></v-img>
-                                            </v-menu>-->
                                         </v-col>
                                     </v-row>
                                 </v-item>

@@ -3387,9 +3387,91 @@
                                     </v-row>
                                 </v-col>
                             </v-row>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-pool</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <div class="mb-2 font-weight-bold">Things to do, ways to relax</div>
+                                    <v-row class="blue_text">
+                                        <v-col class="py-0" cols="4">
+                                            <v-menu :open-on-hover="true" offset-y>
+                                                <template v-slot:activator="{ on }">
+                                                    <div v-on="on">
+                                                        <v-icon color="#5392f9" small left>mdi-dumbbell</v-icon>
+                                                        Fitness center
+                                                    </div>
+                                                </template>
+                                                <v-img
+                                                        src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
+                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                                        height="350"
+                                                        width="350"
+                                                        class="text-right pa-2"
+                                                ></v-img>
+                                            </v-menu>
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-icon color="#5392f9" small left>mdi-solar-power</v-icon>
+                                            Solarium
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-menu :open-on-hover="true" offset-y>
+                                                <template v-slot:activator="{ on }">
+                                                    <div v-on="on">
+                                                        <v-icon color="#5392f9" small left>mdi-account-tie</v-icon>
+                                                        Front desk [24-hour]
+                                                    </div>
+                                                </template>
+                                                <v-img
+                                                        src="//pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=360x270"
+                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                                        height="350"
+                                                        width="350"
+                                                        class="text-right pa-2"
+                                                ></v-img>
+                                            </v-menu>
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-menu :open-on-hover="true" offset-y>
+                                                <template v-slot:activator="{ on }">
+                                                    <div v-on="on">
+                                                        <v-icon color="#5392f9" small left>mdi-pool</v-icon>
+                                                        Swimming pool
+                                                        [outdoor]
+                                                    </div>
+                                                </template>
+                                                <v-img
+                                                        src="//pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=360x270"
+                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                                        height="350"
+                                                        width="350"
+                                                        class="text-right pa-2"
+                                                ></v-img>
+                                            </v-menu>
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-menu :open-on-hover="true" offset-y>
+                                                <template v-slot:activator="{ on }">
+                                                    <div v-on="on">
+                                                        <v-icon color="#5392f9" small left>mdi-silverware-fork-knife</v-icon>
+                                                        Restaurants
+                                                    </div>
+                                                </template>
+                                                <v-img
+                                                        src="//pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=360x270"
+                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                                        height="350"
+                                                        width="350"
+                                                        class="text-right pa-2"
+                                                ></v-img>
+                                            </v-menu>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
                         </v-col>
                     </v-row>
-                    <v-layout>
+                    <!--<v-layout>
                         <v-flex sm3 py-5 mr-3>
                             <v-divider></v-divider>
                             <h5>What they offer</h5>
@@ -3485,7 +3567,7 @@
                                 <div>Bicycle rental</div>
                             </v-layout>
                         </v-flex>
-                    </v-layout>
+                    </v-layout>-->
                     <v-layout>
                         <v-flex sm3 py-5 mr-3>
                             <v-divider></v-divider>

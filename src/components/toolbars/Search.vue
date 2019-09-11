@@ -148,20 +148,20 @@
                         ></v-text-field>
                     </template>
                     <div class="">
-                        <v-list subheader flat >
-                            <v-layout>
-                                <v-flex class="search_menu">
+                        <v-list flat>
+                            <!--<v-row>
+                                <v-col class="search_menu">
                                     <v-list-item-group
                                             mandatory
                                             color="#5a96f9"
                                             v-model="check_room"
                                     >
-                                        <v-list-item @click="menu_family = false">
+                                        <v-list-item @click="traveler()">
                                             Solo traveler
                                             <v-spacer></v-spacer>
                                             <div class="caption">1 room, 1 adult</div>
                                         </v-list-item>
-                                        <v-list-item @click="menu_family = false">
+                                        <v-list-item @click="traveler()">
                                             Couple / Pair
                                             <v-spacer></v-spacer>
                                             <div class="caption">1 room, 2 adult</div>
@@ -172,9 +172,165 @@
                                         <v-list-item @click="menu_family = true">
                                             Group travelers
                                         </v-list-item>
+                                        <v-list-item @click="menu_business = true">
+                                            Business travelers
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-col>
+                                <v-col sm6 class="search_menu" v-show="menu_family">
+                                    <v-content class=" pa-3">
+                                        <v-layout class="menu_counter">
+                                            <el-input-number
+                                                    v-model="family_travelers.rooms"
+                                                    @change="handleChange"
+                                                    :min="1" :max="10"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
+                                            &lt;!&ndash;<v-btn text icon
+                                                   color="primary"
+                                                   @click.prevent="decrement_family"
+                                            >
+                                                <p class="headline ma-0">-</p>
+                                            </v-btn>
+
+                                            <div class="d-flex gray_color">
+                                                <p class="headline ma-0 pr-1">{{family_travelers.rooms}}</p> <span class="pt-2">Rooms</span>
+                                            </div>
+                                            <v-btn text icon
+                                                   color="primary"
+                                                   @click.prevent="increment_family"
+                                            > <p class="headline ma-0">+</p> </v-btn>&ndash;&gt;
+                                        </v-layout>
+
+                                        <v-divider class="my-2"></v-divider>
+
+                                        <v-layout class="menu_counter">
+                                            <el-input-number
+                                                    v-model="family_travelers.adults"
+                                                    @change="handleChange"
+                                                    :min="1" :max="10"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
+                                           &lt;!&ndash; <v-btn text icon
+                                                   color="primary"
+                                                   @click.prevent="decrement_adults"
+                                            >
+                                                <p class="headline ma-0">-</p> </v-btn>
+                                            <div class="d-flex gray_color">
+                                                <p class="headline ma-0 pr-1">{{family_travelers.adults}}</p> <span class="pt-2">Adults</span>
+                                            </div>
+                                            <v-btn text icon
+                                                   color="primary"
+                                                   @click.prevent="increment_adults"
+                                            > <p class="headline ma-0">+</p> </v-btn>&ndash;&gt;
+                                        </v-layout>
+
+                                        <v-divider></v-divider>
+                                        <v-layout class="menu_counter">
+                                            <el-input-number
+                                                    v-model="family_travelers.children"
+                                                    @change="handleChange"
+                                                    :min="0" :max="4"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
+                                           &lt;!&ndash; <v-btn text icon
+                                                   color="primary"
+                                                   @click.prevent="decrement_children"
+                                            > <p class="headline ma-0">-</p> </v-btn>
+
+                                            <div class="d-flex gray_color">
+                                                <p class="headline ma-0 pr-1">{{family_travelers.children}}</p> <span class="pt-2">Children</span>
+                                            </div>
+                                            <v-btn text icon
+                                                   color="primary"
+                                                   @click.prevent="increment_children"
+                                            > <p class="headline ma-0">+</p> </v-btn>&ndash;&gt;
+                                        </v-layout>
+
+                                        <v-divider></v-divider>
+                                        <div class="text-center my-2 gray_color" v-if="family_travelers.children!==0">Children's ages (years)</div>
+                                        <v-layout wrap class="justify-center">
+                                            <v-flex  xs12 sm3 pr-2
+                                                     v-for="i in family_travelers.children" :key="i"
+                                            >
+                                                <v-select
+                                                        :items="items"
+                                                        placeholder="-"
+                                                        outlined dense hide-details
+                                                ></v-select>
+                                            </v-flex>
+                                        </v-layout>
+                                        <v-content class="mt-4" v-if="family_travelers.children===0">
+                                            <small>Traveling with kids?</small>
+                                            <v-layout>
+                                                <v-flex sm10 md10>
+                                                    <small>Include them above for the best prices and offers available with children friendly properties.</small>
+                                                </v-flex>
+                                                <v-flex sm1 md1>
+                                                    <v-icon>mdi-account-group-outline</v-icon>
+                                                </v-flex>
+                                            </v-layout>
+                                        </v-content>
+                                    </v-content>
+                                </v-col>
+                                &lt;!&ndash;<v-col sm6 class="search_menu" v-show="business_travelers">
+                                    <v-content class=" pa-3">
+                                        <v-layout class="menu_counter">
+                                            <el-input-number
+                                                    v-model="business_travelers.rooms"
+                                                    @change="handleChange"
+                                                    :min="1" :max="10"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
+                                        </v-layout>
+
+                                        <v-divider class="my-2"></v-divider>
+
+                                        <v-layout class="menu_counter">
+                                            <el-input-number
+                                                    v-model="business_travelers.adults"
+                                                    @change="handleChange"
+                                                    :min="1" :max="10"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
+                                        </v-layout>
+                                    </v-content>
+                                </v-col>&ndash;&gt;
+                            </v-row>-->
+                            <v-layout>
+                                <v-flex class="search_menu">
+                                    <v-list-item-group
+                                            mandatory
+                                            color="#5a96f9"
+                                            v-model="check_room"
+                                    >
+                                        <v-list-item @click="traveler()">
+                                            Solo traveler
+                                            <v-spacer></v-spacer>
+                                            <div class="caption">1 room, 1 adult</div>
+                                        </v-list-item>
+                                        <v-list-item @click="traveler()">
+                                            Couple / Pair
+                                            <v-spacer></v-spacer>
+                                            <div class="caption">1 room, 2 adult</div>
+                                        </v-list-item>
+                                        <v-list-item @click="menu_family = true">
+                                            Family travelers
+                                        </v-list-item>
+                                        <v-list-item @click="menu_family = true">
+                                            Group travelers
+                                        </v-list-item>
+                                        <v-list-item @click="menu_business = true">
+                                            Business travelers
+                                        </v-list-item>
                                     </v-list-item-group>
                                 </v-flex>
-                                <v-flex sm6 class="search_menu" v-show="menu_family">
+                                <v-flex sm6 class="search_menu" v-show="menu_family === true">
                                     <v-content class=" pa-3">
                                         <v-layout class="menu_counter">
                                             <el-input-number
@@ -249,7 +405,7 @@
 
                                         <v-divider></v-divider>
                                         <div class="text-center my-2 gray_color" v-if="family_travelers.children!==0">Children's ages (years)</div>
-                                        <v-layout wrap>
+                                        <v-layout wrap class="justify-center">
                                             <v-flex  xs12 sm3 pr-2
                                                      v-for="i in family_travelers.children" :key="i"
                                             >
@@ -260,7 +416,7 @@
                                                 ></v-select>
                                             </v-flex>
                                         </v-layout>
-                                        <v-content class="mt-4" v-if="family_travelers.children===0">
+                                        <v-content class="mt-4" v-if="family_travelers.children === 0">
                                             <small>Traveling with kids?</small>
                                             <v-layout>
                                                 <v-flex sm10 md10>
@@ -271,6 +427,31 @@
                                                 </v-flex>
                                             </v-layout>
                                         </v-content>
+                                    </v-content>
+                                </v-flex>
+                                <v-flex sm6 class="search_menu" v-show="business_travelers === true">
+                                    <v-content class=" pa-3">
+                                        <v-layout class="menu_counter">
+                                            <el-input-number
+                                                    v-model="business_travelers.rooms"
+                                                    @change="handleChange"
+                                                    :min="1" :max="10"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
+                                        </v-layout>
+
+                                        <v-divider class="my-2"></v-divider>
+
+                                        <v-layout class="menu_counter">
+                                            <el-input-number
+                                                    v-model="business_travelers.adults"
+                                                    @change="handleChange"
+                                                    :min="1" :max="10"
+                                                    placeholder="Rooms"
+                                                    label="Rooms"
+                                            ></el-input-number>
+                                        </v-layout>
                                     </v-content>
                                 </v-flex>
                             </v-layout>
@@ -295,6 +476,7 @@
         check_room: [],
         menu_family: false,
         menu_group: false,
+        menu_business: false,
         family_travelers: {
           rooms: 1,
           adults: 1,
@@ -305,18 +487,27 @@
           adults: 1,
           children: 0,
         },
+        business_travelers: {
+          rooms: 1,
+          adults: 1,
+        },
         items: ['1', '2', '3', '4'],
         checkbox1: false,
       }
     },
     methods: {
+
       handleChange(value) {
         console.log(value)
       },
       searchMenu(){
         this.$store.commit('searchMenu', true);
       },
-
+      traveler(){
+        this.menu_family = false;
+        this.menu_group = false;
+        this.menu_business = false;
+      },
       increment_family () {
         this.family_travelers.rooms++;
       },
@@ -409,29 +600,6 @@
     .pointer{
         cursor: pointer !important;
     }
-    .top_arrow {
-        background: transparent;
-        /*padding: 10px;*/
-        border-radius: 1px;
-        color: #FFF;
-        position: relative;
-        /*font-size: 16px;*/
-        line-height: 1.6;
-        z-index: 1000;
-        /*margin: 55px;*/
-    }
-    .top_arrow:before {
-        content: "";
-        display: block;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 0 10px 10px 10px;
-        border-color:  transparent transparent #dd4397 transparent ;
-        position: absolute;
-        left: 50px;
-        top: -1px;
-    }
     .v-el-date-picker {
         width: 100% !important;
         height: 56px !important;
@@ -441,7 +609,7 @@
         cursor: text;
         border-radius: 4px;
         margin-bottom: 8px;
-        color: rgba(0, 0, 0, 0.87);
+        color: #c1c5cd;
         font-family: "Roboto", sans-serif;
         line-height: 1.5;
         /*border-color: rgba(0, 0, 0, 0.24);*/
@@ -462,33 +630,33 @@
         border-color: #1976d2;
         border-width: 2px;
     }*/
-    .el-date-editor .el-range-input::placeholder {
+    /*.el-date-editor .el-range-input::placeholder {
         height: 20px;
         line-height: 20px;
-        color: rgba(0, 0, 0, 0.54);
+        color: #c1c5cd;
         font-size: 16px;
         min-height: 8px;
     }
     .el-date-editor .el-range-input::-webkit-input-placeholder {
         height: 20px;
         line-height: 20px;
-        color: rgba(0, 0, 0, 0.54);
+        color: #c1c5cd;
         font-size: 16px;
         min-height: 8px;
-    }
+    }*/
     .el-date-editor .el-range-separator {
         padding: 0 5px !important;
         line-height: 32px !important;
         width: 5% !important;
-        color: #303133 !important;
+        color: #c1c5cd !important;
         font-size: 16px !important;
         font-weight: 400 !important;
-        line-height: 46px !important;
+        line-height: 40px !important;
     }
-    .el-date-editor .el-range-input {
+    /*.el-date-editor .el-range-input {
         line-height: 20px;
-        color: rgba(0, 0, 0, 0.87);
+        color: #c1c5cd;
         font-family: Roboto, sans-serif;
         font: inherit !important;
-    }
+    }*/
 </style>

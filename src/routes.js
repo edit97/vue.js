@@ -1,7 +1,7 @@
 import VueRouter from 'vue-router'
 
 const Main = () => import("./components/Main");
-const Hotel = () => import("./components/hotel/Hotel");
+const Hotel = () => import("./components/tab/Hotel");
 
 export default new VueRouter({
     routes:[

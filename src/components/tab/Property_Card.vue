@@ -221,10 +221,11 @@
                                                 label
                                                 outlined
                                                 color="success"
+                                                text-color="#28871c"
                                                 small
                                                 class="my-0"
                                                 v-on="on"
-                                        >Breakfast</v-chip>
+                                        ><span class="green_text">Breakfast</span></v-chip>
                                         <v-chip
                                                 label
                                                 outlined
@@ -232,7 +233,7 @@
                                                 small
                                                 class="my-0"
                                                 v-on="on"
-                                        >Free cancellation</v-chip>
+                                        ><span class="green_text">Free cancellation</span></v-chip>
                                         <v-chip
                                                 label
                                                 outlined
@@ -240,7 +241,7 @@
                                                 small
                                                 class="my-0"
                                                 v-on="on"
-                                        >Pay at the hotel</v-chip>
+                                        ><span class="green_text">Pay at the hotel</span></v-chip>
                                     </v-chip-group>
                                 </template>
                                 <v-layout column class="caption">
@@ -356,22 +357,9 @@
           'orange darken-1',
         ],
         cycle: false,
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
+        slides: ['First', 'Second', 'Third', 'Fourth', 'Fifth',
         ],
-        tags: [
-          'All',
-          'Rooms',
-          'Property views',
-          'Facilities',
-          'Dining',
-          'Shopping',
-          'Nearby attraction',
-        ],
+        tags: ['All', 'Rooms', 'Property views', 'Facilities', 'Dining', 'Shopping', 'Nearby attraction',],
         items: [
           {
             src: 'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
@@ -512,5 +500,8 @@
 <style scoped>
 .ticket .v-menu__content{
     left: 0 !important;
+}
+.green_text{
+    color: #28871c;
 }
 </style>

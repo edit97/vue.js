@@ -27,11 +27,39 @@
                 <v-layout>
                     <v-flex sm8 md8>
                         <v-hover v-slot:default="{ hover }">
-                            <v-card class="mx-auto" color="grey lighten-4">
+                            <v-card tile class="mx-auto" color="grey lighten-4">
                                 <v-img
                                         src="//q-xx.bstatic.com/xdata/images/hotel/840x460/60112138.jpg?k=42b08d9b45efa1743135bd003d7b225110a174b2bdf9c0263ba8e7e3092bbfa1"
                                         max-height="400"
                                 >
+                                    <div class="mt-5 ml-5" @mouseover="price_btn = false" @mouseout="price_btn = true">
+                                        <v-btn
+                                                style="z-index: 1;"
+                                                tile large
+                                                color="white"
+                                                max-width="80"
+                                        >
+                                            <v-col class="pa-0">
+                                                <span class="align-end grey--text"><small>from</small></span>
+                                                <div class="red_text">
+                                                    <span class="caption">$</span>
+                                                    <strong class="font_size_18">260</strong>
+                                                </div>
+                                            </v-col>
+                                        </v-btn>
+                                        <v-btn
+                                                style="z-index: 1;"
+                                                tile large dark
+                                                color="#ee595d"
+                                                :max-width="price_btn ? '80' : ''"
+                                        >
+                                            <v-col v-show="price_btn" class="py-0">
+                                                <div class="font_size_18 font-weight-bold">63%</div>
+                                                <div class="text-uppercase font_size_10">Discount</div>
+                                            </v-col>
+                                                <div v-show="!price_btn" class="body-2 font-weight-bold">VIEW ROOM DETAILS</div>
+                                        </v-btn>
+                                    </div>
                                     <v-fade-transition>
                                         <div
                                                 v-if="hover"
@@ -46,11 +74,24 @@
                     <v-flex sm4 md4 pl-2>
                         <v-flex pb-1>
                             <v-hover v-slot:default="{ hover }">
-                                <v-card class="" color="grey lighten-4" >
+                                <v-card tile color="grey lighten-4" >
                                     <v-img
-                                            min-height="250"
+                                            min-height="247"
                                             src="//q-xx.bstatic.com/xdata/images/hotel/840x460/62116150.jpg?k=e5dfcb99ac06655e16ec83aa34f0767158739e67d998e6335ad8ac071edec38c&amp;o="
                                     >
+                                        <v-row class="px-5 pt-1">
+                                            <v-spacer></v-spacer>
+                                            <v-btn
+                                                    style="z-index: 1;"
+                                                    @click="hotel_like = !hotel_like"
+                                                    color="#ee595d"
+                                                    large icon dark
+                                            >
+                                                <v-icon>
+                                                    {{ hotel_like ? 'mdi-heart' : 'mdi-heart-outline' }}
+                                                </v-icon>
+                                            </v-btn>
+                                        </v-row>
                                         <v-fade-transition>
                                             <v-layout column
                                                       v-if="hover"
@@ -73,7 +114,7 @@
                         <v-layout pt-1>
                             <v-flex sm6 pr-1 class="">
                                 <v-hover v-slot:default="{ hover }">
-                                    <v-card class="mx-auto" color="grey lighten-4">
+                                    <v-card tile class="mx-auto" color="grey lighten-4">
                                         <v-img
                                                 min-height="145"
                                                 src="//q-xx.bstatic.com/xdata/images/hotel/840x460/62116311.jpg?k=d76884a8698a7790ec416d5ae369c3104d20ad751378b68e559e821a47857c8c&amp;o=&amp;o="
@@ -91,7 +132,7 @@
                             </v-flex>
                             <v-flex sm6 pl-1 class="">
                                 <v-hover v-slot:default="{ hover }">
-                                    <v-card class="mx-auto" color="grey lighten-4">
+                                    <v-card tile class="mx-auto pointer" color="grey lighten-4" @click="dialog_all_img = true">
                                         <v-img
                                                 min-height="145"
                                                 src="//q-xx.bstatic.com/xdata/images/hotel/840x460/60112083.jpg?k=83940a10efc5386b3adf078f201a45b915ffc2478ce31ce3dc26a11a5097662e&amp;o="
@@ -112,6 +153,90 @@
                         </v-layout>
                     </v-flex>
                 </v-layout>
+
+                <v-dialog
+                        v-model="dialog_all_img"
+                        dark fullscreen hide-overlay
+                        transition="dialog-bottom-transition"
+                >
+                    <v-card color="black">
+                        <v-container>
+                            <v-row>
+                                <v-spacer></v-spacer>
+                                <v-btn dark fab text x-large @click="dialog_all_img = !dialog_all_img">
+                                <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="8">
+                                    <v-carousel v-model="model" hide-delimiters height="400">
+                                        <v-carousel-item
+                                                v-for="(item, index) in images[tag]"
+                                                :key="index"
+                                                :src="item"
+                                        ></v-carousel-item>
+                                    </v-carousel>
+                                </v-col>
+                                <v-spacer></v-spacer>
+                                <v-col cols="3" class="dialog_all_img_text">
+                                    <p class="headline">Popular facilities</p>
+                                    <div><v-icon color="white" small left>mdi-dumbbell</v-icon>Fitness center</div>
+                                    <div><v-icon color="white" small left>mdi-pool</v-icon>Swimming pool [outdoor]</div>
+                                    <div><v-icon color="white" small left>mdi-glass-cocktail</v-icon>Bar</div>
+                                    <div><v-icon color="white" small left>mdi-silverware-fork-knife</v-icon>Restaurants</div>
+                                    <div><v-icon color="white" small left>mdi-account-tie</v-icon>Front desk [24-hour]</div>
+                                    <p>Starts from</p>
+                                    <v-chip label dark color="#e12d2d"><span class="caption">63% OFF TODAY</span></v-chip>
+                                    <p class="line_through">$553</p>
+                                    <p>$ <span class="headline">206</span><span class="caption">per night</span></p>
+                                    <v-btn
+                                                color="#5392f9"
+                                                large bottom
+                                                class="width_100 mt-5"
+                                        >
+                                        See available rooms
+                                        </v-btn>
+                                </v-col>
+                            </v-row>
+                            <v-col>
+                                <v-chip-group
+                                        column mandatory
+                                        active-class="primary--text"
+                                        v-model="tag"
+                                >
+                                    <v-chip
+                                            v-for="(item, index) in tags"
+                                            :key="item"
+                                            outlined
+                                            label
+                                    >
+                                        {{ item }} {{ (images[index].length) }}
+                                    </v-chip>
+                                </v-chip-group>
+                                <v-slide-group
+                                        v-model="model"
+                                        active-class="success"
+                                        show-arrows
+                                        class="modal_slide"
+                                >
+                                    <v-slide-item
+                                            v-for="(item, index) in images[tag]"
+                                            :key="index"
+                                            v-slot:default="{ active, toggle }"
+                                    >
+                                        <v-img
+                                                :src="item"
+                                                height="60"
+                                                width="85"
+                                                @click="toggle"
+                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
+                                        ></v-img>
+                                    </v-slide-item>
+                                </v-slide-group>
+                            </v-col>
+                        </v-container>
+                    </v-card>
+                </v-dialog>
 
                 <v-layout mt-3>
                     <v-flex sm3 mr-2>
@@ -561,23 +686,23 @@
                         <v-divider></v-divider>
 
                         <v-row class="pa-3">
-                            <v-card outlined flat class="mr-3">
-                                <el-checkbox class="pa-4" v-model="checked">
+                            <v-card tile outlined flat class="mr-3">
+                                <el-checkbox class="pa-4" v-model="checked.breakfast">
                                     <v-icon small class="mr-1">mdi-coffee</v-icon>Free breakfast (7)
                                 </el-checkbox>
                             </v-card>
-                            <v-card outlined flat class="mr-3">
-                                <el-checkbox class="pa-4" v-model="checked">
+                            <v-card tile outlined flat class="mr-3">
+                                <el-checkbox class="pa-4" v-model="checked.smoking">
                                     <v-icon small class="mr-1">mdi-smoking-off</v-icon>Non-smoking (8)
                                 </el-checkbox>
                             </v-card>
-                            <v-card outlined flat class="mr-3">
-                                <el-checkbox class="pa-4" v-model="checked">
+                            <v-card tile outlined flat class="mr-3">
+                                <el-checkbox class="pa-4" v-model="checked.pay">
                                     <v-icon small class="mr-1">mdi-cash-usd</v-icon>Pay at the hotel (10)
                                 </el-checkbox>
                             </v-card>
-                            <v-card outlined flat class="mr-3">
-                                <el-checkbox class="pa-4" v-model="checked">
+                            <v-card tile outlined flat class="mr-3">
+                                <el-checkbox class="pa-4" v-model="checked.twinBed">
                                     <v-icon small class="mr-1">mdi-hotel</v-icon>Twin Bed (8)
                                 </el-checkbox>
                             </v-card>
@@ -611,8 +736,8 @@
                                                         class="pa-0 mb-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_1"
-                                                            @mouseover="mouseImgOver(items.img_1)"
+                                                            :src="filter_room_img.img_1"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                             @mouseout="mouseImgOut()"
                                                             height="120"
                                                             class="text-right pa-2"
@@ -624,8 +749,8 @@
                                                         class="pa-0 pr-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_2"
-                                                            @mouseover="mouseImgOver(items.img_2)"
+                                                            :src="filter_room_img.img_2"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -637,8 +762,8 @@
                                                         class="pa-0 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_3"
-                                                            @mouseover="mouseImgOver(items.img_3)"
+                                                            :src="filter_room_img.img_3"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -714,7 +839,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -757,7 +882,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -813,7 +938,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -857,7 +982,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -878,82 +1003,6 @@
                                         </v-layout>
                                     </v-card>
                                 </v-flex>
-                                <v-dialog
-                                        v-model="dialog"
-                                        max-width="1100"
-                                        dark
-                                >
-                                    <v-card color="black">
-                                        <v-layout>
-                                            <v-flex lg9 md9 sm9 pa-5>
-                                                <v-carousel v-model="model" hide-delimiters height="400">
-                                                    <v-carousel-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            :src="item"
-                                                    ></v-carousel-item>
-                                                </v-carousel>
-                                                <v-slide-group
-                                                        v-model="model"
-                                                        active-class="success"
-                                                        show-arrows
-                                                        class="modal_slide"
-                                                >
-                                                    <v-slide-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            v-slot:default="{ active, toggle }"
-                                                    >
-                                                        <v-img
-                                                                :src="item"
-                                                                height="60"
-                                                                width="85"
-                                                                @click="toggle"
-                                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                                        ></v-img>
-                                                    </v-slide-item>
-                                                </v-slide-group>
-                                            </v-flex>
-                                            <v-divider vertical></v-divider>
-                                            <v-flex lg3 md3 sm3 pa-5 class="hotel_modal_text">
-                                                <v-layout column justify-space-between fill-height>
-                                                    <v-flex>
-                                                        <v-row class="d-flex justify-space-between align-end">
-                                                            <p class="title mb-0 pl-3">Double Room</p>
-                                                            <v-btn light fab text right @click="dialog = !dialog">
-                                                                <v-icon>mdi-close</v-icon>
-                                                            </v-btn>
-                                                        </v-row>
-                                                        <p class="caption grey--text mb-0">Starts from</p>
-                                                        <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
-                                                        <v-divider class="my-4" color="grey"></v-divider>
-                                                        <p class="caption font-weight-bold mb-0">Features</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                            <p class="caption"><v-icon class="pr-2" color="grey">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                                                        </div>
-                                                        <p class="caption font-weight-bold mb-0">Bed types</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                        </div>
-                                                    </v-flex>
-                                                    <v-flex>
-                                                        <v-layout class="justify-center fill-height align-end">
-                                                            <v-btn
-                                                                    color="#5392f9"
-                                                                    large bottom text
-                                                                    class="font-weight-bold align-center"
-                                                            >
-                                                                <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
-                                                                Ask about this room
-                                                            </v-btn>
-                                                        </v-layout>
-                                                    </v-flex>
-                                                </v-layout>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-card>
-                                </v-dialog>
                             </v-layout>
                         </v-card>
 
@@ -984,8 +1033,8 @@
                                                         class="pa-0 mb-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_1"
-                                                            @mouseover="mouseImgOver(items.img_1)"
+                                                            :src="filter_room_img.img_1"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                             @mouseout="mouseImgOut()"
                                                             height="120"
                                                             class="text-right pa-2"
@@ -997,8 +1046,8 @@
                                                         class="pa-0 pr-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_2"
-                                                            @mouseover="mouseImgOver(items.img_2)"
+                                                            :src="filter_room_img.img_2"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -1010,8 +1059,8 @@
                                                         class="pa-0 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_3"
-                                                            @mouseover="mouseImgOver(items.img_3)"
+                                                            :src="filter_room_img.img_3"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -1110,7 +1159,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -1156,7 +1205,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -1177,82 +1226,6 @@
                                         </v-layout>
                                     </v-card>
                                 </v-flex>
-                                <v-dialog
-                                        v-model="dialog"
-                                        max-width="1100"
-                                        dark
-                                >
-                                    <v-card color="black">
-                                        <v-layout>
-                                            <v-flex lg9 md9 sm9 pa-5>
-                                                <v-carousel v-model="model" hide-delimiters height="400">
-                                                    <v-carousel-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            :src="item"
-                                                    ></v-carousel-item>
-                                                </v-carousel>
-                                                <v-slide-group
-                                                        v-model="model"
-                                                        active-class="success"
-                                                        show-arrows
-                                                        class="modal_slide"
-                                                >
-                                                    <v-slide-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            v-slot:default="{ active, toggle }"
-                                                    >
-                                                        <v-img
-                                                                :src="item"
-                                                                height="60"
-                                                                width="85"
-                                                                @click="toggle"
-                                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                                        ></v-img>
-                                                    </v-slide-item>
-                                                </v-slide-group>
-                                            </v-flex>
-                                            <v-divider vertical></v-divider>
-                                            <v-flex lg3 md3 sm3 pa-5 class="hotel_modal_text">
-                                                <v-layout column justify-space-between fill-height>
-                                                    <v-flex>
-                                                        <v-row class="d-flex justify-space-between align-end">
-                                                            <p class="title mb-0 pl-3">Double Room</p>
-                                                            <v-btn light fab text right @click="dialog = !dialog">
-                                                                <v-icon>mdi-close</v-icon>
-                                                            </v-btn>
-                                                        </v-row>
-                                                        <p class="caption grey--text mb-0">Starts from</p>
-                                                        <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
-                                                        <v-divider class="my-4" color="grey"></v-divider>
-                                                        <p class="caption font-weight-bold mb-0">Features</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                            <p class="caption"><v-icon class="pr-2" color="grey">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                                                        </div>
-                                                        <p class="caption font-weight-bold mb-0">Bed types</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                        </div>
-                                                    </v-flex>
-                                                    <v-flex>
-                                                        <v-layout class="justify-center fill-height align-end">
-                                                            <v-btn
-                                                                    color="#5392f9"
-                                                                    large bottom text
-                                                                    class="font-weight-bold align-center"
-                                                            >
-                                                                <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
-                                                                Ask about this room
-                                                            </v-btn>
-                                                        </v-layout>
-                                                    </v-flex>
-                                                </v-layout>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-card>
-                                </v-dialog>
                             </v-layout>
                         </v-card>
 
@@ -1283,8 +1256,8 @@
                                                         class="pa-0 mb-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_1"
-                                                            @mouseover="mouseImgOver(items.img_1)"
+                                                            :src="filter_room_img.img_1"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                             @mouseout="mouseImgOut()"
                                                             height="120"
                                                             class="text-right pa-2"
@@ -1346,7 +1319,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -1390,7 +1363,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -1411,82 +1384,6 @@
                                         </v-layout>
                                     </v-card>
                                 </v-flex>
-                                <v-dialog
-                                        v-model="dialog"
-                                        max-width="1100"
-                                        dark
-                                >
-                                    <v-card color="black">
-                                        <v-layout>
-                                            <v-flex lg9 md9 sm9 pa-5>
-                                                <v-carousel v-model="model" hide-delimiters height="400">
-                                                    <v-carousel-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            :src="item"
-                                                    ></v-carousel-item>
-                                                </v-carousel>
-                                                <v-slide-group
-                                                        v-model="model"
-                                                        active-class="success"
-                                                        show-arrows
-                                                        class="modal_slide"
-                                                >
-                                                    <v-slide-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            v-slot:default="{ active, toggle }"
-                                                    >
-                                                        <v-img
-                                                                :src="item"
-                                                                height="60"
-                                                                width="85"
-                                                                @click="toggle"
-                                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                                        ></v-img>
-                                                    </v-slide-item>
-                                                </v-slide-group>
-                                            </v-flex>
-                                            <v-divider vertical></v-divider>
-                                            <v-flex lg3 md3 sm3 pa-5 class="hotel_modal_text">
-                                                <v-layout column justify-space-between fill-height>
-                                                    <v-flex>
-                                                        <v-row class="d-flex justify-space-between align-end">
-                                                            <p class="title mb-0 pl-3">Double Room</p>
-                                                            <v-btn light fab text right @click="dialog = !dialog">
-                                                                <v-icon>mdi-close</v-icon>
-                                                            </v-btn>
-                                                        </v-row>
-                                                        <p class="caption grey--text mb-0">Starts from</p>
-                                                        <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
-                                                        <v-divider class="my-4" color="grey"></v-divider>
-                                                        <p class="caption font-weight-bold mb-0">Features</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                            <p class="caption"><v-icon class="pr-2" color="grey">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                                                        </div>
-                                                        <p class="caption font-weight-bold mb-0">Bed types</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                        </div>
-                                                    </v-flex>
-                                                    <v-flex>
-                                                        <v-layout class="justify-center fill-height align-end">
-                                                            <v-btn
-                                                                    color="#5392f9"
-                                                                    large bottom text
-                                                                    class="font-weight-bold align-center"
-                                                            >
-                                                                <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
-                                                                Ask about this room
-                                                            </v-btn>
-                                                        </v-layout>
-                                                    </v-flex>
-                                                </v-layout>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-card>
-                                </v-dialog>
                             </v-layout>
                         </v-card>
 
@@ -1517,8 +1414,8 @@
                                                         class="pa-0 mb-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_1"
-                                                            @mouseover="mouseImgOver(items.img_1)"
+                                                            :src="filter_room_img.img_1"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                             @mouseout="mouseImgOut()"
                                                             height="120"
                                                             class="text-right pa-2"
@@ -1530,8 +1427,8 @@
                                                         class="pa-0 pr-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_2"
-                                                            @mouseover="mouseImgOver(items.img_2)"
+                                                            :src="filter_room_img.img_2"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -1543,8 +1440,8 @@
                                                         class="pa-0 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_3"
-                                                            @mouseover="mouseImgOver(items.img_3)"
+                                                            :src="filter_room_img.img_3"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -1655,7 +1552,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -1701,7 +1598,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -1722,82 +1619,6 @@
                                         </v-layout>
                                     </v-card>
                                 </v-flex>
-                                <v-dialog
-                                        v-model="dialog"
-                                        max-width="1100"
-                                        dark
-                                >
-                                    <v-card color="black">
-                                        <v-layout>
-                                            <v-flex lg9 md9 sm9 pa-5>
-                                                <v-carousel v-model="model" hide-delimiters height="400">
-                                                    <v-carousel-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            :src="item"
-                                                    ></v-carousel-item>
-                                                </v-carousel>
-                                                <v-slide-group
-                                                        v-model="model"
-                                                        active-class="success"
-                                                        show-arrows
-                                                        class="modal_slide"
-                                                >
-                                                    <v-slide-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            v-slot:default="{ active, toggle }"
-                                                    >
-                                                        <v-img
-                                                                :src="item"
-                                                                height="60"
-                                                                width="85"
-                                                                @click="toggle"
-                                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                                        ></v-img>
-                                                    </v-slide-item>
-                                                </v-slide-group>
-                                            </v-flex>
-                                            <v-divider vertical></v-divider>
-                                            <v-flex lg3 md3 sm3 pa-5 class="hotel_modal_text">
-                                                <v-layout column justify-space-between fill-height>
-                                                    <v-flex>
-                                                        <v-row class="d-flex justify-space-between align-end">
-                                                            <p class="title mb-0 pl-3">Double Room</p>
-                                                            <v-btn light fab text right @click="dialog = !dialog">
-                                                                <v-icon>mdi-close</v-icon>
-                                                            </v-btn>
-                                                        </v-row>
-                                                        <p class="caption grey--text mb-0">Starts from</p>
-                                                        <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
-                                                        <v-divider class="my-4" color="grey"></v-divider>
-                                                        <p class="caption font-weight-bold mb-0">Features</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                            <p class="caption"><v-icon class="pr-2" color="grey">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                                                        </div>
-                                                        <p class="caption font-weight-bold mb-0">Bed types</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                        </div>
-                                                    </v-flex>
-                                                    <v-flex>
-                                                        <v-layout class="justify-center fill-height align-end">
-                                                            <v-btn
-                                                                    color="#5392f9"
-                                                                    large bottom text
-                                                                    class="font-weight-bold align-center"
-                                                            >
-                                                                <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
-                                                                Ask about this room
-                                                            </v-btn>
-                                                        </v-layout>
-                                                    </v-flex>
-                                                </v-layout>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-card>
-                                </v-dialog>
                             </v-layout>
                         </v-card>
 
@@ -1828,8 +1649,8 @@
                                                         class="pa-0 mb-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_1"
-                                                            @mouseover="mouseImgOver(items.img_1)"
+                                                            :src="filter_room_img.img_1"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                             @mouseout="mouseImgOut()"
                                                             height="120"
                                                             class="text-right pa-2"
@@ -1841,8 +1662,8 @@
                                                         class="pa-0 pr-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_2"
-                                                            @mouseover="mouseImgOver(items.img_2)"
+                                                            :src="filter_room_img.img_2"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -1854,8 +1675,8 @@
                                                         class="pa-0 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_3"
-                                                            @mouseover="mouseImgOver(items.img_3)"
+                                                            :src="filter_room_img.img_3"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -1920,7 +1741,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -1965,7 +1786,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -1986,82 +1807,6 @@
                                         </v-layout>
                                     </v-card>
                                 </v-flex>
-                                <v-dialog
-                                        v-model="dialog"
-                                        max-width="1100"
-                                        dark
-                                >
-                                    <v-card color="black">
-                                        <v-layout>
-                                            <v-flex lg9 md9 sm9 pa-5>
-                                                <v-carousel v-model="model" hide-delimiters height="400">
-                                                    <v-carousel-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            :src="item"
-                                                    ></v-carousel-item>
-                                                </v-carousel>
-                                                <v-slide-group
-                                                        v-model="model"
-                                                        active-class="success"
-                                                        show-arrows
-                                                        class="modal_slide"
-                                                >
-                                                    <v-slide-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            v-slot:default="{ active, toggle }"
-                                                    >
-                                                        <v-img
-                                                                :src="item"
-                                                                height="60"
-                                                                width="85"
-                                                                @click="toggle"
-                                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                                        ></v-img>
-                                                    </v-slide-item>
-                                                </v-slide-group>
-                                            </v-flex>
-                                            <v-divider vertical></v-divider>
-                                            <v-flex lg3 md3 sm3 pa-5 class="hotel_modal_text">
-                                                <v-layout column justify-space-between fill-height>
-                                                    <v-flex>
-                                                        <v-row class="d-flex justify-space-between align-end">
-                                                            <p class="title mb-0 pl-3">Double Room</p>
-                                                            <v-btn light fab text right @click="dialog = !dialog">
-                                                                <v-icon>mdi-close</v-icon>
-                                                            </v-btn>
-                                                        </v-row>
-                                                        <p class="caption grey--text mb-0">Starts from</p>
-                                                        <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
-                                                        <v-divider class="my-4" color="grey"></v-divider>
-                                                        <p class="caption font-weight-bold mb-0">Features</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                            <p class="caption"><v-icon class="pr-2" color="grey">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                                                        </div>
-                                                        <p class="caption font-weight-bold mb-0">Bed types</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                        </div>
-                                                    </v-flex>
-                                                    <v-flex>
-                                                        <v-layout class="justify-center fill-height align-end">
-                                                            <v-btn
-                                                                    color="#5392f9"
-                                                                    large bottom text
-                                                                    class="font-weight-bold align-center"
-                                                            >
-                                                                <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
-                                                                Ask about this room
-                                                            </v-btn>
-                                                        </v-layout>
-                                                    </v-flex>
-                                                </v-layout>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-card>
-                                </v-dialog>
                             </v-layout>
                         </v-card>
 
@@ -2092,8 +1837,8 @@
                                                         class="pa-0 mb-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_1"
-                                                            @mouseover="mouseImgOver(items.img_1)"
+                                                            :src="filter_room_img.img_1"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                             @mouseout="mouseImgOut()"
                                                             height="120"
                                                             class="text-right pa-2"
@@ -2105,8 +1850,8 @@
                                                         class="pa-0 pr-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_2"
-                                                            @mouseover="mouseImgOver(items.img_2)"
+                                                            :src="filter_room_img.img_2"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -2118,8 +1863,8 @@
                                                         class="pa-0 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_3"
-                                                            @mouseover="mouseImgOver(items.img_3)"
+                                                            :src="filter_room_img.img_3"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                             @mouseout="mouseImgOut()"
                                                             height="60"
                                                             class="text-right pa-2"
@@ -2195,7 +1940,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -2238,7 +1983,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -2283,7 +2028,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -2327,7 +2072,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -2348,82 +2093,6 @@
                                         </v-layout>
                                     </v-card>
                                 </v-flex>
-                                <v-dialog
-                                        v-model="dialog"
-                                        max-width="1100"
-                                        dark
-                                >
-                                    <v-card color="black">
-                                        <v-layout>
-                                            <v-flex lg9 md9 sm9 pa-5>
-                                                <v-carousel v-model="model" hide-delimiters height="400">
-                                                    <v-carousel-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            :src="item"
-                                                    ></v-carousel-item>
-                                                </v-carousel>
-                                                <v-slide-group
-                                                        v-model="model"
-                                                        active-class="success"
-                                                        show-arrows
-                                                        class="modal_slide"
-                                                >
-                                                    <v-slide-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            v-slot:default="{ active, toggle }"
-                                                    >
-                                                        <v-img
-                                                                :src="item"
-                                                                height="60"
-                                                                width="85"
-                                                                @click="toggle"
-                                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                                        ></v-img>
-                                                    </v-slide-item>
-                                                </v-slide-group>
-                                            </v-flex>
-                                            <v-divider vertical></v-divider>
-                                            <v-flex lg3 md3 sm3 pa-5 class="hotel_modal_text">
-                                                <v-layout column justify-space-between fill-height>
-                                                    <v-flex>
-                                                        <v-row class="d-flex justify-space-between align-end">
-                                                            <p class="title mb-0 pl-3">Double Room</p>
-                                                            <v-btn light fab text right @click="dialog = !dialog">
-                                                                <v-icon>mdi-close</v-icon>
-                                                            </v-btn>
-                                                        </v-row>
-                                                        <p class="caption grey--text mb-0">Starts from</p>
-                                                        <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
-                                                        <v-divider class="my-4" color="grey"></v-divider>
-                                                        <p class="caption font-weight-bold mb-0">Features</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                            <p class="caption"><v-icon class="pr-2" color="grey">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                                                        </div>
-                                                        <p class="caption font-weight-bold mb-0">Bed types</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                        </div>
-                                                    </v-flex>
-                                                    <v-flex>
-                                                        <v-layout class="justify-center fill-height align-end">
-                                                            <v-btn
-                                                                    color="#5392f9"
-                                                                    large bottom text
-                                                                    class="font-weight-bold align-center"
-                                                            >
-                                                                <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
-                                                                Ask about this room
-                                                            </v-btn>
-                                                        </v-layout>
-                                                    </v-flex>
-                                                </v-layout>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-card>
-                                </v-dialog>
                             </v-layout>
                         </v-card>
 
@@ -2454,8 +2123,8 @@
                                                         class="pa-0 mb-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_1"
-                                                            @mouseover="mouseImgOver(items.img_1)"
+                                                            :src="filter_room_img.img_1"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                             @mouseout="mouseImgOut()"
                                                             height="120"
                                                             class="text-right pa-2"
@@ -2550,7 +2219,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -2594,7 +2263,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -2615,82 +2284,6 @@
                                         </v-layout>
                                     </v-card>
                                 </v-flex>
-                                <v-dialog
-                                        v-model="dialog"
-                                        max-width="1100"
-                                        dark
-                                >
-                                    <v-card color="black">
-                                        <v-layout>
-                                            <v-flex lg9 md9 sm9 pa-5>
-                                                <v-carousel v-model="model" hide-delimiters height="400">
-                                                    <v-carousel-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            :src="item"
-                                                    ></v-carousel-item>
-                                                </v-carousel>
-                                                <v-slide-group
-                                                        v-model="model"
-                                                        active-class="success"
-                                                        show-arrows
-                                                        class="modal_slide"
-                                                >
-                                                    <v-slide-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            v-slot:default="{ active, toggle }"
-                                                    >
-                                                        <v-img
-                                                                :src="item"
-                                                                height="60"
-                                                                width="85"
-                                                                @click="toggle"
-                                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                                        ></v-img>
-                                                    </v-slide-item>
-                                                </v-slide-group>
-                                            </v-flex>
-                                            <v-divider vertical></v-divider>
-                                            <v-flex lg3 md3 sm3 pa-5 class="hotel_modal_text">
-                                                <v-layout column justify-space-between fill-height>
-                                                    <v-flex>
-                                                        <v-row class="d-flex justify-space-between align-end">
-                                                            <p class="title mb-0 pl-3">Double Room</p>
-                                                            <v-btn light fab text right @click="dialog = !dialog">
-                                                                <v-icon>mdi-close</v-icon>
-                                                            </v-btn>
-                                                        </v-row>
-                                                        <p class="caption grey--text mb-0">Starts from</p>
-                                                        <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
-                                                        <v-divider class="my-4" color="grey"></v-divider>
-                                                        <p class="caption font-weight-bold mb-0">Features</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                            <p class="caption"><v-icon class="pr-2" color="grey">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                                                        </div>
-                                                        <p class="caption font-weight-bold mb-0">Bed types</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                        </div>
-                                                    </v-flex>
-                                                    <v-flex>
-                                                        <v-layout class="justify-center fill-height align-end">
-                                                            <v-btn
-                                                                    color="#5392f9"
-                                                                    large bottom text
-                                                                    class="font-weight-bold align-center"
-                                                            >
-                                                                <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
-                                                                Ask about this room
-                                                            </v-btn>
-                                                        </v-layout>
-                                                    </v-flex>
-                                                </v-layout>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-card>
-                                </v-dialog>
                             </v-layout>
                         </v-card>
 
@@ -2721,8 +2314,8 @@
                                                         class="pa-0 mb-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_1"
-                                                            @mouseover="mouseImgOver(items.img_1)"
+                                                            :src="filter_room_img.img_1"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                             @mouseout="mouseImgOut()"
                                                             height="120"
                                                             class="text-right pa-2"
@@ -2817,7 +2410,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -2861,7 +2454,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -2882,82 +2475,6 @@
                                         </v-layout>
                                     </v-card>
                                 </v-flex>
-                                <v-dialog
-                                        v-model="dialog"
-                                        max-width="1100"
-                                        dark
-                                >
-                                    <v-card color="black">
-                                        <v-layout>
-                                            <v-flex lg9 md9 sm9 pa-5>
-                                                <v-carousel v-model="model" hide-delimiters height="400">
-                                                    <v-carousel-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            :src="item"
-                                                    ></v-carousel-item>
-                                                </v-carousel>
-                                                <v-slide-group
-                                                        v-model="model"
-                                                        active-class="success"
-                                                        show-arrows
-                                                        class="modal_slide"
-                                                >
-                                                    <v-slide-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            v-slot:default="{ active, toggle }"
-                                                    >
-                                                        <v-img
-                                                                :src="item"
-                                                                height="60"
-                                                                width="85"
-                                                                @click="toggle"
-                                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                                        ></v-img>
-                                                    </v-slide-item>
-                                                </v-slide-group>
-                                            </v-flex>
-                                            <v-divider vertical></v-divider>
-                                            <v-flex lg3 md3 sm3 pa-5 class="hotel_modal_text">
-                                                <v-layout column justify-space-between fill-height>
-                                                    <v-flex>
-                                                        <v-row class="d-flex justify-space-between align-end">
-                                                            <p class="title mb-0 pl-3">Double Room</p>
-                                                            <v-btn light fab text right @click="dialog = !dialog">
-                                                                <v-icon>mdi-close</v-icon>
-                                                            </v-btn>
-                                                        </v-row>
-                                                        <p class="caption grey--text mb-0">Starts from</p>
-                                                        <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
-                                                        <v-divider class="my-4" color="grey"></v-divider>
-                                                        <p class="caption font-weight-bold mb-0">Features</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                            <p class="caption"><v-icon class="pr-2" color="grey">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                                                        </div>
-                                                        <p class="caption font-weight-bold mb-0">Bed types</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                        </div>
-                                                    </v-flex>
-                                                    <v-flex>
-                                                        <v-layout class="justify-center fill-height align-end">
-                                                            <v-btn
-                                                                    color="#5392f9"
-                                                                    large bottom text
-                                                                    class="font-weight-bold align-center"
-                                                            >
-                                                                <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
-                                                                Ask about this room
-                                                            </v-btn>
-                                                        </v-layout>
-                                                    </v-flex>
-                                                </v-layout>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-card>
-                                </v-dialog>
                             </v-layout>
                         </v-card>
 
@@ -2988,8 +2505,8 @@
                                                         class="pa-0 mb-1 zoom"
                                                 >
                                                     <v-img
-                                                            :src="items.img_1"
-                                                            @mouseover="mouseImgOver(items.img_1)"
+                                                            :src="filter_room_img.img_1"
+                                                            @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                             @mouseout="mouseImgOut()"
                                                             height="120"
                                                             class="text-right pa-2"
@@ -3051,7 +2568,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -3095,7 +2612,7 @@
                                             <v-divider vertical></v-divider>
                                             <v-col class="d-flex" cols="12" sm="1" md="1">
                                                 <v-select
-                                                        :items="[0,1]"
+                                                        :filter_room_img="[0,1]"
                                                         outlined
                                                 ></v-select>
                                             </v-col>
@@ -3116,84 +2633,141 @@
                                         </v-layout>
                                     </v-card>
                                 </v-flex>
-                                <v-dialog
-                                        v-model="dialog"
-                                        max-width="1100"
-                                        dark
-                                >
-                                    <v-card color="black">
-                                        <v-layout>
-                                            <v-flex lg9 md9 sm9 pa-5>
-                                                <v-carousel v-model="model" hide-delimiters height="400">
-                                                    <v-carousel-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            :src="item"
-                                                    ></v-carousel-item>
-                                                </v-carousel>
-                                                <v-slide-group
-                                                        v-model="model"
-                                                        active-class="success"
-                                                        show-arrows
-                                                        class="modal_slide"
-                                                >
-                                                    <v-slide-item
-                                                            v-for="(item, index) in images"
-                                                            :key="index"
-                                                            v-slot:default="{ active, toggle }"
-                                                    >
-                                                        <v-img
-                                                                :src="item"
-                                                                height="60"
-                                                                width="85"
-                                                                @click="toggle"
-                                                                :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                                        ></v-img>
-                                                    </v-slide-item>
-                                                </v-slide-group>
+                            </v-layout>
+                        </v-card>
+
+                        <v-dialog
+                                v-model="dialog"
+                                max-width="1200"
+                                dark
+                        >
+                            <v-card tile color="black" style="overflow: hidden">
+                                <v-layout>
+                                    <v-flex lg8 md8 sm8 >
+                                        <v-carousel v-model="model" hide-delimiters height="400">
+                                            <v-carousel-item
+                                                    v-for="(item, index) in room_images"
+                                                    :key="index"
+                                                    :src="item"
+                                            ></v-carousel-item>
+                                        </v-carousel>
+                                        <v-slide-group
+                                                v-model="model"
+                                                active-class="success"
+                                                show-arrows
+                                                class="modal_slide"
+                                        >
+                                            <v-slide-item
+                                                    v-for="(item, index) in room_images"
+                                                    :key="index"
+                                                    v-slot:default="{ active, toggle }"
+                                            >
+                                                <v-img
+                                                        :src="item"
+                                                        height="80"
+                                                        width="110"
+                                                        @click="toggle"
+                                                        :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
+                                                ></v-img>
+                                            </v-slide-item>
+                                        </v-slide-group>
+                                    </v-flex>
+                                    <v-divider vertical></v-divider>
+                                    <v-flex lg4 md4 sm4  class="hotel_modal_text">
+                                        <v-layout column justify-space-between fill-height>
+                                            <v-card tile light class="px-5">
+                                                <v-row class="d-flex justify-space-between align-end">
+                                                    <p class="title mb-0 pl-3">Double Room</p>
+                                                    <v-btn light fab text right @click="dialog = !dialog">
+                                                        <v-icon>mdi-close</v-icon>
+                                                    </v-btn>
+                                                </v-row>
+                                                <p class="caption grey--text mb-0">Starts from</p>
+                                                <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
+                                            </v-card>
+                                            <v-flex style="overflow: hidden auto; height: 300px">
+                                                <div class="pa-5">
+                                                    <div class="caption font-weight-bold">Guest ratings</div>
+                                                    <div class="body-2 grey--text text-right">175 reviews</div>
+                                                    <el-progress :percentage="95" :show-text="false"></el-progress>
+                                                    <v-row class="body-2 mt-1 px-3 justify-space-between">
+                                                        <div>Room comfort and quality</div>
+                                                        <div class="blue_text">Exceptional 9.4</div>
+                                                    </v-row>
+                                                    <el-progress class="mt-3" :percentage="95" :show-text="false"></el-progress>
+                                                    <v-row class="body-2 mt-1 px-3 justify-space-between">
+                                                        <div>Cleanliness</div>
+                                                        <div class="blue_text">Exceptional 9.4</div>
+                                                    </v-row>
+                                                </div>
+                                                <v-divider class="my-2" color="#ebebeb"></v-divider>
+                                                <div class="px-5">
+                                                    <p class="caption font-weight-bold mb-0">Features</p>
+                                                    <v-row class="caption">
+                                                        <v-col cols="6">
+                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class=" pl-2">1 double bed</span>
+                                                            <div class="green_text"><v-icon left color="#85c150">mdi-wifi</v-icon>Free Wi-Fi</div>
+                                                        </v-col>
+                                                        <v-col cols="6">
+                                                            <p class=""><v-icon class="pr-2" color="black">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
+                                                        </v-col>
+                                                    </v-row>
+                                                    <p class="caption font-weight-bold mb-0">Bed types</p>
+                                                    <v-row class="caption">
+                                                        <v-col cols="6">
+                                                            <span class="flaticon-big-mattress"></span>
+                                                            <span class="flaticon-big-mattress"></span>
+                                                            <span class=" pl-2">2 single beds</span>
+                                                        </v-col>
+                                                    </v-row>
+                                                </div>
+                                                <v-divider class="my-2" color="#ebebeb"></v-divider>
+                                                <div class="px-5">
+                                                    <v-row class="caption">
+                                                        <v-col cols="6" class="grey--text">
+                                                            <v-icon class="pr-2" color="grey">mdi-shower-head</v-icon>Shower
+                                                        </v-col>
+                                                    </v-row>
+                                                    <p class="caption font-weight-bold mb-0">Entertainment</p>
+                                                    <v-row class="caption">
+                                                        <v-col cols="6">
+                                                            <v-icon class="pr-2" color="black">mdi-wifi</v-icon>Free Wi-Fi in all rooms!
+                                                        </v-col>
+                                                        <v-col cols="6" class="grey--text">
+                                                            <v-icon class="pr-2" color="grey">mdi-television</v-icon>TV
+                                                        </v-col>
+                                                    </v-row>
+                                                    <p class="caption font-weight-bold mb-0">Comforts</p>
+                                                    <v-row class="caption">
+                                                        <v-col  class="grey--text">
+                                                            <v-icon class="pr-2" color="grey">mdi-air-conditioner</v-icon>Air conditioning
+                                                        </v-col>
+                                                    </v-row>
+                                                    <p class="caption font-weight-bold mb-0">Safety and security features</p>
+                                                    <v-row class="caption">
+                                                        <v-col  class="grey--text">
+                                                            <v-icon class="pr-2" color="grey">mdi-shield-lock-outline</v-icon>In-room safe box
+                                                        </v-col>
+                                                    </v-row>
+                                                </div>
                                             </v-flex>
-                                            <v-divider vertical></v-divider>
-                                            <v-flex lg3 md3 sm3 pa-5 class="hotel_modal_text">
-                                                <v-layout column justify-space-between fill-height>
-                                                    <v-flex>
-                                                        <v-row class="d-flex justify-space-between align-end">
-                                                            <p class="title mb-0 pl-3">Double Room</p>
-                                                            <v-btn light fab text right @click="dialog = !dialog">
-                                                                <v-icon>mdi-close</v-icon>
-                                                            </v-btn>
-                                                        </v-row>
-                                                        <p class="caption grey--text mb-0">Starts from</p>
-                                                        <p class="red--text mb-0 body-1">&#36;<span class="display-1">229</span></p>
-                                                        <v-divider class="my-4" color="grey"></v-divider>
-                                                        <p class="caption font-weight-bold mb-0">Features</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                            <p class="caption"><v-icon class="pr-2" color="grey">mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                                                        </div>
-                                                        <p class="caption font-weight-bold mb-0">Bed types</p>
-                                                        <div class="grey--text">
-                                                            <span class="flaticon-king-size-bed-with-two-pillows"></span><span class="caption pl-2">1 double bed</span>
-                                                        </div>
-                                                    </v-flex>
-                                                    <v-flex>
-                                                        <v-layout class="justify-center fill-height align-end">
-                                                            <v-btn
-                                                                    color="#5392f9"
-                                                                    large bottom text
-                                                                    class="font-weight-bold align-center"
-                                                            >
-                                                                <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
-                                                                Ask about this room
-                                                            </v-btn>
-                                                        </v-layout>
-                                                    </v-flex>
+                                            <v-flex>
+                                                <v-layout class="justify-center fill-height align-end">
+                                                    <v-btn
+                                                            color="#5392f9"
+                                                            large bottom text tile
+                                                            class="font-weight-bold align-center"
+                                                    >
+                                                        <v-icon class="mr-2" color="#5392f9">mdi-message-text-outline</v-icon>
+                                                        Ask about this room
+                                                    </v-btn>
                                                 </v-layout>
                                             </v-flex>
                                         </v-layout>
-                                    </v-card>
-                                </v-dialog>
-                            </v-layout>
-                        </v-card>
+                                    </v-flex>
+                                </v-layout>
+                            </v-card>
+                        </v-dialog>
 
                         <v-col>
                             <v-row>
@@ -3373,16 +2947,12 @@
                                     <div class="mb-2 font-weight-bold">Internet access</div>
                                     <v-row class="">
                                         <v-col class="py-0" cols="4">
-                                            <div>
-                                                <v-icon>mdi-wifi</v-icon>
-                                                Free Wi-Fi in all rooms!
-                                            </div>
+                                            <v-icon small left>mdi-wifi</v-icon>
+                                            Free Wi-Fi in all rooms!
                                         </v-col>
                                         <v-col class="py-0" cols="4">
-                                            <div>
-                                                <v-icon>mdi-wifi</v-icon>
-                                                Wi-Fi in public areas
-                                            </div>
+                                            <v-icon small left>mdi-access-point-network</v-icon>
+                                            Wi-Fi in public areas
                                         </v-col>
                                     </v-row>
                                 </v-col>
@@ -3392,8 +2962,8 @@
                                 <v-divider vertical></v-divider>
                                 <v-col  class="body-2 ml-2">
                                     <div class="mb-2 font-weight-bold">Things to do, ways to relax</div>
-                                    <v-row class="blue_text">
-                                        <v-col class="py-0" cols="4">
+                                    <v-row>
+                                        <v-col class="py-0 blue_text" cols="4">
                                             <v-menu :open-on-hover="true" offset-y>
                                                 <template v-slot:activator="{ on }">
                                                     <div v-on="on">
@@ -3411,27 +2981,18 @@
                                             </v-menu>
                                         </v-col>
                                         <v-col class="py-0" cols="4">
-                                            <v-icon color="#5392f9" small left>mdi-solar-power</v-icon>
+                                            <v-icon small left>mdi-solar-power</v-icon>
                                             Solarium
                                         </v-col>
                                         <v-col class="py-0" cols="4">
-                                            <v-menu :open-on-hover="true" offset-y>
-                                                <template v-slot:activator="{ on }">
-                                                    <div v-on="on">
-                                                        <v-icon color="#5392f9" small left>mdi-account-tie</v-icon>
-                                                        Front desk [24-hour]
-                                                    </div>
-                                                </template>
-                                                <v-img
-                                                        src="//pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=360x270"
-                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
-                                                        height="350"
-                                                        width="350"
-                                                        class="text-right pa-2"
-                                                ></v-img>
-                                            </v-menu>
+                                            <v-icon small left>mdi-bag-personal</v-icon>
+                                            Tours
                                         </v-col>
                                         <v-col class="py-0" cols="4">
+                                            <v-icon small left>mdi-account-outline</v-icon>
+                                            Massage
+                                        </v-col>
+                                        <v-col class="py-0 blue_text" cols="4">
                                             <v-menu :open-on-hover="true" offset-y>
                                                 <template v-slot:activator="{ on }">
                                                     <div v-on="on">
@@ -3449,7 +3010,33 @@
                                                 ></v-img>
                                             </v-menu>
                                         </v-col>
-                                        <v-col class="py-0" cols="4">
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-silverware-fork-knife</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <div class="mb-2 font-weight-bold">Dining, drinking, and snacking</div>
+                                    <v-row>
+                                        <v-col class="py-0 blue_text" cols="4">
+                                            <v-menu :open-on-hover="true" offset-y>
+                                                <template v-slot:activator="{ on }">
+                                                    <div v-on="on">
+                                                        <v-icon color="#5392f9" small left>mdi-glass-cocktail</v-icon>
+                                                        Bar
+                                                    </div>
+                                                </template>
+                                                <v-img
+                                                        src="//pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=360x270"
+                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                                        height="350"
+                                                        width="350"
+                                                        class="text-right pa-2"
+                                                ></v-img>
+                                            </v-menu>
+                                        </v-col>
+                                        <v-col class="py-0 blue_text" cols="4">
                                             <v-menu :open-on-hover="true" offset-y>
                                                 <template v-slot:activator="{ on }">
                                                     <div v-on="on">
@@ -3466,260 +3053,462 @@
                                                 ></v-img>
                                             </v-menu>
                                         </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-icon small left>mdi-room-service-outline</v-icon>
+                                            Room service
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-room-service-outline</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <div class="mb-2 font-weight-bold">Services and conveniences</div>
+                                    <v-row>
+                                        <v-col class="py-0" cols="4">
+                                            <v-icon small left>mdi-broom</v-icon>
+                                            Daily housekeeping
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-icon small left>mdi-waves</v-icon>
+                                            Laundry service
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-icon small left>mdi-hair-dryer</v-icon>
+                                            Salon
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-icon small left>mdi-washing-machine</v-icon>
+                                            Dry cleaning
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-icon small left>mdi-cctv</v-icon>
+                                            Luggage storage
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                            <v-icon small left>mdi-smoking</v-icon>
+                                            Smoking area
+                                        </v-col>
                                     </v-row>
                                 </v-col>
                             </v-row>
                         </v-col>
                     </v-row>
-                    <!--<v-layout>
-                        <v-flex sm3 py-5 mr-3>
-                            <v-divider></v-divider>
-                            <h5>What they offer</h5>
-                        </v-flex>
-                        <v-flex sm9 py-5 ml-3>
-                            <v-divider></v-divider>
-                            <v-layout class="justify-space-between py-1">
-                                <div>
-                                    <v-icon class="align-top mr-2" large>mdi-earth</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                </div>
-                                <v-list>
-                                    <v-list-item>
-                                        <v-img
-                                                src="http://www.apsf.ru/style/flag_rf.png"
-                                                contain
-                                                height="20"
-                                                max-width="30"
-                                                class="mr-2"
-                                        ></v-img>
-                                        Russia
-                                    </v-list-item>
-                                    <v-list-item>
-                                        <v-img
-                                                src="https://cdn.webshopapp.com/shops/94414/files/53448306/armenia-flag-icon-free-download.jpg"
-                                                contain
-                                                height="20"
-                                                max-width="30"
-                                                class="mr-2"
-                                        ></v-img>
-                                        Armenia
-                                    </v-list-item>
-                                </v-list>
-                                <v-list>
-                                    <v-list-item>
-                                        <v-img
-                                                src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg"
-                                                contain
-                                                height="20"
-                                                max-width="30"
-                                                class="mr-2"
-                                        ></v-img>
-                                        English
-                                    </v-list-item>
-                                    <v-list-item>
-                                        <v-img
-                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjPtyPVWO2Li5t-2yc2zG31bJsZxE7JunePSu1xgYu7s2xB932"
-                                                contain
-                                                height="20"
-                                                max-width="30"
-                                                class="mr-2"
-                                        ></v-img>
-                                        French
-                                    </v-list-item>
-                                </v-list>
-                                <v-list>
-                                    <v-list-item>
-                                        <v-img
-                                                src="https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg"
-                                                contain
-                                                height="20"
-                                                max-width="30"
-                                                class="mr-2"
-                                        ></v-img>
-                                        Italian
-                                    </v-list-item>
-                                    <v-list-item>
-                                        <v-img
-                                                src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1280px-Flag_of_Spain.svg.png"
-                                                contain
-                                                height="20"
-                                                max-width="30"
-                                                class="mr-2"
-                                        ></v-img>
-                                        Spanish
-                                    </v-list-item>
-                                </v-list>
-                            </v-layout>
-                            <v-layout class="justify-space-between py-1">
-                                <div>
-                                    <v-icon class="align-top mr-2" large>mdi-wifi</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                </div>
-                                <div>Free Wi-Fi in all rooms!</div>
-                                <div>Wi-Fi in public areas</div>
-                            </v-layout>
-                            <v-layout class="justify-space-between py-1">
-                                <div>
-                                    <v-icon class="align-top mr-2" large>mdi-car</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                </div>
-                                <div>Airport transfer</div>
-                                <div>Bicycle rental</div>
-                            </v-layout>
-                        </v-flex>
-                    </v-layout>-->
-                    <v-layout>
-                        <v-flex sm3 py-5 mr-3>
-                            <v-divider></v-divider>
-                            <h5>What's nearby</h5>
-                        </v-flex>
-                        <v-flex sm9 py-5 ml-3>
-                            <v-divider></v-divider>
-                            <v-layout class="justify-content-between py-1">
-                                <div>
-                                    <v-icon class="align-top mr-2" large>mdi-map-marker</v-icon>
-                                    <v-divider vertical class="m-0"></v-divider>
-                                </div>
-                                <div>
-                                    <strong>Popular landmarks</strong>
-                                    <div>
-                                        <v-tooltip color="black" bottom>
-                                            <template v-slot:activator="{ on }">
-                                                <v-btn  height="20"  tile text color="#1976d2" v-on="on">
-                                                    ЗавтCasa Batllo - 560 mрак
-                                                </v-btn>
-                                            </template>
-                                            <v-img
-                                                    src="https://picsum.photos/id/11/500/300"
-                                                    lazy-src="https://picsum.photos/id/11/10/6"
-                                                    aspect-ratio="1"
-                                                    class="grey lighten-2"
-                                                    min-width="300"
-                                                    min-height="80"
-                                            ></v-img>
-                                        </v-tooltip>
+                    <v-row>
+                        <v-col cols="3">
+                            <v-divider class="my-3"></v-divider>
+                            <p class="subtitle-1">Nearest essentials</p>
+                        </v-col>
+                        <v-col cols="9">
+                            <v-divider class="my-3"></v-divider>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-airport</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <div class="mb-2 font-weight-bold">Airports</div>
+                                    <v-row>
+                                        <v-col class="py-0" cols="4">
+                                           <p>Barcelona-El Prat Airport (BCN)</p>
+                                            <div class="grey--text">
+                                                <span>12.1 km - </span>
+                                                <v-icon small left color="grey">mdi-car</v-icon>
+                                                <span>24 minutes</span>
+                                            </div>
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                           <p>Girona-Costa Brava Airport (GRO)</p>
+                                            <div class="grey--text">
+                                                <span>75.2 km</span>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-bus</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <div class="mb-2 font-weight-bold">Public transportation</div>
+                                    <v-row>
+                                        <v-col class="py-0" cols="4">
+                                           <p>Urquinaona Metro Station</p>
+                                            <div class="grey--text">
+                                                <span>230 m - </span>
+                                                <v-icon small left color="grey">mdi-walk</v-icon>
+                                                <span>3 minutes</span>
+                                            </div>
+                                        </v-col>
+                                        <v-col class="py-0" cols="4">
+                                           <p>Plaça Catalunya Metro Station</p>
+                                            <div class="grey--text">
+                                                <span>75.2 m</span>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-hospital-building</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <div class="mb-2 font-weight-bold">Hospital or clinic</div>
+                                    <v-row>
+                                        <v-col class="py-0" cols="4">
+                                           <p>Fundacio Puigvert</p>
+                                            <div class="grey--text">
+                                                <span>2.7 km</span>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-shopping</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <div class="mb-2 font-weight-bold">Shopping</div>
+                                    <v-row>
+                                        <v-col class="py-0" cols="4">
+                                           <p>Portal de l'Angel</p>
+                                            <div class="grey--text">
+                                                <span>320 m</span>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-store</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <div class="mb-2 font-weight-bold">Convenience store</div>
+                                    <v-row>
+                                        <v-col class="py-0" cols="4">
+                                           <p>Carrefour Express</p>
+                                            <div class="grey--text">
+                                                <span>1.8 km</span>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-phone-classic</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <div class="mb-2 font-weight-bold">Cash withdrawal</div>
+                                    <v-row>
+                                        <v-col class="py-0" cols="4">
+                                           <p>ATM</p>
+                                            <div class="grey--text">
+                                                <span>80 m</span>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <p>Distances shown are straight-line distances on the map. Actual travel distances may vary.</p>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="3">
+                            <v-divider class="my-3"></v-divider>
+                            <p class="subtitle-1">What to eat nearby</p>
+                        </v-col>
+                        <v-col cols="9">
+                            <v-divider class="my-3"></v-divider>
+                            <v-row class="mb-2">
+                                <v-col cols="3">
+                                    <v-img
+                                            src="//pix6.agoda.net/geo/cuisine/1110/5_1110.jpg?s=270x360"
+                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            height="120"
+                                            class="text-right pa-2"
+                                    ></v-img>
+                                    <div class="mt-3">
+                                        <v-icon small left>mdi-silverware-fork-knife</v-icon>
+                                        Spanish cuisine
                                     </div>
-                                    <v-tooltip color="black"  bottom>
-                                        <template v-slot:activator="{ on }">
-                                            <v-btn  height="20" tile text color="#1976d2" v-on="on">
-                                                La Pedrera Casa Mila - 720 m
-                                            </v-btn>
-                                        </template>
-                                        <v-img
-                                                src="https://picsum.photos/id/11/500/300"
-                                                lazy-src="https://picsum.photos/id/11/10/6"
-                                                aspect-ratio="1"
-                                                class="grey lighten-2"
-                                                min-width="300"
-                                                min-height="80"
-                                        ></v-img>
-                                    </v-tooltip>
-                                    <div>
-                                        <v-tooltip color="black"  bottom>
-                                            <template v-slot:activator="{ on }">
-                                                <v-btn  height="20" tile text color="#1976d2" v-on="on">
-                                                    La Boqueria - 1.39 km
-                                                </v-btn>
-                                            </template>
-                                            <v-img
-                                                    src="https://picsum.photos/id/11/500/300"
-                                                    lazy-src="https://picsum.photos/id/11/10/6"
-                                                    aspect-ratio="1"
-                                                    class="grey lighten-2"
-                                                    min-width="300"
-                                                    min-height="80"
-                                            ></v-img>
-                                        </v-tooltip>
+                                    <v-divider class="mt-3"></v-divider>
+                                    <div class="mt-3">
+                                        <p>Granja Restaurant Bon Bar</p>
+                                        <div class="grey--text">
+                                            <span>100 m - Spanish</span>
+                                        </div>
                                     </div>
-                                    <v-tooltip color="black"  bottom>
-                                        <template v-slot:activator="{ on }">
-                                            <v-btn  height="20" tile text color="#1976d2" v-on="on">
-                                                Gothic Quarter (Barri Gotic) - 1.71 km
-                                            </v-btn>
-                                        </template>
-                                        <v-img
-                                                src="https://picsum.photos/id/11/500/300"
-                                                lazy-src="https://picsum.photos/id/11/10/6"
-                                                aspect-ratio="1"
-                                                class="grey lighten-2"
-                                                min-width="300"
-                                                min-height="80"
-                                        ></v-img>
-                                    </v-tooltip>
-                                    <!--<p>Casa Batllo - 560 m</p>
-                                    <p>La Pedrera Casa Mila - 720 m</p>
-                                    <p>La Boqueria - 1.39 km</p>
-                                    <p>Gothic Quarter (Barri Gotic) - 1.71 km</p>-->
-                                </div>
-                                <div>
-                                    <strong>Nearby landmarks</strong>
-                                    <p>Cellarer - 50 m</p>
-                                    <p>Xampany - 120 m</p>
-                                    <p>Opera Lounge - 150 m</p>
-                                    <p>BEB Bikes Rental - 160 m</p>
-                                </div>
-                            </v-layout>
-                        </v-flex>
-                    </v-layout>
+                                    <div class="mt-3">
+                                        <p>Las Euras</p>
+                                        <div class="grey--text">
+                                            <span>160 m - Spanish</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <p>Casa Alfredo</p>
+                                        <div class="grey--text">
+                                            <span>180 m - Spanish</span>
+                                        </div>
+                                    </div>
+                                </v-col>
+                                <v-col cols="3" class="mx-5">
+                                    <v-img
+                                            src="//pix6.agoda.net/geo/cuisine/1079/5_1079.jpg?s=270x360"
+                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            height="120"
+                                            class="text-right pa-2"
+                                    ></v-img>
+                                    <div class="mt-3">
+                                        <v-icon small left>mdi-silverware-fork-knife</v-icon>
+                                        Spanish cuisine
+                                    </div>
+                                    <v-divider class="mt-3"></v-divider>
+                                    <div class="mt-3">
+                                        <p>Granja Restaurant Bon Bar</p>
+                                        <div class="grey--text">
+                                            <span>100 m - Spanish</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <p>Las Euras</p>
+                                        <div class="grey--text">
+                                            <span>160 m - Spanish</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <p>Casa Alfredo</p>
+                                        <div class="grey--text">
+                                            <span>180 m - Spanish</span>
+                                        </div>
+                                    </div>
+                                </v-col>
+                                <v-col cols="3">
+                                    <v-img
+                                            src="//pix6.agoda.net/geo/cuisine/1048/5_1048.jpg?s=270x360"
+                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            height="120"
+                                            class="text-right pa-2"
+                                    ></v-img>
+                                    <div class="mt-3">
+                                        <v-icon small left>mdi-silverware-fork-knife</v-icon>
+                                        Spanish cuisine
+                                    </div>
+                                    <v-divider class="mt-3"></v-divider>
+                                    <div class="mt-3">
+                                        <p>Granja Restaurant Bon Bar</p>
+                                        <div class="grey--text">
+                                            <span>100 m - Spanish</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <p>Las Euras</p>
+                                        <div class="grey--text">
+                                            <span>160 m - Spanish</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <p>Casa Alfredo</p>
+                                        <div class="grey--text">
+                                            <span>180 m - Spanish</span>
+                                        </div>
+                                    </div>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="3">
+                            <v-divider class="my-3"></v-divider>
+                            <p class="subtitle-1">What's nearby</p>
+                        </v-col>
+                        <v-col cols="9">
+                            <v-divider class="my-3"></v-divider>
+                            <v-row class="mb-2">
+                                <v-col cols="1"><v-icon large>mdi-map-search</v-icon></v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col  class="body-2 ml-2">
+                                    <v-row>
+                                        <v-col class="py-0 blue_text" cols="5">
+                                        <div class="mb-2 font-weight-bold text--black">Popular landmarks</div>
+                                            <v-menu :open-on-hover="true" offset-y>
+                                                <template v-slot:activator="{ on }">
+                                                    <div v-on="on">
+                                                        Casa Batllo - 640 m
+                                                    </div>
+                                                </template>
+                                                <v-img
+                                                        src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
+                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                                        height="350"
+                                                        width="350"
+                                                        class="text-right pa-2"
+                                                ></v-img>
+                                            </v-menu>
+                                            <v-menu :open-on-hover="true" offset-y>
+                                                <template v-slot:activator="{ on }">
+                                                    <div v-on="on">
+                                                        La Boqueria - 760 m
+                                                    </div>
+                                                </template>
+                                                <v-img
+                                                        src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
+                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                                        height="350"
+                                                        width="350"
+                                                        class="text-right pa-2"
+                                                ></v-img>
+                                            </v-menu>
+                                            <v-menu :open-on-hover="true" offset-y>
+                                                <template v-slot:activator="{ on }">
+                                                    <div v-on="on">
+                                                        Gothic Quarter (Barri Gotic) - 810 m
+                                                    </div>
+                                                </template>
+                                                <v-img
+                                                        src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
+                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                                        height="350"
+                                                        width="350"
+                                                        class="text-right pa-2"
+                                                ></v-img>
+                                            </v-menu>
+                                            <v-menu :open-on-hover="true" offset-y>
+                                                <template v-slot:activator="{ on }">
+                                                    <div v-on="on">
+                                                        La Pedrera Casa Mila - 1.2 km
+                                                    </div>
+                                                </template>
+                                                <v-img
+                                                        src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
+                                                        lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                                        height="350"
+                                                        width="350"
+                                                        class="text-right pa-2"
+                                                ></v-img>
+                                            </v-menu>
+                                        </v-col>
+                                        <v-col class="py-0" cols="5">
+                                            <div class="mb-2 font-weight-bold">Nearby landmarks</div>
+                                            <p>Teatre Tívoli - 100 m</p>
+                                            <p>El Corte Inglés - 100 m</p>
+                                            <p>Laie - 160 m</p>
+                                            <p>Barcelona Walking Tours - 180 m</p>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                    </v-row>
                 </div>
                 <div id="tab2">
-                    <v-layout>
-                        <v-flex sm3 py-5 mr-3>
-                            <v-divider></v-divider>
-                            <h5>Property's guest policies</h5>
-                        </v-flex>
-                        <v-flex sm9 py-5 ml-3>
-                            <v-divider></v-divider>
-                            <strong>Children and extra beds</strong>
-                            <p>All children are welcome.</p>
-                            <strong>Others</strong>
-                            <li>When booking more than 5 rooms, different policies and additional supplements may apply.</li>
-                            <p>Extra beds are dependent on the room you choose. Please ask the property for more details.</p>
-                        </v-flex>
-                    </v-layout>
+                    <v-row>
+                        <v-col cols="3">
+                            <v-divider class="my-3"></v-divider>
+                            <p class="subtitle-1">Property's guest policies</p>
+                        </v-col>
+                        <v-col cols="9">
+                            <v-divider class="my-3"></v-divider>
+                            <v-col class="mb-2 body-2">
+                                <div class="font-weight-bold mb-3">Children and extra beds</div>
+                                <div class="mb-3">All children are welcome.</div>
+                                <div class="font-weight-bold mb-3">Others</div>
+                                <ul class="mb-3">
+                                    <li>Children of all ages can be accommodated. <br>
+                                        Children age: 0-2 stay free in a baby cot with a maximum number of cots in the room being 1.
+                                    </li>
+                                    <li>
+                                        When booking for 4 or more rooms, different policies and additional supplements may apply. This policy is imposed by the property.
+                                        <br> For reservations of 8 or more nights, special conditions will apply.
+                                    </li>
+                                    <li>
+                                        The maximum number of pets allowed in each room is 1 (dog or cat). For guests with pets, a security deposit of
+                                        EUR 200 is required upon check-in for charges or damages during the stay and will be refunded upon departure.
+                                    </li>
+                                    <li>Pets are allowed for an additional charge of EUR 20 per night per pet.</li>
+                                    <li>Only pets weighing under 20 kilograms are allowed at the property.</li>
+                                    <li>When booking more than 5 rooms, different policies and additional supplements may apply.</li>
+                                </ul>
+                                <div class="mb-3">Extra beds are dependent on the room you choose. Please ask the property for more details.</div>
+                                <v-btn depressed large color="#75a8f9" dark>
+                                    <v-icon left small class="ml-4">mdi-message-processing</v-icon>
+                                    <span class="mr-4">ASK THE PROPERTY</span>
+                                </v-btn>
+                            </v-col>
+                        </v-col>
+                    </v-row>
                 </div>
-                <div id="tab3">
-                    <p class="display-1">Reviews of Vale Apartments Barcelona from real guests</p>
-                    <v-col class="d-inline-flex" cols="12" sm="6">
-                        <v-select
-                                :items="reviews.languages"
-                                label="All languages"
-                                prepend-inner-icon="mdi-earth"
-                                outlined
-                        ></v-select>
-                    </v-col>
-                    <v-col class="d-inline-flex" cols="12" sm="6">
-                        <v-select
-                                :items="reviews.guests"
-                                label="All guests"
-                                prepend-inner-icon="mdi-account-group-outline"
-                                outlined
-                        ></v-select>
-                    </v-col>
-                    <v-container v-for="i in 4" :key="i">
-                        <v-divider></v-divider>
-                        <v-layout my-4>
-                            <v-flex sm3>
+                <div id="tab3 my-5">
+                    <v-col>
+                        <p class="display-1">Reviews of Vale Apartments Barcelona from real guests</p>
+                        <v-row>
+                            <v-col class="d-inline-flex" cols="12" sm="4">
+                                <v-select
+                                        :items="reviews.guests"
+                                        label="All guests"
+                                        prepend-inner-icon="mdi-account-group-outline"
+                                        outlined
+                                ></v-select>
+                            </v-col>
+                            <v-col class="d-inline-flex" cols="12" sm="4">
+                                <v-select
+                                        :items="reviews.rooms"
+                                        label="All room types"
+                                        prepend-inner-icon="mdi-hotel"
+                                        outlined
+                                ></v-select>
+                            </v-col>
+                            <v-col class="d-inline-flex" cols="12" sm="4">
+                                <v-select
+                                        :items="reviews.languages"
+                                        label="All languages"
+                                        prepend-inner-icon="mdi-earth"
+                                        outlined
+                                ></v-select>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="3"><span class="caption font-weight-bold">Show reviews that mention</span></v-col>
+                            <v-col cols="9">
+                                <v-chip-group
+                                        column
+                                        active-class="primary--text"
+                                >
+                                    <v-chip outlined v-for="(item ,index) in mention_reviews" :key="index">
+                                       <span class="pa-1">{{ item }}</span>
+                                    </v-chip>
+                                </v-chip-group>
+                            </v-col>
+                        </v-row>
+                        <v-layout class="justify-center my-3">
+                            <el-pagination
+                                    :page-size="20"
+                                    :pager-count="11"
+                                    layout="prev, pager, next"
+                                    :total="1000"
+                            ></el-pagination>
+                        </v-layout>
+                        <v-row>
+                            <v-col cols="3">
                                 <div class="blue_text"><span class="display-1 ">10.0</span><span class="subtitle-1"> Exceptional</span></div>
-                            </v-flex>
-                            <v-flex sm9>
+                                <div class="caption"><v-icon small left>mdi-hotel</v-icon>Double Room</div>
+                                <div class="caption"><v-icon small left>mdi-hotel</v-icon>Couple</div>
+                                <div class="caption"><v-icon small left>mdi-calendar-blank-outline</v-icon>Stayed 3 nights in February 2019</div>
+                            </v-col>
+                            <v-col>
                                 <v-card
                                         class="mx-auto pa-5"
                                         color="#F9F9F9">
-                                    <strong>"Exceptional”</strong>
-                                    <p class="body-2"><v-btn color="#85c150" class="mr-2" dark x-small fab>+</v-btn>Well located. Good food nearby. Walking distance to town center.
-                                        Many bus routes within blocks. Reception on premises. They were very accommodating.
-                                        Helped print boarding passes and arranging
+                                    <strong>"Amazing!!! 6 star Hotel”</strong>
+                                    <p class="body-2">Friendly and helpful staff Location can't be better Bus from the airport stop
+                                        just 2 min from the hotel Good and rich breakfast From 2 pm till 11 on there is
+                                        complemantry Snack Bar bat you can have
+                                        drinks and light food very helpful. Big Rooms with a very good shower. Waiting to come back this hotel soon
                                     </p>
-                                    <p>...</p>
-                                    <p class="body-2"><v-btn color="black" class="mr-2" dark x-small fab>-</v-btn>Small amount of street noise and some am construction next door.
-                                        Ok between midnight to 8am.
-                                    </p>
-                                    <p class="caption">Reviewed June 20, 2019</p>
+                                    <p class="caption grey--text">Reviewed June 20, 2019</p>
                                 </v-card>
-                            </v-flex>
-                        </v-layout>
-                    </v-container>
+                            </v-col>
+                        </v-row>
+                    </v-col>
+
                 </div>
                 <div id="tab4" class="d-flex justify-center">
                     <iframe
@@ -3733,45 +3522,33 @@
                             marginwidth="0"
                     ></iframe>
                 </div>
-                <div id="tab5">
-                    <v-layout>
-                        <v-flex sm3 py-5 mr-3>
-                            <v-divider></v-divider>
-                            <h5>Some helpful facts</h5>
-                        </v-flex>
-                        <v-flex sm9 py-5 ml-3>
-                            <v-divider></v-divider>
-                            <v-layout class="justify-content-between py-1">
-                                <div>
-                                    <strong>Check-in/Check-out</strong>
-                                    <p>Check-in from:<strong>15:00</strong></p>
-                                    <p>Check-in until:<strong>00:00</strong></p>
-                                    <p>Check-in from:<strong>09:00</strong></p>
-                                    <p>Check-in until:<strong>11:00</strong></p>
-                                </div>
-                            </v-layout>
-                        </v-flex>
-                    </v-layout>
-                    <v-layout>
-                        <v-flex sm3 py-5 mr-3>
-                            <v-divider></v-divider>
-                            <h5>Announcements</h5>
-                        </v-flex>
-                        <v-flex sm9 py-5 ml-3>
-                            <v-divider></v-divider>
-                            <p>
-                                Please note, when booking more than 2 apartments, different policies and
-                                additional supplements may apply. A security deposit of EUR 500 is required
-                                upon arrival for incidental charges. This deposit is fully refundable upon
-                                check-out and subject to a damage inspection of the accommodation. Please
-                                inform Vale Apartments Barcelona of your expected arrival time in advance.
-                                You can use the Special Requests box when booking, or contact the property
-                                directly using the contact details in your confirmation. This property does
-                                not accommodate bachelor(ette) or similar parties. License number:
-                            </p>
-                            <strong>HUTB-010159, HUTB-010160, HUTB-010161, HUTB-010162HUTB-010158HUTB-010157, HUTB-010163</strong>
-                        </v-flex>
-                    </v-layout>
+                <div id="tab5" class="mt-5">
+                    <v-row>
+                        <v-col cols="3">
+                            <v-divider class="my-3"></v-divider>
+                            <p class="subtitle-1">Some helpful facts</p>
+                        </v-col>
+                        <v-col cols="9">
+                            <v-divider class="my-3"></v-divider>
+                            <v-col class="mb-2 body-2">
+                                <div class="font-weight-bold mb-2">Check-in/Check-out</div>
+                                <p><v-icon small left>mdi-account-check-outline</v-icon>Check-in from:<strong>14:00</strong></p>
+                                <p><v-icon small left>mdi-account-check-outline</v-icon>Check-out until:<strong>12:00</strong></p>
+                                <div class="font-weight-bold my-2">Getting around</div>
+                                <p><v-icon small left>mdi-city-variant-outline</v-icon>Distance from city center:<strong>0 km</strong></p>
+                                <p><v-icon small left>mdi-clock-outline</v-icon>Travel time to airport (minutes):<strong>25</strong></p>
+                                <div class="font-weight-bold my-2">Extras</div>
+                                <p><v-icon small left>mdi-coffee-outline</v-icon>Breakfast charge (unless included in room price):<strong>20 EUR</strong></p>
+                                <div class="font-weight-bold my-2">The property</div>
+                                <p><v-icon small left>mdi-smoking-off</v-icon>Non-smoking rooms/floors:<strong>2 Yes</strong></p>
+                                <p><v-icon small left>mdi-glass-cocktail</v-icon>Number of bars/lounges:<strong>1</strong></p>
+                                <p><v-icon small left>mdi-stairs</v-icon>Number of floors:<strong>9</strong></p>
+                                <p><v-icon small left>mdi-key-plus</v-icon>Number of rooms:<strong>58</strong></p>
+                                <p><v-icon small left>mdi-flash</v-icon>Room voltage:<strong>220</strong></p>
+                                <p><v-icon small left>mdi-door-open</v-icon>Year property opened:<strong>2014</strong></p>
+                            </v-col>
+                        </v-col>
+                    </v-row>
                 </div>
             </v-container>
         </v-card>
@@ -3843,11 +3620,140 @@
 <script>
 
   export default {
-    name: "Hotel",
-    data() {
+    name: "Hotel", data() {
       return {
-        checked: false,
+        checked: {
+          breakfast: false,
+          smoking: false,
+          pay: false,
+          twinBed: false,
+        },
+        price_btn: true,
+        hotel_like: false,
         fixed: false,
+        dialog_all_img: false,
+        tag: 0,
+        tags: ['All', 'Rooms', 'Property views', 'Facilities', 'Dining', 'Shopping', 'Nearby attraction',],
+        items: [
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+          },
+          {
+            src: 'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+          },
+        ],
+        images: [
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/965a214863f754bcf101325fe52a8a6a.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/965a214863f754bcf101325fe52a8a6a.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+          [
+            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/965a214863f754bcf101325fe52a8a6a.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
+            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
+          ],
+        ],
         dialog: false,
         radio: '1',
         rating: 4,
@@ -3886,6 +3792,7 @@
           languages: [
             'All languages', 'English', 'Français', 'Español', 'Italiano', 'Nederlands', 'Deutsch', 'Português (PT)', '日本語', '繁體中文 (香港)', 'עברית'
           ],
+          rooms: ['All room types', 'Double for Single Use','Double Room','Junior Suite'],
           guests: [
             'All guests (348)', 'Couple (10)', 'Solo traveler (4)', 'Family with young children (141)', 'Group (193)',
           ],
@@ -3958,7 +3865,7 @@
             text: 'Busan'
           },
         ],
-        items: {
+        filter_room_img: {
           img_1: 'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
           img_2: 'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
           img_3: 'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
@@ -3967,12 +3874,13 @@
           show: false,
           src: '',
         },
-        images: [
+        room_images: [
           'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
             'https://pix6.agoda.net/hotelImages/566538/-1/c74d0cf4097989090632e0eaeaaac3ae.jpg?s=1024x768',
             'https://pix6.agoda.net/hotelImages/566538/-1/425cfc17be086145517e7741c17239dd.jpg?s=1024x768',
             'https://pix6.agoda.net/hotelImages/566538/-1/082351b002df0514c05a971a078fa116.jpg?s=1024x768',
         ],
+        mention_reviews: ['All reviews', 'walking distance', 'great location', 'free snacks'],
       };
     },
     methods: {
@@ -3997,6 +3905,15 @@
 </script>
 
 <style >
+    .font_size_18{
+        font-size: 18px;
+    }
+    .font_size_10{
+        font-size: 10px;
+    }
+    .width_100{
+        width: 100%;
+    }
     .zoom{
         cursor: zoom-in;
     }
@@ -4009,11 +3926,20 @@
     .blue_text{
         color: #5392f9;
     }
+    .red_text{
+        color: #ee595d;
+    }
     .icon_grey{
         color: #8a8a8a;
     }
+    .green_text{
+        color: #85c150;
+    }
     .blue_bg{
         background-color: #f4f8fe;
+    }
+    .line_through{
+        text-decoration: line-through;
     }
     [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
         margin-left: 0!important;
@@ -4022,7 +3948,7 @@
         background-color: #f7f7f7;
     }
     .v-card--reveal {
-        align-items: center;
+        align-filter_room_img: center;
         bottom: 0;
         justify-content: center;
         opacity: 0.7;
@@ -4053,15 +3979,15 @@
     .doubleRoomTitle{
         background-color: white;
     }
-    .green_text{
-        color: #85c150;
-    }
     .rating_text{
         color: gray;
         font-size: smaller;
     }
     .rating_text span{
         color: #1976d2;
+    }
+    .dialog_all_img_text{
+        line-height: 30px;
     }
      .hotel .v-toolbar__content{
         max-height: 0 !important;

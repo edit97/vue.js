@@ -34,15 +34,11 @@
                                     v-for="(item, index) in populars" :key="index"
                             >
                                 <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action class="ma-0 filter_checkbox">
-                                        <v-checkbox
-                                                v-model="active"
-                                                color="primary"
-                                                @click="toggle"
-                                                class="ma-0"
-                                        ></v-checkbox>
+                                    <v-list-item-action @click="toggle" class="ma-0 filter_checkbox">
+                                        <el-checkbox @click="toggle" v-model="active">
+                                            <span class="caption" >{{item.location}} ({{item.count}})</span>
+                                        </el-checkbox>
                                     </v-list-item-action>
-                                        <p class="caption" >{{item.location}} ({{item.count}})</p>
                                 </template>
                             </v-list-item>
                         </v-list-item-group>
@@ -156,22 +152,17 @@
                         <v-list-item-group v-model="check_star" multiple>
                             <v-list-item v-for="(item, index) in rating" :key="index" :min-height="40">
                                 <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action class="ma-0 filter_checkbox">
-                                        <v-checkbox
-                                                v-model="active"
-                                                color="primary" class="ma-0"
-                                                @click="toggle"
-                                        ></v-checkbox>
+                                    <v-list-item-action @click="toggle" class="ma-0 filter_checkbox">
+                                        <el-checkbox @click="toggle" v-model="active">
+                                            <v-rating
+                                                    v-model="rating[index]"
+                                                    @click="toggle"
+                                                    background-color="orange lighten-3"
+                                                    color="orange" size="20"
+                                                    empty-icon readonly pa-0
+                                            ></v-rating>
+                                        </el-checkbox>
                                     </v-list-item-action>
-
-                                    <v-list-item-content pa-0>
-                                        <v-rating
-                                                v-model="rating[index]"
-                                                background-color="orange lighten-3"
-                                                color="orange" size="20"
-                                                empty-icon readonly pa-0
-                                        ></v-rating>
-                                    </v-list-item-content>
                                 </template>
                             </v-list-item>
                         </v-list-item-group>
@@ -197,12 +188,10 @@
                     </template>
                     <v-list
                             subheader
-                            two-line
                             flat dense
                             class="region"
                     >
                         <v-subheader class="subtitle-2 font-weight-bold grey--text">Area:</v-subheader>
-
                         <v-list-item-group
                                 v-model="check_area"
                                 multiple
@@ -211,14 +200,11 @@
                                     v-for="(item, index) in areas" :key="index"
                             >
                                 <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action class="ma-0 filter_checkbox">
-                                        <v-checkbox
-                                                v-model="active"
-                                                color="primary"
-                                                @click="toggle"
-                                        ></v-checkbox>
+                                    <v-list-item-action @click="toggle" class="ma-0 filter_checkbox">
+                                        <el-checkbox @click="toggle" v-model="active">
+                                            <span class="caption" >{{item.area}} ({{item.count}})</span>
+                                        </el-checkbox>
                                     </v-list-item-action>
-                                    <p class="caption">{{item.area}} ({{item.count}})</p>
                                 </template>
                             </v-list-item>
                         </v-list-item-group>
@@ -258,15 +244,11 @@
                                 >
                                     <v-list-item>
                                         <template v-slot:default="{ active, toggle }">
-                                            <v-list-item-action class="ma-0 filter_checkbox">
-                                                <v-checkbox
-                                                        v-model="active"
-                                                        color="primary"
-                                                        @click="toggle"
-                                                ></v-checkbox>
+                                            <v-list-item-action @click="toggle" class="ma-0 filter_checkbox">
+                                                <el-checkbox @click="toggle" v-model="active">
+                                                    <span class="caption" >{{item.amenities}}</span>
+                                                </el-checkbox>
                                             </v-list-item-action>
-
-                                            <p class="caption">{{item.amenities}}</p>
                                         </template>
                                     </v-list-item>
                                 </v-flex>
@@ -597,16 +579,16 @@
 </script>
 
 <style>
-     .v-input--selection-controls__ripple {
-        color: transparent !important;
-    }
-     .filter_checkbox .v-icon.v-icon {
-         font-size: 18px !important;
-     }
-    .filters_select .v-input__slot{
-        margin-bottom: 0 !important;
-        width: 160px!important;
-    }
+    /* .v-input--selection-controls__ripple {*/
+    /*    color: transparent !important;*/
+    /*}*/
+    /* .filter_checkbox .v-icon.v-icon {*/
+    /*     font-size: 18px !important;*/
+    /* }*/
+    /*.filters_select .v-input__slot{*/
+    /*    margin-bottom: 0 !important;*/
+    /*    width: 160px!important;*/
+    /*}*/
     .v-toolbar__title {
         font-size: .8rem !important;
         font-weight: bold;
@@ -627,9 +609,6 @@
      .v-list--two-line .v-list-item, .v-list-item--two-line {
         min-height: 32px !important;
     }
-    /*.price .v-text-field.v-text-field--solo .v-input__control {*/
-    /*    min-height: 35px !important;*/
-    /*}*/
     .filters .v-text-field.v-text-field--solo .v-input__control {
         min-height: 32px !important;
     }
@@ -638,22 +617,6 @@
         overflow-y: auto;
         background-color: white;
     }
-    /*.filters .v-btn__content {*/
-    /*    font-size: smaller !important;*/
-    /*    font-weight: bold !important;*/
-    /*}*/
-    /*.filters .mdi:before, .mdi-set {*/
-    /*    font-size: medium !important;*/
-    /*}*/
-    /*.filters .v-btn__content .v-icon {*/
-    /*    font-size: inherit !important;*/
-    /*    font-weight: bold !important;*/
-    /*    margin-right: 5px !important;*/
-    /*}*/
-    /*.v-btn:not(.v-btn--round).v-size--default {*/
-    /*    padding: 0 12px !important;*/
-    /*    margin-right: 0.2rem;*/
-    /*}*/
     .showMore{
         flex-wrap: wrap !important;
     }

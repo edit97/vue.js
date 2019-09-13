@@ -6,12 +6,12 @@
           <navigation></navigation>
 
           <search></search>
-
 <!--          <filters></filters>-->
 
 <!--          <MainPage></MainPage>-->
-
-          <router-view></router-view>
+          <v-content>
+              <router-view></router-view>
+          </v-content>
 
           <v-footer
                   dark
@@ -113,36 +113,11 @@ export default {
   data(){
     return{
       // overlay: false,
-      home: [
-        'Home',
-        'Help center',
-        'FAQs',
-        'Privacy policy',
-        'Cookie policy',
-        'Terms of use',
-      ],
-      about: [
-        'About us',
-        'PointsMAX',
-        'Careers',
-        'Press',
-        'Blog',
-      ],
-      destinations: [
-        'Destinations',
-        'Countries/Territories',
-        'Cities',
-      ],
-      partner: [
-        'Partner with us',
-        'Properties',
-        'Affiliates',
-      ],
-      app: [
-        'Get the app',
-        'iOS app',
-        'Android app',
-      ],
+      home: ['Home', 'Help center', 'FAQs', 'Privacy policy', 'Cookie policy', 'Terms of use',],
+      about: ['About us', 'PointsMAX', 'Careers', 'Press', 'Blog',],
+      destinations: ['Destinations', 'Countries/Territories', 'Cities',],
+      partner: ['Partner with us', 'Properties', 'Affiliates',],
+      app: ['Get the app', 'iOS app', 'Android app',],
     }
   },
   components: {

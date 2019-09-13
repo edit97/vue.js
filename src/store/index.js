@@ -6,10 +6,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     overlay: false,
+    filter_overlay: false,
   },
   mutations: {
     searchMenu (state, payload) {
       state.overlay = payload
+    },
+    filtersMenu (state, payload) {
+      state.filter_overlay = payload
     }
   }
 });

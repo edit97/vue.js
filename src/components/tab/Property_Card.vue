@@ -5,11 +5,7 @@
                 <v-flex sm4>
                     <v-item-group v-model="selected">
                         <v-row>
-                            <v-col
-                                    cols="12"
-                                    md="12"
-                                    class="py-0"
-                            >
+                            <v-col cols="12" class="py-0">
                                 <v-item v-slot:default="{ active, toggle }">
                                     <v-img
                                             src="//pix5.agoda.net/hotelImages/566538/-1/20e5402f389a16d5f2a997c4e95e8679.jpg?s=450x450"
@@ -31,11 +27,12 @@
                                 <v-item v-slot:default="{ active, toggle }">
                                     <v-row class="px-3" id="menu">
                                         <v-col
-                                                v-for="(item,i) in items"
+                                                v-for="(item,i) in images[0]"
+                                                v-if="i <= 10"
                                                 :key="i"
                                                 cols="2"
                                                 md="2"
-                                                class="pa-0 zoom"
+                                                class="pa-0 zoom border_white"
                                         >
                                             <v-img
                                                     :src="item"
@@ -49,7 +46,7 @@
                                         <v-col
                                                 cols="2"
                                                 md="2"
-                                                class="pa-0 pointer"
+                                                class="pa-0 pointer border_white"
                                                 @click.stop="dialog = true"
                                         >
                                             <v-img
@@ -174,7 +171,7 @@
                 <v-flex sm-5>
                     <v-layout column pl-3 pt-1>
                         <v-flex class="text-left">
-                            <router-link class="link text--black" :to="{name:'Hotel',params:{id: 1}}">
+                            <router-link :rating1="rating" class="link text--black" :to="{name:'Hotel'}">
                                 <h4><a class="link black_text text--black">Catalonia Square Hotel</a></h4>
                             </router-link>
                             <v-layout ma-0>
@@ -262,7 +259,7 @@
                                 </v-avatar>
                                 Best price for 5-star properties
                             </v-chip>
-                            <p class="reserve">
+                            <p class="reserve mb-0">
                                 <v-chip
                                         color="red  accent-4"
                                         text-color="white"
@@ -349,52 +346,7 @@
         model: 0,
         tag: 0,
         rating: 5,
-        colors: [
-          'green',
-          'secondary',
-          'yellow darken-4',
-          'red lighten-2',
-          'orange darken-1',
-        ],
-        cycle: false,
-        slides: ['First', 'Second', 'Third', 'Fourth', 'Fifth',
-        ],
         tags: ['All', 'Rooms', 'Property views', 'Facilities', 'Dining', 'Shopping', 'Nearby attraction',],
-        items: [
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
-          },
-          {
-            src: 'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
-          },
-        ],
         images: [
           [
             'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
@@ -488,7 +440,7 @@
     },
     methods: {
       mouseImgOver(item){
-        this.menu.src = item.src;
+        this.menu.src = item;
       },
       mouseImgOut(){
         this.menu.src = ''
@@ -498,10 +450,11 @@
 </script>
 
 <style scoped>
-.ticket .v-menu__content{
-    left: 0 !important;
-}
-.green_text{
+    .border_white{
+        border-top: 1px solid white;
+        border-right: 1px solid white;
+    }
+    .green_text{
     color: #28871c;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-    <v-app-bar :fixed="fixed">
+    <v-app-bar :class="$store.state.filter_overlay ? 'filters_app' : ''" :fixed="fixed">
         <v-container pa-0 class="filters d-flex">
             <v-flex  class="filters_select">
-                <v-toolbar-title class="d-inline" mr-2>Filters</v-toolbar-title>
+                <v-toolbar-title class="d-inline caption font-weight-bold mx-3">Filters</v-toolbar-title>
                 <v-menu offset-y v-model="popular" min-width="400" nudge-bottom="20" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
                         <v-chip
@@ -10,6 +10,7 @@
                                 :color="popularChipColor"
                                 text-color="white"
                                 :close="popularChipClose"
+                                @click="filtersMenu()"
                                 @click:close="clearPopular"
                                 v-on="on"
                         >
@@ -21,27 +22,17 @@
                             <v-icon v-show="check_popular.length === 0" small right>mdi-menu-down</v-icon>
                         </v-chip>
                     </template>
-                    <v-list
-                            flat dense
-                    >
+                    <v-list flat dense>
                         <v-subheader class="subtitle-2 font-weight-bold grey--text">Popular filters for Barcelona:</v-subheader>
-
-                        <v-list-item-group
-                                multiple
-                                v-model="check_popular"
-                        >
-                            <v-list-item
-                                    v-for="(item, index) in populars" :key="index"
+                        <el-checkbox-group v-model="check_popular">
+                            <el-checkbox
+                                    v-for="(item, index) in populars"
+                                    :key="index" :label="item"
+                                    class="d-block pl-2 pb-2"
                             >
-                                <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action @click="toggle" class="ma-0 filter_checkbox">
-                                        <el-checkbox @click="toggle" v-model="active">
-                                            <span class="caption" >{{item.location}} ({{item.count}})</span>
-                                        </el-checkbox>
-                                    </v-list-item-action>
-                                </template>
-                            </v-list-item>
-                        </v-list-item-group>
+                                <span class="caption" >{{item.location}} ({{item.count}})</span>
+                            </el-checkbox>
+                        </el-checkbox-group>
                     </v-list>
                 </v-menu>
                 <v-menu offset-y v-model="price" min-width="350" nudge-bottom="20" :close-on-content-click="false">
@@ -51,6 +42,7 @@
                                 :color="priceChipColor"
                                 text-color="white"
                                 :close="priceChipClose"
+                                @click="filtersMenu()"
                                 @click:close="clearPrice"
                                 v-on="on"
                         >
@@ -135,6 +127,7 @@
                                 :color="starChipColor"
                                 text-color="white"
                                 :close="starChipClose"
+                                @click="filtersMenu()"
                                 @click:close="clearStar"
                                 v-on="on"
                         >
@@ -146,26 +139,22 @@
                             <v-icon v-show="check_star.length === 0" small right>mdi-menu-down</v-icon>
                         </v-chip>
                     </template>
-                    <v-list subheader two-line flat dense>
+                    <v-list flat dense>
                         <v-subheader class="subtitle-2 font-weight-bold grey--text">Star rating:</v-subheader>
-
-                        <v-list-item-group v-model="check_star" multiple>
-                            <v-list-item v-for="(item, index) in rating" :key="index" :min-height="40">
-                                <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action @click="toggle" class="ma-0 filter_checkbox">
-                                        <el-checkbox @click="toggle" v-model="active">
-                                            <v-rating
-                                                    v-model="rating[index]"
-                                                    @click="toggle"
-                                                    background-color="orange lighten-3"
-                                                    color="orange" size="20"
-                                                    empty-icon readonly pa-0
-                                            ></v-rating>
-                                        </el-checkbox>
-                                    </v-list-item-action>
-                                </template>
-                            </v-list-item>
-                        </v-list-item-group>
+                        <el-checkbox-group v-model="check_star">
+                            <el-checkbox
+                                    v-for="(item, index) in rating"
+                                    :key="index" :label="item"
+                                    class="d-block pl-2 pb-2">
+                                <v-rating
+                                        v-model="rating[index]"
+                                        background-color="orange lighten-3"
+                                        color="orange" size="20"
+                                        empty-icon readonly dense
+                                        class="pa-0"
+                                ></v-rating>
+                            </el-checkbox>
+                        </el-checkbox-group>
                     </v-list>
                 </v-menu>
                 <v-menu offset-y v-model="area" min-width="300" nudge-bottom="20" :close-on-content-click="false">
@@ -175,6 +164,7 @@
                                 :color="areaChipColor"
                                 text-color="white"
                                 :close="areaChipClose"
+                                @click="filtersMenu()"
                                 @click:close="clearArea"
                                 v-on="on"
                         >
@@ -186,28 +176,17 @@
                             <v-icon v-show="check_area.length === 0" small right>mdi-menu-down</v-icon>
                         </v-chip>
                     </template>
-                    <v-list
-                            subheader
-                            flat dense
-                            class="region"
-                    >
+                    <v-list flat dense class="region">
                         <v-subheader class="subtitle-2 font-weight-bold grey--text">Area:</v-subheader>
-                        <v-list-item-group
-                                v-model="check_area"
-                                multiple
-                        >
-                            <v-list-item
-                                    v-for="(item, index) in areas" :key="index"
+                        <el-checkbox-group v-model="check_area">
+                            <el-checkbox
+                                    v-for="(item, index) in areas"
+                                    :key="index" :label="item"
+                                    class="d-block pl-2 pb-2"
                             >
-                                <template v-slot:default="{ active, toggle }">
-                                    <v-list-item-action @click="toggle" class="ma-0 filter_checkbox">
-                                        <el-checkbox @click="toggle" v-model="active">
-                                            <span class="caption" >{{item.area}} ({{item.count}})</span>
-                                        </el-checkbox>
-                                    </v-list-item-action>
-                                </template>
-                            </v-list-item>
-                        </v-list-item-group>
+                                <span class="caption" >{{item.area}} ({{item.count}})</span>
+                            </el-checkbox>
+                        </el-checkbox-group>
                     </v-list>
                 </v-menu>
                 <v-menu offset-y left v-model="more" max-width="800" nudge-bottom="20" :close-on-content-click="false">
@@ -217,6 +196,7 @@
                                 :color="moreChipColor"
                                 text-color="white"
                                 :close="moreChipClose"
+                                @click="filtersMenu()"
                                 @click:close="clearMore"
                                 v-on="on"
                         >
@@ -229,139 +209,68 @@
                         </v-chip>
                     </template>
                     <v-list
-                            subheader
                             flat dense
                             class="region"
                     >
                         <v-subheader class="subtitle-2 font-weight-bold grey--text">Room amenities:</v-subheader>
-                        <v-list-item-group
-                                v-model="check_more.amenities"
-                                multiple
-                        >
-                            <v-layout class="showMore">
-                                <v-flex xs12 sm4 md4 lg4
-                                        v-for="(item, index) in moreMenu.room_amenities" :key="index"
-                                >
-                                    <v-list-item>
-                                        <template v-slot:default="{ active, toggle }">
-                                            <v-list-item-action @click="toggle" class="ma-0 filter_checkbox">
-                                                <el-checkbox @click="toggle" v-model="active">
-                                                    <span class="caption" >{{item.amenities}}</span>
-                                                </el-checkbox>
-                                            </v-list-item-action>
-                                        </template>
-                                    </v-list-item>
-                                </v-flex>
-                            </v-layout>
-                        </v-list-item-group>
+                        <el-checkbox-group v-model="check_more.amenities" class="d-flex showMore">
+                           <v-col cols="4" v-for="(item, index) in moreMenu.room_amenities" :key="index" class="py-1">
+                               <el-checkbox
+                                       :label="item.amenities"
+                               >
+                                   <span class="caption" >{{item.amenities}}</span>
+                               </el-checkbox>
+                           </v-col>
+                        </el-checkbox-group>
+
                         <v-divider></v-divider>
 
                         <v-subheader class="subtitle-2 font-weight-bold grey--text">Property facilities:</v-subheader>
-                            <v-list-item-group
-                                    v-model="check_more.facilities"
-                                    multiple
-                            >
-                                <v-layout class="showMore">
-                                    <v-flex xs12 sm4 md4 lg4
-                                            v-for="(item, index) in moreMenu.property_facilities" :key="index"
-                                    >
-                                        <v-list-item>
-                                            <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action class="ma-0 filter_checkbox">
-                                                    <v-checkbox
-                                                            v-model="active"
-                                                            color="primary"
-                                                            @click="toggle"
-                                                    ></v-checkbox>
-                                                </v-list-item-action>
-
-                                                <p class="caption">{{item.facilities}} ({{item.count}})</p>
-                                            </template>
-                                        </v-list-item>
-                                    </v-flex>
-                                </v-layout>
-                            </v-list-item-group>
+                        <el-checkbox-group v-model="check_more.facilities" class="d-flex showMore">
+                            <v-col cols="4" v-for="(item, index) in moreMenu.property_facilities" :key="index" class="py-1">
+                                <el-checkbox
+                                        :label="item.facilities"
+                                >
+                                    <span class="caption" >{{item.facilities}} ({{item.count}})</span>
+                                </el-checkbox>
+                            </v-col>
+                        </el-checkbox-group>
                         <v-divider></v-divider>
 
                         <v-subheader class="subtitle-2 font-weight-bold grey--text">Room offers:</v-subheader>
-                        <v-list-item-group
-                                    v-model="check_more.offers"
-                                    multiple
-                            >
-                                <v-layout class="showMore">
-                                    <v-flex xs12 sm4 md4 lg4
-                                            v-for="(item, index) in moreMenu.room_offers" :key="index"
-                                    >
-                                        <v-list-item>
-                                            <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action class="ma-0 filter_checkbox">
-                                                    <v-checkbox
-                                                            v-model="active"
-                                                            color="primary"
-                                                            @click="toggle"
-                                                    ></v-checkbox>
-                                                </v-list-item-action>
-
-                                                <p class="caption">{{item.offers}} ({{item.count}})</p>
-                                            </template>
-                                        </v-list-item>
-                                    </v-flex>
-                                </v-layout>
-                            </v-list-item-group>
+                        <el-checkbox-group v-model="check_more.offers" class="d-flex showMore">
+                            <v-col cols="4" v-for="(item, index) in moreMenu.room_offers" :key="index" class="py-1">
+                                <el-checkbox
+                                        :label="item.offers"
+                                >
+                                    <span class="caption" >{{item.offers}} ({{item.count}})</span>
+                                </el-checkbox>
+                            </v-col>
+                        </el-checkbox-group>
                         <v-divider></v-divider>
 
                         <v-subheader class="subtitle-2 font-weight-bold grey--text">Property type:</v-subheader>
-                        <v-list-item-group
-                                    v-model="check_more.type"
-                                    multiple
-                            >
-                                <v-layout class="showMore">
-                                    <v-flex xs12 sm4 md4 lg4
-                                            v-for="(item, index) in moreMenu.property_type" :key="index"
-                                    >
-                                        <v-list-item>
-                                            <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action class="ma-0 filter_checkbox">
-                                                    <v-checkbox
-                                                            v-model="active"
-                                                            color="primary"
-                                                            @click="toggle"
-                                                    ></v-checkbox>
-                                                </v-list-item-action>
-
-                                                <p class="caption">{{item.type}} ({{item.count}})</p>
-                                            </template>
-                                        </v-list-item>
-                                    </v-flex>
-                                </v-layout>
-                            </v-list-item-group>
+                        <el-checkbox-group v-model="check_more.type" class="d-flex showMore">
+                            <v-col cols="4" v-for="(item, index) in moreMenu.property_type" :key="index" class="py-1">
+                                <el-checkbox
+                                        :label="item.type"
+                                >
+                                    <span class="caption" >{{item.type}} ({{item.count}})</span>
+                                </el-checkbox>
+                            </v-col>
+                        </el-checkbox-group>
                         <v-divider></v-divider>
 
                         <v-subheader class="subtitle-2 font-weight-bold grey--text">Payment options:</v-subheader>
-                        <v-list-item-group
-                                    v-model="check_more.options"
-                                    multiple
-                            >
-                                <v-layout class="showMore">
-                                    <v-flex xs12 sm4 md4 lg4
-                                            v-for="(item, index) in moreMenu.payment_options" :key="index"
-                                    >
-                                        <v-list-item>
-                                            <template v-slot:default="{ active, toggle }">
-                                                <v-list-item-action class="ma-0 filter_checkbox">
-                                                    <v-checkbox
-                                                            v-model="active"
-                                                            color="primary"
-                                                            @click="toggle"
-                                                    ></v-checkbox>
-                                                </v-list-item-action>
-
-                                                <p class="caption">{{item.options}} ({{item.count}})</p>
-                                            </template>
-                                        </v-list-item>
-                                    </v-flex>
-                                </v-layout>
-                            </v-list-item-group>
+                        <el-checkbox-group v-model="check_more.options" class="d-flex showMore">
+                            <v-col cols="4" v-for="(item, index) in moreMenu.payment_options" :key="index" class="py-1">
+                                <el-checkbox
+                                        :label="item.options"
+                                >
+                                    <span class="caption" >{{item.options}} ({{item.count}})</span>
+                                </el-checkbox>
+                            </v-col>
+                        </el-checkbox-group>
                     </v-list>
                 </v-menu>
             </v-flex>
@@ -374,7 +283,7 @@
                     hide-details
                     rounded
                     solo
-                    class="d-inline-block"
+                    class="d-inline-block mx-3"
             ></v-text-field>
         </v-container>
     </v-app-bar>
@@ -482,6 +391,13 @@
       }
     },
     methods: {
+      filtersMenu(){
+        this.$store.commit('filtersMenu', true);
+      },
+      closeLayer() {
+        if(!this.popular && !this.price && !this.star && !this.area && !this.more)
+          this.$store.commit('filtersMenu', false);
+      },
       clearPopular () {
         this.check_popular = [];
       },
@@ -502,6 +418,23 @@
                   type: [],
                   options: [],
             }
+      },
+    },
+    watch: {
+      popular(show) {
+        if (!show) this.closeLayer();
+      },
+      price(show) {
+        if (!show) this.closeLayer();
+      },
+      star(show) {
+        if (!show) this.closeLayer();
+      },
+      area(show) {
+        if (!show) this.closeLayer();
+      },
+      more(show) {
+        if (!show) this.closeLayer();
       },
     },
     computed: {
@@ -579,35 +512,8 @@
 </script>
 
 <style>
-    /* .v-input--selection-controls__ripple {*/
-    /*    color: transparent !important;*/
-    /*}*/
-    /* .filter_checkbox .v-icon.v-icon {*/
-    /*     font-size: 18px !important;*/
-    /* }*/
-    /*.filters_select .v-input__slot{*/
-    /*    margin-bottom: 0 !important;*/
-    /*    width: 160px!important;*/
-    /*}*/
-    .v-toolbar__title {
-        font-size: .8rem !important;
-        font-weight: bold;
-        line-height: 3 !important;
-        margin-right: 0.5rem;
-    }
-    .filters .v-text-field--outlined .v-input__control, .filters .v-text-field--outlined .v-input__slot, .filters .v-text-field--outlined
-    fieldset, .filters .v-text-field--solo .v-input__control, .filters .v-text-field--solo .v-input__slot, .filters .v-text-field--solo fieldset,
-    .v-text-field__slot{
-        max-height: 40px !important;
-    }
-    .filters .v-text-field--rounded>.v-input__control>.v-input__slot {
-        padding: 0 7px!important;
-    }
-     .v-rating .v-icon {
-         padding: 0 !important;
-    }
-     .v-list--two-line .v-list-item, .v-list-item--two-line {
-        min-height: 32px !important;
+    .filters_app{
+        z-index: 2;
     }
     .filters .v-text-field.v-text-field--solo .v-input__control {
         min-height: 32px !important;

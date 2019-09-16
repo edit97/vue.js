@@ -9,6 +9,7 @@
                                 <v-item v-slot:default="{ active, toggle }">
                                     <v-img
                                             src="//pix5.agoda.net/hotelImages/566538/-1/20e5402f389a16d5f2a997c4e95e8679.jpg?s=450x450"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="250"
                                             class="text-right pa-2"
                                             @click="toggle"
@@ -27,7 +28,7 @@
                                 <v-item v-slot:default="{ active, toggle }">
                                     <v-row class="px-3" id="menu">
                                         <v-col
-                                                v-for="(item,i) in images[0]"
+                                                v-for="(item,i) in $store.state.images[0]"
                                                 v-if="i <= 10"
                                                 :key="i"
                                                 cols="2"
@@ -36,6 +37,7 @@
                                         >
                                             <v-img
                                                     :src="item"
+                                                    lazy-src="../../../public/images/no-image.png"
                                                     @mouseover="mouseImgOver(item)"
                                                     @mouseout="mouseImgOut(item)"
                                                     height="50"
@@ -51,6 +53,7 @@
                                         >
                                             <v-img
                                                     src="https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768"
+                                                    lazy-src="../../../public/images/no-image.png"
                                                     height="50"
                                                     class="text-right pa-2"
                                                     @mouseover="menu.src = 'https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768'"
@@ -71,6 +74,7 @@
                             </template>
                             <v-img
                                     :src="menu.src"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -86,7 +90,7 @@
                                     <v-flex lg7 md7 sm7 pa-5>
                                         <v-carousel v-model="model" hide-delimiters height="400">
                                             <v-carousel-item
-                                                    v-for="(item, index) in images[tag]"
+                                                    v-for="(item, index) in $store.state.images[tag]"
                                                     :key="index"
                                                     :src="item"
                                             ></v-carousel-item>
@@ -97,12 +101,12 @@
                                                 v-model="tag"
                                         >
                                             <v-chip
-                                                    v-for="(item, index) in tags"
+                                                    v-for="(item, index) in $store.state.tags"
                                                     :key="item"
                                                     outlined
                                                     label
                                             >
-                                                {{ item }} {{ (images[index].length) }}
+                                                {{ item }} {{ ($store.state.images[index].length) }}
                                             </v-chip>
                                         </v-chip-group>
                                         <v-slide-group
@@ -112,12 +116,13 @@
                                                 class="modal_slide"
                                         >
                                             <v-slide-item
-                                                    v-for="(item, index) in images[tag]"
+                                                    v-for="(item, index) in $store.state.images[tag]"
                                                     :key="index"
                                                     v-slot:default="{ active, toggle }"
                                             >
                                                 <v-img
                                                         :src="item"
+                                                        lazy-src="../../../public/images/no-image.png"
                                                         height="60"
                                                         width="85"
                                                         @click="toggle"
@@ -171,16 +176,17 @@
                 <v-flex sm-5>
                     <v-layout column pl-3 pt-1>
                         <v-flex class="text-left">
-                            <router-link :rating1="rating" class="link text--black" :to="{name:'Hotel'}">
-                                <h4><a class="link black_text text--black">Catalonia Square Hotel</a></h4>
+                            <router-link class="link text--black" :to="{name:'Hotel'}">
+                                <span class="link black_text text--black title">Catalonia Square Hotel</span>
                             </router-link>
+
                             <v-layout ma-0>
                                 <v-rating
                                         v-model="rating"
                                         background-color="#ffa726"
                                         color="#ffa726" dense small
                                 ></v-rating>
-                                <a href="#" class="caption pl-2 link"><p><v-icon color="#1976d2" small>mdi-map-marker</v-icon>Eixample, Barcelona - View on map</p></a>
+                                <a href="#" class="caption pl-2 link"><span><v-icon color="#1976d2" small>mdi-map-marker</v-icon>Eixample, Barcelona - View on map</span></a>
                             </v-layout>
                             <v-tooltip color="black" top>
                                 <template v-slot:activator="{ on }">
@@ -346,92 +352,6 @@
         model: 0,
         tag: 0,
         rating: 5,
-        tags: ['All', 'Rooms', 'Property views', 'Facilities', 'Dining', 'Shopping', 'Nearby attraction',],
-        images: [
-          [
-            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/965a214863f754bcf101325fe52a8a6a.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
-          ],
-          [
-            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
-          ],
-          [
-            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
-          ],
-          [
-            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
-          ],
-          [
-            'https://pix6.agoda.net/hotelImages/566538/-1/3a17e1732368191549388ce97b79c566.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/864761bce9168d4839b2dcbf715924e2.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/e73448c6f598636f44dd5fdce9c805be.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/a3ab3131c127472795b09d7b3774d222.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/b6312cf92171fe440d329e61d65fdaa8.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
-          ],
-          [
-            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/965a214863f754bcf101325fe52a8a6a.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
-          ],
-          [
-            'https://pix6.agoda.net/hotelImages/566/566538/566538_14040419460018975836.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/149455bc040cc2bd7dcf0c60e154e135.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/965a214863f754bcf101325fe52a8a6a.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/eac4ff70ac107c806d3024af4feed8dc.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/8dd98fb80a3aca23ad3b93e701950fd9.jpg?s=1024x768',
-            'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
-          ],
-        ],
         menu: {
           show: false,
           src: '',

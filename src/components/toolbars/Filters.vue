@@ -131,11 +131,8 @@
                                 @click:close="clearStar"
                                 v-on="on"
                         >
-                            <v-avatar v-show="check_star.length !== 0" :class="(check_star.length === 0) ? '' : 'white black--text'" left>
-                                {{starIcon}}
-                            </v-avatar>
-                            <v-icon v-show="check_star.length === 0" small left>mdi-star</v-icon>
-                            Stars
+                            <v-icon small left>mdi-star</v-icon>
+                            {{starText}} Stars
                             <v-icon v-show="check_star.length === 0" small right>mdi-menu-down</v-icon>
                         </v-chip>
                     </template>
@@ -472,9 +469,9 @@
         return (!this.moreShow) ? !!0 : !!1;
       },
 
-      starIcon() {
+      starText() {
         if (this.check_star.length === 0) {
-          return 'mdi-star';
+          return '';
         }
         if (this.check_star.length === 1) {
           for(let i of this.check_star){

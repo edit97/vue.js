@@ -25,7 +25,7 @@
                             </template>
                             <v-img
                                     src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -42,7 +42,7 @@
                             </template>
                             <v-img
                                     src="//pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=360x270"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -59,7 +59,7 @@
                             </template>
                             <v-img
                                     src="//pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=360x270"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -77,7 +77,7 @@
                             </template>
                             <v-img
                                     src="//pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=360x270"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -94,7 +94,7 @@
                             </template>
                             <v-img
                                     src="//pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=360x270"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -189,6 +189,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_1"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                 @mouseout="mouseImgOut()"
                                                 height="120"
@@ -202,6 +203,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_2"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                 @mouseout="mouseImgOut()"
                                                 height="60"
@@ -215,6 +217,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_3"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                 @mouseout="mouseImgOut()"
                                                 height="60"
@@ -226,7 +229,7 @@
                             </template>
                             <v-img
                                     :src="menu.src"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -486,6 +489,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_1"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                 @mouseout="mouseImgOut()"
                                                 height="120"
@@ -499,6 +503,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_2"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                 @mouseout="mouseImgOut()"
                                                 height="60"
@@ -512,6 +517,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_3"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                 @mouseout="mouseImgOut()"
                                                 height="60"
@@ -523,7 +529,7 @@
                             </template>
                             <v-img
                                     :src="menu.src"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -709,6 +715,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_1"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                 @mouseout="mouseImgOut()"
                                                 height="120"
@@ -720,7 +727,7 @@
                             </template>
                             <v-img
                                     :src="menu.src"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -867,6 +874,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_1"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                 @mouseout="mouseImgOut()"
                                                 height="120"
@@ -880,6 +888,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_2"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                 @mouseout="mouseImgOut()"
                                                 height="60"
@@ -893,6 +902,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_3"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                 @mouseout="mouseImgOut()"
                                                 height="60"
@@ -904,7 +914,7 @@
                             </template>
                             <v-img
                                     :src="menu.src"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -1102,6 +1112,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_1"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                 @mouseout="mouseImgOut()"
                                                 height="120"
@@ -1115,6 +1126,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_2"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                 @mouseout="mouseImgOut()"
                                                 height="60"
@@ -1128,6 +1140,7 @@
                                     >
                                         <v-img
                                                 :src="filter_room_img.img_3"
+                                                lazy-src="../../../public/images/no-image.png"
                                                 @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                 @mouseout="mouseImgOut()"
                                                 height="60"
@@ -1139,7 +1152,7 @@
                             </template>
                             <v-img
                                     :src="menu.src"
-                                    lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
@@ -1290,6 +1303,7 @@
                                             >
                                                 <v-img
                                                         :src="filter_room_img.img_1"
+                                                        lazy-src="../../../public/images/no-image.png"
                                                         @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                         @mouseout="mouseImgOut()"
                                                         height="120"
@@ -1303,6 +1317,7 @@
                                             >
                                                 <v-img
                                                         :src="filter_room_img.img_2"
+                                                        lazy-src="../../../public/images/no-image.png"
                                                         @mouseover="mouseImgOver(filter_room_img.img_2)"
                                                         @mouseout="mouseImgOut()"
                                                         height="60"
@@ -1314,8 +1329,10 @@
                                                     cols="6" md="6"
                                                     class="pa-0 zoom"
                                             >
-                                                <v-img
+
+
                                                         :src="filter_room_img.img_3"
+                                                        lazy-src="../../../public/images/no-image.png"
                                                         @mouseover="mouseImgOver(filter_room_img.img_3)"
                                                         @mouseout="mouseImgOut()"
                                                         height="60"
@@ -1327,7 +1344,7 @@
                                     </template>
                                     <v-img
                                             :src="menu.src"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
@@ -1576,6 +1593,7 @@
                                             >
                                                 <v-img
                                                         :src="filter_room_img.img_1"
+                                                        lazy-src="../../../public/images/no-image.png"
                                                         @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                         @mouseout="mouseImgOut()"
                                                         height="120"
@@ -1587,7 +1605,7 @@
                                     </template>
                                     <v-img
                                             :src="menu.src"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
@@ -1767,6 +1785,7 @@
                                             >
                                                 <v-img
                                                         :src="filter_room_img.img_1"
+                                                        lazy-src="../../../public/images/no-image.png"
                                                         @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                         @mouseout="mouseImgOut()"
                                                         height="120"
@@ -1778,7 +1797,7 @@
                                     </template>
                                     <v-img
                                             :src="menu.src"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
@@ -1958,6 +1977,7 @@
                                             >
                                                 <v-img
                                                         :src="filter_room_img.img_1"
+                                                        lazy-src="../../../public/images/no-image.png"
                                                         @mouseover="mouseImgOver(filter_room_img.img_1)"
                                                         @mouseout="mouseImgOut()"
                                                         height="120"
@@ -1969,7 +1989,7 @@
                                     </template>
                                     <v-img
                                             :src="menu.src"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
@@ -2094,6 +2114,7 @@
                             class="white--text fill-height"
                             height="300px"
                             src="//q-xx.bstatic.com/xdata/images/hotel/840x460/60112138.jpg?k=42b08d9b45efa1743135bd003d7b225110a174b2bdf9c0263ba8e7e3092bbfa1"
+                            lazy-src="../../../public/images/no-image.png"
                     >
                         <v-card-title class="align-end fill-height">
                             <h2 class="pa-5 heading_overlay_text">Vale Apartments Barcelona</h2>
@@ -2150,6 +2171,7 @@
                                 >
                                     <v-img
                                             :src="item"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="80"
                                             width="110"
                                             @click="toggle"

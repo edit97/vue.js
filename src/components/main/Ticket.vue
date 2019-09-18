@@ -10,8 +10,8 @@
                     Recommended for you
                 </v-chip>
                 <v-card flat :elevation="hover ? 2 : 0" class="ticket recommended">
-                    <v-layout>
-                        <v-flex sm4>
+                    <v-row>
+                        <v-col cols="4" class="py-0">
                             <v-item-group v-model="selected">
                                 <v-row>
                                     <v-col cols="12" class="py-0">
@@ -23,6 +23,15 @@
                                                     class="text-right pa-2"
                                                     @click="toggle"
                                             >
+                                                <template v-slot:placeholder>
+                                                    <v-row
+                                                            class="fill-height ma-0"
+                                                            align="center"
+                                                            justify="center"
+                                                    >
+                                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                    </v-row>
+                                                </template>
                                                 <v-btn icon dark>
                                                     <v-icon>
                                                         {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
@@ -52,7 +61,17 @@
                                                             height="50"
                                                             class="text-right pa-2"
                                                             v-on="on"
-                                                    ></v-img>
+                                                    >
+                                                        <template v-slot:placeholder>
+                                                            <v-row
+                                                                    class="fill-height ma-0"
+                                                                    align="center"
+                                                                    justify="center"
+                                                            >
+                                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                            </v-row>
+                                                        </template>
+                                                    </v-img>
                                                 </v-col>
                                                 <v-col
                                                         cols="2"
@@ -68,6 +87,15 @@
                                                             @mouseover="menu.src = 'https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768'"
                                                             v-on="on"
                                                     >
+                                                        <template v-slot:placeholder>
+                                                            <v-row
+                                                                    class="fill-height ma-0"
+                                                                    align="center"
+                                                                    justify="center"
+                                                            >
+                                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                            </v-row>
+                                                        </template>
                                                         <v-overlay
                                                                 absolute
                                                                 color="black"
@@ -87,128 +115,134 @@
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-item-group>
-                        </v-flex>
-                        <v-flex sm-5>
-                            <v-layout column pl-3 pt-1>
-                                <v-flex class="text-left">
-                                    <router-link class="link text--black" :to="{name:'Hotel',params:{id: 1}}">
-                                        <h4><a class="link black_text text--black">Catalonia Square Hotel</a></h4>
-                                    </router-link>
-                                    <v-layout ma-0>
-                                        <v-rating
-                                                v-model="rating"
-                                                background-color="#ffa726"
-                                                color="#ffa726" dense small
-                                        ></v-rating>
-                                        <a href="#" class="caption pl-2 link"><span><v-icon color="#1976d2" small>mdi-map-marker</v-icon>Eixample, Barcelona - View on map</span></a>
-                                    </v-layout>
-                                    <v-tooltip color="black" top>
-                                        <template v-slot:activator="{ on }">
-                                            <v-chip-group
-                                                    column
-                                                    active-class="primary--text"
-                                            >
-                                                <v-chip
-                                                        label
-                                                        outlined
-                                                        color="black"
-                                                        small
-                                                        class="my-0"
-                                                        v-on="on"
-                                                >Exceptional location</v-chip>
-                                                <v-chip
-                                                        label
-                                                        outlined
-                                                        color="black"
-                                                        small
-                                                        class="my-0"
-                                                        v-on="on"
-                                                >City center</v-chip>
-                                            </v-chip-group>
-                                        </template>
-                                        <v-layout>
-                                            <span class="mr-2"><v-icon small dark>mdi-map-marker</v-icon>Exceptional location</span>
-                                            <span><v-icon small dark>mdi-subway-variant</v-icon>City center</span>
-                                        </v-layout>
-                                    </v-tooltip>
-                                    <v-tooltip color="black" top>
-                                        <template v-slot:activator="{ on }">
-                                            <v-chip-group column>
-                                                <v-chip
-                                                        label
-                                                        outlined
-                                                        color="success"
-                                                        small
-                                                        class="my-0"
-                                                        v-on="on"
-                                                >Breakfast</v-chip>
-                                                <v-chip
-                                                        label
-                                                        outlined
-                                                        color="success"
-                                                        small
-                                                        class="my-0"
-                                                        v-on="on"
-                                                >Free cancellation</v-chip>
-                                                <v-chip
-                                                        label
-                                                        outlined
-                                                        color="success"
-                                                        small
-                                                        class="my-0"
-                                                        v-on="on"
-                                                >Pay at the hotel</v-chip>
-                                            </v-chip-group>
-                                        </template>
-                                        <v-layout column class="caption">
-                                            <p>Your options here include:</p>
-                                            <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-coffee-outline</v-icon>Breakfast</span>
-                                            <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-air-conditioner</v-icon>Free cancellation</span>
-                                            <span class="mr-4"><v-icon color="#32a923" small dark>mdi-cash-100</v-icon>Pay at the hotel</span>
-                                        </v-layout>
-                                    </v-tooltip>
-                                    <v-chip
-                                            color="#dde9fd"
-                                            text-color="#396fc6"
-                                            class="my-0 font-weight-bold"
-                                            small label
-                                    >
-                                        <v-avatar left>
-                                            <v-icon small>mdi-medal</v-icon>
-                                        </v-avatar>
-                                        Best price for 5-star properties
-                                    </v-chip>
-                                    <p class="reserve mb-0">
-                                        <v-chip
-                                                color="red  accent-4"
-                                                text-color="white"
-                                                class="my-1 font-weight-bold"
-                                                small label
-                                        >
-                                            Popular!
-                                        </v-chip>
-                                        Last booked 9 hours ago
-                                    </p>
-                                    <p class="coupon">
-                                        <v-chip
-                                                color="#d8eed5"
-                                                text-color="success"
-                                                class="my-1 font-weight-bold"
-                                                small label outlined
-                                                style="border: 2px dotted #4caf50; background-color: #d8eed5 !important;"
-                                        >
-                                            WEEKENDSALE
-                                        </v-chip>
-                                        Coupon Code WEEKENDSALE applied - $ 21 off!
-                                    </p>
-                                </v-flex>
+                        </v-col>
+                        <v-col class="pa-0">
+                            <router-link class="link text--black" :to="{name:'Hotel',params:{id: 1}}">
+                                <h4><a class="link black_text text--black">Catalonia Square Hotel</a></h4>
+                            </router-link>
+                            <v-layout ma-0>
+                                <v-rating
+                                        v-model="rating"
+                                        background-color="#ffa726"
+                                        color="#ffa726" dense small
+                                ></v-rating>
+                                <a href="#" class="caption pl-2 link"><span><v-icon color="#1976d2" small>mdi-map-marker</v-icon>Eixample, Barcelona - View on map</span></a>
                             </v-layout>
-                        </v-flex>
+                            <v-tooltip color="black" top>
+                                <template v-slot:activator="{ on }">
+                                    <v-chip-group
+                                            column
+                                            active-class="primary--text"
+                                    >
+                                        <v-chip
+                                                label
+                                                outlined
+                                                color="black"
+                                                small
+                                                class="my-0"
+                                                v-on="on"
+                                        >Exceptional location</v-chip>
+                                        <v-chip
+                                                label
+                                                outlined
+                                                color="black"
+                                                small
+                                                class="my-0"
+                                                v-on="on"
+                                        >City center</v-chip>
+                                    </v-chip-group>
+                                </template>
+                                <v-layout>
+                                    <span class="mr-2"><v-icon small dark>mdi-map-marker</v-icon>Exceptional location</span>
+                                    <span><v-icon small dark>mdi-subway-variant</v-icon>City center</span>
+                                </v-layout>
+                            </v-tooltip>
+                            <v-tooltip color="black" top>
+                                <template v-slot:activator="{ on }">
+                                    <v-chip-group column>
+                                        <v-chip
+                                                label
+                                                outlined
+                                                color="success"
+                                                small
+                                                class="my-0"
+                                                v-on="on"
+                                        >Breakfast</v-chip>
+                                        <v-chip
+                                                label
+                                                outlined
+                                                color="success"
+                                                small
+                                                class="my-0"
+                                                v-on="on"
+                                        >Free cancellation</v-chip>
+                                        <v-chip
+                                                label
+                                                outlined
+                                                color="success"
+                                                small
+                                                class="my-0"
+                                                v-on="on"
+                                        >Pay at the hotel</v-chip>
+                                    </v-chip-group>
+                                </template>
+                                <v-layout column class="caption">
+                                    <p>Your options here include:</p>
+                                    <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-coffee-outline</v-icon>Breakfast</span>
+                                    <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-air-conditioner</v-icon>Free cancellation</span>
+                                    <span class="mr-4"><v-icon color="#32a923" small dark>mdi-cash-100</v-icon>Pay at the hotel</span>
+                                </v-layout>
+                            </v-tooltip>
+                            <v-chip
+                                    color="#dde9fd"
+                                    text-color="#396fc6"
+                                    class="my-0 font-weight-bold"
+                                    small label
+                            >
+                                <v-avatar left>
+                                    <v-icon small>mdi-medal</v-icon>
+                                </v-avatar>
+                                Best price for 5-star properties
+                            </v-chip>
+                            <p class="reserve mb-0">
+                                <v-chip
+                                        color="red  accent-4"
+                                        text-color="white"
+                                        class="my-1 font-weight-bold"
+                                        small label
+                                >
+                                    Popular!
+                                </v-chip>
+                                Last booked 9 hours ago
+                            </p>
+                            <p class="coupon">
+                                <v-chip
+                                        color="#d8eed5"
+                                        text-color="success"
+                                        class="my-1 font-weight-bold"
+                                        small label outlined
+                                        style="border: 2px dotted #4caf50; background-color: #d8eed5 !important;"
+                                >
+                                    WEEKENDSALE
+                                </v-chip>
+                                Coupon Code WEEKENDSALE applied - $ 21 off!
+                            </p>
+                        </v-col>
                         <v-divider class="mx-3 my-0" inset vertical></v-divider>
-                        <v-flex sm3>
+                        <v-col cols="3" class="py-0">
                             <v-layout column justify-end fill-height text-right>
                                 <v-spacer></v-spacer>
                                 <v-col>
@@ -250,8 +284,8 @@
                                     </v-chip>
                                 </v-col>
                             </v-layout>
-                        </v-flex>
-                    </v-layout>
+                        </v-col>
+                    </v-row>
                 </v-card>
             </div>
         </v-hover>
@@ -274,8 +308,8 @@
                     </v-list-item-content>
                 </v-list-item>
                 <v-divider></v-divider>
-                <v-layout>
-                    <v-flex sm4>
+                <v-row>
+                    <v-col cols="4" class="py-0">
                         <v-item-group v-model="selected">
                             <v-row>
                                 <v-col cols="12" class="py-0">
@@ -287,6 +321,15 @@
                                                 class="text-right pa-2"
                                                 @click="toggle"
                                         >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
                                             <v-btn icon dark>
                                                 <v-icon>
                                                     {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
@@ -316,7 +359,17 @@
                                                         height="50"
                                                         class="text-right pa-2"
                                                         v-on="on"
-                                                ></v-img>
+                                                >
+                                                    <template v-slot:placeholder>
+                                                        <v-row
+                                                                class="fill-height ma-0"
+                                                                align="center"
+                                                                justify="center"
+                                                        >
+                                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                        </v-row>
+                                                    </template>
+                                                </v-img>
                                             </v-col>
                                             <v-col
                                                     cols="2"
@@ -332,6 +385,16 @@
                                                         @mouseover="menu.src = 'https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768'"
                                                         v-on="on"
                                                 >
+
+                                                    <template v-slot:placeholder>
+                                                        <v-row
+                                                                class="fill-height ma-0"
+                                                                align="center"
+                                                                justify="center"
+                                                        >
+                                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                        </v-row>
+                                                    </template>
                                                     <v-overlay
                                                             absolute
                                                             color="black"
@@ -351,128 +414,134 @@
                                         height="350"
                                         width="350"
                                         class="text-right pa-2"
-                                ></v-img>
+                                >
+                                    <template v-slot:placeholder>
+                                        <v-row
+                                                class="fill-height ma-0"
+                                                align="center"
+                                                justify="center"
+                                        >
+                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                        </v-row>
+                                    </template>
+                                </v-img>
                             </v-menu>
                         </v-item-group>
-                    </v-flex>
-                    <v-flex sm-5>
-                        <v-layout column pl-3 pt-1>
-                            <v-flex class="text-left">
-                                <router-link class="link text--black" :to="{name:'Hotel',params:{id: 1}}">
-                                    <h4><a class="link black_text text--black pb-0">Catalonia Square Hotel</a></h4>
-                                </router-link>
-                                <v-layout ma-0>
-                                    <v-rating
-                                            v-model="rating"
-                                            background-color="#ffa726"
-                                            color="#ffa726" dense small
-                                    ></v-rating>
-                                    <a href="#" class="caption pl-2 link"><span><v-icon color="#1976d2" small>mdi-map-marker</v-icon>Eixample, Barcelona - View on map</span></a>
-                                </v-layout>
-                                <v-tooltip color="black" top>
-                                    <template v-slot:activator="{ on }">
-                                        <v-chip-group
-                                                column
-                                                active-class="primary--text"
-                                        >
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="black"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >Exceptional location</v-chip>
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="black"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >City center</v-chip>
-                                        </v-chip-group>
-                                    </template>
-                                    <v-layout>
-                                        <span class="mr-2"><v-icon small dark>mdi-map-marker</v-icon>Exceptional location</span>
-                                        <span><v-icon small dark>mdi-subway-variant</v-icon>City center</span>
-                                    </v-layout>
-                                </v-tooltip>
-                                <v-tooltip color="black" top>
-                                    <template v-slot:activator="{ on }">
-                                        <v-chip-group column>
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="success"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >Breakfast</v-chip>
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="success"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >Free cancellation</v-chip>
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="success"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >Pay at the hotel</v-chip>
-                                        </v-chip-group>
-                                    </template>
-                                    <v-layout column class="caption">
-                                        <p>Your options here include:</p>
-                                        <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-coffee-outline</v-icon>Breakfast</span>
-                                        <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-air-conditioner</v-icon>Free cancellation</span>
-                                        <span class="mr-4"><v-icon color="#32a923" small dark>mdi-cash-100</v-icon>Pay at the hotel</span>
-                                    </v-layout>
-                                </v-tooltip>
-                                <v-chip
-                                        color="#dde9fd"
-                                        text-color="#396fc6"
-                                        class="my-0 font-weight-bold"
-                                        small label
-                                >
-                                    <v-avatar left>
-                                        <v-icon small>mdi-medal</v-icon>
-                                    </v-avatar>
-                                    Best price for 5-star properties
-                                </v-chip>
-                                <p class="reserve mb-0">
-                                    <v-chip
-                                            color="red  accent-4"
-                                            text-color="white"
-                                            class="my-1 font-weight-bold"
-                                            small label
-                                    >
-                                        Popular!
-                                    </v-chip>
-                                    Last booked 9 hours ago
-                                </p>
-                                <p class="coupon">
-                                    <v-chip
-                                            color="#d8eed5"
-                                            text-color="success"
-                                            class="my-1 font-weight-bold"
-                                            small label outlined
-                                            style="border: 2px dotted #4caf50; background-color: #d8eed5 !important;"
-                                    >
-                                        WEEKENDSALE
-                                    </v-chip>
-                                    Coupon Code WEEKENDSALE applied - $ 21 off!
-                                </p>
-                            </v-flex>
+                    </v-col>
+                    <v-col class="pa-0">
+                        <router-link class="link text--black" :to="{name:'Hotel',params:{id: 1}}">
+                            <h4><a class="link black_text text--black pb-0">Catalonia Square Hotel</a></h4>
+                        </router-link>
+                        <v-layout ma-0>
+                            <v-rating
+                                    v-model="rating"
+                                    background-color="#ffa726"
+                                    color="#ffa726" dense small
+                            ></v-rating>
+                            <a href="#" class="caption pl-2 link"><span><v-icon color="#1976d2" small>mdi-map-marker</v-icon>Eixample, Barcelona - View on map</span></a>
                         </v-layout>
-                    </v-flex>
+                        <v-tooltip color="black" top>
+                            <template v-slot:activator="{ on }">
+                                <v-chip-group
+                                        column
+                                        active-class="primary--text"
+                                >
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="black"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >Exceptional location</v-chip>
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="black"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >City center</v-chip>
+                                </v-chip-group>
+                            </template>
+                            <v-layout>
+                                <span class="mr-2"><v-icon small dark>mdi-map-marker</v-icon>Exceptional location</span>
+                                <span><v-icon small dark>mdi-subway-variant</v-icon>City center</span>
+                            </v-layout>
+                        </v-tooltip>
+                        <v-tooltip color="black" top>
+                            <template v-slot:activator="{ on }">
+                                <v-chip-group column>
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="success"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >Breakfast</v-chip>
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="success"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >Free cancellation</v-chip>
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="success"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >Pay at the hotel</v-chip>
+                                </v-chip-group>
+                            </template>
+                            <v-layout column class="caption">
+                                <p>Your options here include:</p>
+                                <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-coffee-outline</v-icon>Breakfast</span>
+                                <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-air-conditioner</v-icon>Free cancellation</span>
+                                <span class="mr-4"><v-icon color="#32a923" small dark>mdi-cash-100</v-icon>Pay at the hotel</span>
+                            </v-layout>
+                        </v-tooltip>
+                        <v-chip
+                                color="#dde9fd"
+                                text-color="#396fc6"
+                                class="my-0 font-weight-bold"
+                                small label
+                        >
+                            <v-avatar left>
+                                <v-icon small>mdi-medal</v-icon>
+                            </v-avatar>
+                            Best price for 5-star properties
+                        </v-chip>
+                        <p class="reserve mb-0">
+                            <v-chip
+                                    color="red  accent-4"
+                                    text-color="white"
+                                    class="my-1 font-weight-bold"
+                                    small label
+                            >
+                                Popular!
+                            </v-chip>
+                            Last booked 9 hours ago
+                        </p>
+                        <p class="coupon">
+                            <v-chip
+                                    color="#d8eed5"
+                                    text-color="success"
+                                    class="my-1 font-weight-bold"
+                                    small label outlined
+                                    style="border: 2px dotted #4caf50; background-color: #d8eed5 !important;"
+                            >
+                                WEEKENDSALE
+                            </v-chip>
+                            Coupon Code WEEKENDSALE applied - $ 21 off!
+                        </p>
+                    </v-col>
                     <v-divider class="mx-3 my-0" inset vertical></v-divider>
-                    <v-flex sm3>
+                    <v-col cols="3" class="py-0">
                         <v-layout column justify-end fill-height text-right>
                             <v-spacer></v-spacer>
                             <v-col>
@@ -514,8 +583,8 @@
                                 </v-chip>
                             </v-col>
                         </v-layout>
-                    </v-flex>
-                </v-layout>
+                    </v-col>
+                </v-row>
             </v-card>
         </v-hover>
         <v-hover v-slot:default="{ hover }">
@@ -533,8 +602,8 @@
                         <div class="timer ml-2 px-2">{{time}}</div>
                     </v-list-item-action>
                 </v-list-item>
-                <v-layout>
-                    <v-flex sm4>
+                <v-row>
+                    <v-col cols="4" class="py-0">
                         <v-item-group v-model="selected">
                             <v-row>
                                 <v-col cols="12" class="py-0">
@@ -546,6 +615,15 @@
                                                 class="text-right pa-2"
                                                 @click="toggle"
                                         >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
                                             <v-btn icon dark>
                                                 <v-icon>
                                                     {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
@@ -575,7 +653,17 @@
                                                         height="50"
                                                         class="text-right pa-2"
                                                         v-on="on"
-                                                ></v-img>
+                                                >
+                                                    <template v-slot:placeholder>
+                                                        <v-row
+                                                                class="fill-height ma-0"
+                                                                align="center"
+                                                                justify="center"
+                                                        >
+                                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                        </v-row>
+                                                    </template>
+                                                </v-img>
                                             </v-col>
                                             <v-col
                                                     cols="2"
@@ -591,6 +679,15 @@
                                                         @mouseover="menu.src = 'https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768'"
                                                         v-on="on"
                                                 >
+                                                    <template v-slot:placeholder>
+                                                        <v-row
+                                                                class="fill-height ma-0"
+                                                                align="center"
+                                                                justify="center"
+                                                        >
+                                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                        </v-row>
+                                                    </template>
                                                     <v-overlay
                                                             absolute
                                                             color="black"
@@ -610,128 +707,134 @@
                                         height="350"
                                         width="350"
                                         class="text-right pa-2"
-                                ></v-img>
+                                >
+                                    <template v-slot:placeholder>
+                                        <v-row
+                                                class="fill-height ma-0"
+                                                align="center"
+                                                justify="center"
+                                        >
+                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                        </v-row>
+                                    </template>
+                                </v-img>
                             </v-menu>
                         </v-item-group>
-                    </v-flex>
-                    <v-flex sm-5>
-                        <v-layout column pl-3 pt-1>
-                            <v-flex class="text-left">
-                                <router-link class="link text--black" :to="{name:'Hotel',params:{id: 1}}">
-                                    <h4><a class="link black_text text--black">Catalonia Square Hotel</a></h4>
-                                </router-link>
-                                <v-layout ma-0>
-                                    <v-rating
-                                            v-model="rating"
-                                            background-color="#ffa726"
-                                            color="#ffa726" dense small
-                                    ></v-rating>
-                                    <a href="#" class="caption pl-2 link"><span><v-icon color="#1976d2" small>mdi-map-marker</v-icon>Eixample, Barcelona - View on map</span></a>
-                                </v-layout>
-                                <v-tooltip color="black" top>
-                                    <template v-slot:activator="{ on }">
-                                        <v-chip-group
-                                                column
-                                                active-class="primary--text"
-                                        >
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="black"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >Exceptional location</v-chip>
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="black"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >City center</v-chip>
-                                        </v-chip-group>
-                                    </template>
-                                    <v-layout>
-                                        <span class="mr-2"><v-icon small dark>mdi-map-marker</v-icon>Exceptional location</span>
-                                        <span><v-icon small dark>mdi-subway-variant</v-icon>City center</span>
-                                    </v-layout>
-                                </v-tooltip>
-                                <v-tooltip color="black" top>
-                                    <template v-slot:activator="{ on }">
-                                        <v-chip-group column>
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="success"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >Breakfast</v-chip>
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="success"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >Free cancellation</v-chip>
-                                            <v-chip
-                                                    label
-                                                    outlined
-                                                    color="success"
-                                                    small
-                                                    class="my-0"
-                                                    v-on="on"
-                                            >Pay at the hotel</v-chip>
-                                        </v-chip-group>
-                                    </template>
-                                    <v-layout column class="caption">
-                                        <p>Your options here include:</p>
-                                        <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-coffee-outline</v-icon>Breakfast</span>
-                                        <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-air-conditioner</v-icon>Free cancellation</span>
-                                        <span class="mr-4"><v-icon color="#32a923" small dark>mdi-cash-100</v-icon>Pay at the hotel</span>
-                                    </v-layout>
-                                </v-tooltip>
-                                <v-chip
-                                        color="#dde9fd"
-                                        text-color="#396fc6"
-                                        class="my-0 font-weight-bold"
-                                        small label
-                                >
-                                    <v-avatar left>
-                                        <v-icon small>mdi-medal</v-icon>
-                                    </v-avatar>
-                                    Best price for 5-star properties
-                                </v-chip>
-                                <p class="reserve mb-0">
-                                    <v-chip
-                                            color="red  accent-4"
-                                            text-color="white"
-                                            class="my-1 font-weight-bold"
-                                            small label
-                                    >
-                                        Popular!
-                                    </v-chip>
-                                    Last booked 9 hours ago
-                                </p>
-                                <p class="coupon">
-                                    <v-chip
-                                            color="#d8eed5"
-                                            text-color="success"
-                                            class="my-1 font-weight-bold"
-                                            small label outlined
-                                            style="border: 2px dotted #4caf50; background-color: #d8eed5 !important;"
-                                    >
-                                        WEEKENDSALE
-                                    </v-chip>
-                                    Coupon Code WEEKENDSALE applied - $ 21 off!
-                                </p>
-                            </v-flex>
+                    </v-col>
+                    <v-col class="py-0">
+                        <router-link class="link text--black" :to="{name:'Hotel',params:{id: 1}}">
+                            <h4><a class="link black_text text--black">Catalonia Square Hotel</a></h4>
+                        </router-link>
+                        <v-layout ma-0>
+                            <v-rating
+                                    v-model="rating"
+                                    background-color="#ffa726"
+                                    color="#ffa726" dense small
+                            ></v-rating>
+                            <a href="#" class="caption pl-2 link"><span><v-icon color="#1976d2" small>mdi-map-marker</v-icon>Eixample, Barcelona - View on map</span></a>
                         </v-layout>
-                    </v-flex>
+                        <v-tooltip color="black" top>
+                            <template v-slot:activator="{ on }">
+                                <v-chip-group
+                                        column
+                                        active-class="primary--text"
+                                >
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="black"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >Exceptional location</v-chip>
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="black"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >City center</v-chip>
+                                </v-chip-group>
+                            </template>
+                            <v-layout>
+                                <span class="mr-2"><v-icon small dark>mdi-map-marker</v-icon>Exceptional location</span>
+                                <span><v-icon small dark>mdi-subway-variant</v-icon>City center</span>
+                            </v-layout>
+                        </v-tooltip>
+                        <v-tooltip color="black" top>
+                            <template v-slot:activator="{ on }">
+                                <v-chip-group column>
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="success"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >Breakfast</v-chip>
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="success"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >Free cancellation</v-chip>
+                                    <v-chip
+                                            label
+                                            outlined
+                                            color="success"
+                                            small
+                                            class="my-0"
+                                            v-on="on"
+                                    >Pay at the hotel</v-chip>
+                                </v-chip-group>
+                            </template>
+                            <v-layout column class="caption">
+                                <p>Your options here include:</p>
+                                <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-coffee-outline</v-icon>Breakfast</span>
+                                <span class="mr-4"><v-icon color="#32a923" samll dark>mdi-air-conditioner</v-icon>Free cancellation</span>
+                                <span class="mr-4"><v-icon color="#32a923" small dark>mdi-cash-100</v-icon>Pay at the hotel</span>
+                            </v-layout>
+                        </v-tooltip>
+                        <v-chip
+                                color="#dde9fd"
+                                text-color="#396fc6"
+                                class="my-0 font-weight-bold"
+                                small label
+                        >
+                            <v-avatar left>
+                                <v-icon small>mdi-medal</v-icon>
+                            </v-avatar>
+                            Best price for 5-star properties
+                        </v-chip>
+                        <p class="reserve mb-0">
+                            <v-chip
+                                    color="red  accent-4"
+                                    text-color="white"
+                                    class="my-1 font-weight-bold"
+                                    small label
+                            >
+                                Popular!
+                            </v-chip>
+                            Last booked 9 hours ago
+                        </p>
+                        <p class="coupon">
+                            <v-chip
+                                    color="#d8eed5"
+                                    text-color="success"
+                                    class="my-1 font-weight-bold"
+                                    small label outlined
+                                    style="border: 2px dotted #4caf50; background-color: #d8eed5 !important;"
+                            >
+                                WEEKENDSALE
+                            </v-chip>
+                            Coupon Code WEEKENDSALE applied - $ 21 off!
+                        </p>
+                    </v-col>
                     <v-divider class="mx-3 my-0" inset vertical></v-divider>
-                    <v-flex sm3>
+                    <v-col cols="3" class="py-0">
                         <v-layout column justify-end fill-height text-right>
                             <v-spacer></v-spacer>
                             <v-col>
@@ -773,8 +876,8 @@
                                 </v-chip>
                             </v-col>
                         </v-layout>
-                    </v-flex>
-                </v-layout>
+                    </v-col>
+                </v-row>
             </v-card>
         </v-hover>
         <v-dialog
@@ -824,7 +927,17 @@
                                         width="85"
                                         @click="toggle"
                                         :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                ></v-img>
+                                >
+                                    <template v-slot:placeholder>
+                                        <v-row
+                                                class="fill-height ma-0"
+                                                align="center"
+                                                justify="center"
+                                        >
+                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                        </v-row>
+                                    </template>
+                                </v-img>
                             </v-slide-item>
                         </v-slide-group>
                     </v-flex>

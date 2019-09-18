@@ -72,7 +72,18 @@
                                                         height="120"
                                                         width="100"
                                                         src="//pix6.agoda.net/hotelImages/547243/0/80b6a83ff734e47aee6aa60dedddab1d.jpg?s=312x236&p=true"
-                                                ></v-img>
+                                                        lazy-src="../../public/images/no-image.png"
+                                                >
+                                                    <template v-slot:placeholder>
+                                                        <v-row
+                                                                class="fill-height ma-0"
+                                                                align="center"
+                                                                justify="center"
+                                                        >
+                                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                        </v-row>
+                                                    </template>
+                                                </v-img>
                                             </v-flex>
                                             <v-flex>
                                                 <v-layout class="column justify-space-between fill-height pl-0 pa-2">
@@ -141,10 +152,19 @@
                                                 sm4 pa-1
                                         >
                                             <v-hover class="m-2" v-slot:default="{ hover }">
-                                                <v-card class="mx-auto" >
                                                     <v-img
                                                             :src="item.img"
+                                                            lazy-src="../../public/images/no-image.png"
                                                     >
+                                                        <template v-slot:placeholder>
+                                                            <v-row
+                                                                    class="fill-height ma-0"
+                                                                    align="center"
+                                                                    justify="center"
+                                                            >
+                                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                            </v-row>
+                                                        </template>
                                                         <v-fade-transition>
                                                             <div
                                                                     class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
@@ -157,7 +177,6 @@
                                                             <strong>{{item.text}}</strong>
                                                         </v-card-actions>
                                                     </v-img>
-                                                </v-card>
                                             </v-hover>
                                         </v-flex>
                                     </v-layout>
@@ -173,8 +192,8 @@
 
 <script>
   import Filters from './toolbars/Filters';
-  import Property_card from './tab/Property_Card';
-  import Ticket from './tab/Ticket';
+  import Property_card from './main/Property_Card';
+  import Ticket from './main/Ticket';
   export default {
     name: 'mainPage',
     data(){

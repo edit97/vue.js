@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card class="hotel">
+        <v-card flat>
             <v-app-bar class="py-0" height="49" :fixed="fixed">
                 <v-container pa-0>
                     <v-tabs
@@ -14,7 +14,7 @@
                             {{ item }}
                         </v-tab>
                         <v-spacer></v-spacer>
-                        <v-btn text @click="$vuetify.goTo(0)">Back to top</v-btn>
+                        <v-btn v-show="backToTop" text @click="$vuetify.goTo(0)" class="mt-2">Back to top</v-btn>
                     </v-tabs>
                 </v-container>
             </v-app-bar>
@@ -116,24 +116,32 @@
                         sm1 px-1
                 >
                     <v-hover class="m-2" v-slot:default="{ hover }">
-                        <v-card class="mx-auto">
-                            <v-img
-                                    :src="item.img"
-                                    style="height: 150px;"
-                            >
-                                <v-fade-transition>
-                                    <div
-                                            class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
-                                            v-if="hover"
-                                            style="height: 150px;"
-                                    ></div>
+                        <v-img
+                                :src="item.img"
+                                lazy-src="../../../public/images/no-image.png"
+                                style="height: 150px;"
+                        >
+                            <template v-slot:placeholder>
+                                <v-row
+                                        class="fill-height ma-0"
+                                        align="center"
+                                        justify="center"
+                                >
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                            </template>
+                            <v-fade-transition>
+                                <div
+                                        class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
+                                        v-if="hover"
+                                        style="height: 150px;"
+                                ></div>
 
-                                </v-fade-transition>
-                                <v-card-actions class="white--text align-end fill-height">
-                                    <div class="subtitle-2">{{item.text}}</div>
-                                </v-card-actions>
-                            </v-img>
-                        </v-card>
+                            </v-fade-transition>
+                            <v-card-actions class="white--text align-end fill-height">
+                                <div class="subtitle-2">{{item.text}}</div>
+                            </v-card-actions>
+                        </v-img>
                     </v-hover>
                 </v-flex>
             </v-row>
@@ -147,24 +155,32 @@
                         sm1 px-1
                 >
                     <v-hover class="m-2" v-slot:default="{ hover }">
-                        <v-card class="mx-auto">
-                            <v-img
-                                    :src="item.img"
-                                    style="height: 150px;"
-                            >
-                                <v-fade-transition>
-                                    <div
-                                            class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
-                                            v-if="hover"
-                                            style="height: 150px;"
-                                    ></div>
+                        <v-img
+                                :src="item.img"
+                                lazy-src="../../../public/images/no-image.png"
+                                style="height: 150px;"
+                        >
+                            <template v-slot:placeholder>
+                                <v-row
+                                        class="fill-height ma-0"
+                                        align="center"
+                                        justify="center"
+                                >
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                            </template>
+                            <v-fade-transition>
+                                <div
+                                        class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-3 white--text"
+                                        v-if="hover"
+                                        style="height: 150px;"
+                                ></div>
 
-                                </v-fade-transition>
-                                <v-card-actions class="white--text align-end fill-height">
-                                    <div class="subtitle-2">{{item.text}}</div>
-                                </v-card-actions>
-                            </v-img>
-                        </v-card>
+                            </v-fade-transition>
+                            <v-card-actions class="white--text align-end fill-height">
+                                <div class="subtitle-2">{{item.text}}</div>
+                            </v-card-actions>
+                        </v-img>
                     </v-hover>
                 </v-flex>
             </v-row>
@@ -265,6 +281,11 @@
       },
       mouseImgOut(){
         this.menu.src = ''
+      }
+    },
+    computed: {
+      backToTop(){
+        return  this.fixed ? true : false;
       }
     },
     created() {

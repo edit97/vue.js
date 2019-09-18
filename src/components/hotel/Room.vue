@@ -29,7 +29,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                     </v-col>
                     <v-col class="py-0" cols="4">
@@ -46,7 +56,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                     </v-col>
                     <v-col class="py-0" cols="4">
@@ -63,7 +83,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                     </v-col>
                     <v-col class="py-0" cols="4">
@@ -81,7 +111,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                     </v-col>
                     <v-col class="py-0" cols="4">
@@ -98,7 +138,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                     </v-col>
                 </v-row>
@@ -195,7 +245,17 @@
                                                 height="120"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                     <v-col
                                             cols="6" md="6"
@@ -209,7 +269,17 @@
                                                 height="60"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                     <v-col
                                             cols="6" md="6"
@@ -223,7 +293,17 @@
                                                 height="60"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                 </v-row>
                             </template>
@@ -233,7 +313,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                         <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
                             <small>Room photos and details</small>
@@ -495,7 +585,17 @@
                                                 height="120"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                     <v-col
                                             cols="6" md="6"
@@ -509,7 +609,17 @@
                                                 height="60"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                     <v-col
                                             cols="6" md="6"
@@ -523,7 +633,17 @@
                                                 height="60"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                 </v-row>
                             </template>
@@ -533,7 +653,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                         <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
                             <small>Room photos and details</small>
@@ -721,7 +851,17 @@
                                                 height="120"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                 </v-row>
                             </template>
@@ -731,7 +871,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                         <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
                             <small>Room photos and details</small>
@@ -880,7 +1030,17 @@
                                                 height="120"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                     <v-col
                                             cols="6" md="6"
@@ -894,7 +1054,17 @@
                                                 height="60"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                     <v-col
                                             cols="6" md="6"
@@ -908,7 +1078,17 @@
                                                 height="60"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                 </v-row>
                             </template>
@@ -918,7 +1098,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                         <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
                             <small>Room photos and details</small>
@@ -1118,7 +1308,17 @@
                                                 height="120"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                     <v-col
                                             cols="6" md="6"
@@ -1132,7 +1332,17 @@
                                                 height="60"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                     <v-col
                                             cols="6" md="6"
@@ -1146,7 +1356,17 @@
                                                 height="60"
                                                 class="text-right pa-2"
                                                 v-on="on"
-                                        ></v-img>
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
                                     </v-col>
                                 </v-row>
                             </template>
@@ -1156,7 +1376,17 @@
                                     height="350"
                                     width="350"
                                     class="text-right pa-2"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-menu>
                         <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
                             <small>Room photos and details</small>
@@ -1275,838 +1505,937 @@
                 </v-layout>
             </v-card>
 
-            <!--        <v-card outlined flat color="#f7f7f7" class="mb-5">
-                        <v-card-title class="doubleRoomTitle">
-                            <v-col class="pa-0">
-                                <span class="font-weight-bold subtitle-2">Junior Suite</span>
+            <v-card outlined flat color="#f7f7f7" class="mb-5">
+                <v-card-title class="doubleRoomTitle">
+                    <v-col class="pa-0">
+                        <span class="font-weight-bold subtitle-2">Junior Suite</span>
+                    </v-col>
+                    <v-spacer></v-spacer>
+                    <v-chip pill  outlined color="#488bf8">
+                        <v-avatar
+                                left dark
+                                color="#488bf8"
+                                size="50"
+                        >
+                            <v-icon color="white">mdi-message-text-outline</v-icon>
+                        </v-avatar>
+                        Ask about this room
+                    </v-chip>
+                </v-card-title>
+                <v-layout class="pr-3">
+                    <v-flex sm2 md2 pl-3 py-3>
+                        <v-menu open-on-hover right offset-x attach="juniorSuiteRoom">
+                            <template v-slot:activator="{ on }">
+                                <v-row class="px-3" id="juniorSuiteRoom">
+                                    <v-col
+                                            cols="12" md="12"
+                                            class="pa-0 mb-1 zoom"
+                                    >
+                                        <v-img
+                                                :src="filter_room_img.img_1"
+                                                lazy-src="../../../public/images/no-image.png"
+                                                @mouseover="mouseImgOver(filter_room_img.img_1)"
+                                                @mouseout="mouseImgOut()"
+                                                height="120"
+                                                class="text-right pa-2"
+                                                v-on="on"
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
+                                    </v-col>
+                                    <v-col
+                                            cols="6" md="6"
+                                            class="pa-0 pr-1 zoom"
+                                    >
+                                        <v-img
+                                                :src="filter_room_img.img_2"
+                                                lazy-src="../../../public/images/no-image.png"
+                                                @mouseover="mouseImgOver(filter_room_img.img_2)"
+                                                @mouseout="mouseImgOut()"
+                                                height="60"
+                                                class="text-right pa-2"
+                                                v-on="on"
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
+                                    </v-col>
+                                    <v-col
+                                            cols="6" md="6"
+                                            class="pa-0 pr-1 zoom"
+                                    >
+                                        <v-img
+                                                :src="filter_room_img.img_3"
+                                                lazy-src="../../../public/images/no-image.png"
+                                                @mouseover="mouseImgOver(filter_room_img.img_3)"
+                                                @mouseout="mouseImgOut()"
+                                                height="60"
+                                                class="text-right pa-2"
+                                                v-on="on"
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
+                                    </v-col>
+                                </v-row>
+                            </template>
+                            <v-img
+                                    :src="menu.src"
+                                    lazy-src="../../../public/images/no-image.png"
+                                    height="350"
+                                    width="350"
+                                    class="text-right pa-2"
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
+                        </v-menu>
+                        <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
+                            <small>Room photos and details</small>
+                        </v-btn>
+                        <v-divider class="my-2"></v-divider>
+                        <p class="caption font-weight-bold">Bed preference</p>
+                        <el-radio v-model="radio" label="1" class="mr-0">
+                            <span>1 king bed</span>
+                            <span class="flaticon-king-size-bed-with-two-pillows pl-3"></span>
+                        </el-radio>
+                        <el-radio v-model="radio" label="2">
+                            <span>2 single beds</span>
+                            <span class="flaticon-big-mattress pl-3 pr-1"></span>
+                            <span class="flaticon-big-mattress"></span>
+                        </el-radio>
+                        <v-divider class="my-2"></v-divider>
+                        <p class="caption mb-1"><v-icon class="pr-2" >mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
+                    </v-flex>
+                    <v-flex sm10 md10 pl-3>
+                        <v-layout class="caption font-weight-bold">
+                            <v-col class="pl-0" cols="12" sm="4" md="4">
+                                Benefits
                             </v-col>
-                            <v-spacer></v-spacer>
-                            <v-chip pill  outlined color="#488bf8">
-                                <v-avatar
-                                        left dark
-                                        color="#488bf8"
-                                        size="50"
-                                >
-                                    <v-icon color="white">mdi-message-text-outline</v-icon>
-                                </v-avatar>
-                                Ask about this room
-                            </v-chip>
-                        </v-card-title>
-                        <v-layout class="pr-3">
-                            <v-flex sm2 md2 pl-3 py-3>
-                                <v-menu open-on-hover right offset-x attach="juniorSuiteRoom">
-                                    <template v-slot:activator="{ on }">
-                                        <v-row class="px-3" id="juniorSuiteRoom">
-                                            <v-col
-                                                    cols="12" md="12"
-                                                    class="pa-0 mb-1 zoom"
-                                            >
-                                                <v-img
-                                                        :src="filter_room_img.img_1"
-                                                        lazy-src="../../../public/images/no-image.png"
-                                                        @mouseover="mouseImgOver(filter_room_img.img_1)"
-                                                        @mouseout="mouseImgOut()"
-                                                        height="120"
-                                                        class="text-right pa-2"
-                                                        v-on="on"
-                                                ></v-img>
-                                            </v-col>
-                                            <v-col
-                                                    cols="6" md="6"
-                                                    class="pa-0 pr-1 zoom"
-                                            >
-                                                <v-img
-                                                        :src="filter_room_img.img_2"
-                                                        lazy-src="../../../public/images/no-image.png"
-                                                        @mouseover="mouseImgOver(filter_room_img.img_2)"
-                                                        @mouseout="mouseImgOut()"
-                                                        height="60"
-                                                        class="text-right pa-2"
-                                                        v-on="on"
-                                                ></v-img>
-                                            </v-col>
-                                            <v-col
-                                                    cols="6" md="6"
-                                                    class="pa-0 zoom"
-                                            >
-
-
-                                                        :src="filter_room_img.img_3"
-                                                        lazy-src="../../../public/images/no-image.png"
-                                                        @mouseover="mouseImgOver(filter_room_img.img_3)"
-                                                        @mouseout="mouseImgOut()"
-                                                        height="60"
-                                                        class="text-right pa-2"
-                                                        v-on="on"
-                                                ></v-img>
-                                            </v-col>
-                                        </v-row>
-                                    </template>
-                                    <v-img
-                                            :src="menu.src"
-                                            lazy-src="../../../public/images/no-image.png"
-                                            height="350"
-                                            width="350"
-                                            class="text-right pa-2"
-                                    ></v-img>
-                                </v-menu>
-                                <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
-                                    <small>Room photos and details</small>
-                                </v-btn>
-                                <v-divider class="my-2"></v-divider>
-                                <p class="caption font-weight-bold">Bed preference</p>
-                                <el-radio v-model="radio" label="1" class="mr-0">
-                                    <span>1 king bed</span>
-                                    <span class="flaticon-king-size-bed-with-two-pillows pl-3"></span>
-                                </el-radio>
-                                <el-radio v-model="radio" label="2">
-                                    <span>2 single beds</span>
-                                    <span class="flaticon-big-mattress pl-3 pr-1"></span>
-                                    <span class="flaticon-big-mattress"></span>
-                                </el-radio>
-                                <v-divider class="my-2"></v-divider>
-                                <p class="caption mb-1"><v-icon class="pr-2" >mdi-home-variant-outline</v-icon>Room size: 70 m²/753 ft²</p>
-                            </v-flex>
-                            <v-flex sm10 md10 pl-3>
-                                <v-layout class="caption font-weight-bold">
-                                    <v-col class="pl-0" cols="12" sm="4" md="4">
-                                        Benefits
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="1" md="1">
-                                        Sleeps
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="3" md="3">
-                                        Price per night
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="1" md="1">
-                                        Rooms
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="3" md="3">
-                                        Most booked
-                                    </v-col>
-                                </v-layout>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Pay at the hotel</div>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">341</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="65"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Reserve</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">370</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="40"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Book now</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Pay at the hotel</div>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">407</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="65"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Reserve</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">422</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="40"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Book now</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                            </v-flex>
-                        </v-layout>
-                    </v-card>
-
-                    <v-card outlined flat color="#f7f7f7" class="mb-5">
-                        <v-card-title class="doubleRoomTitle">
-                            <v-col class="pa-0">
-                                <span class="font-weight-bold subtitle-2">Superior Room</span>
+                            <v-col class="pl-0" cols="12" sm="1" md="1">
+                                Sleeps
                             </v-col>
-                            <v-spacer></v-spacer>
-                            <v-chip pill  outlined color="#488bf8">
-                                <v-avatar
-                                        left dark
-                                        color="#488bf8"
-                                        size="50"
-                                >
-                                    <v-icon color="white">mdi-message-text-outline</v-icon>
-                                </v-avatar>
-                                Ask about this room
-                            </v-chip>
-                        </v-card-title>
-                        <v-layout class="pr-3">
-                            <v-flex sm2 md2 pl-3 py-3>
-                                <v-menu open-on-hover right offset-x attach="superiorRoom">
-                                    <template v-slot:activator="{ on }">
-                                        <v-row class="px-3" id="superiorRoom">
-                                            <v-col
-                                                    cols="12" md="12"
-                                                    class="pa-0 mb-1 zoom"
-                                            >
-                                                <v-img
-                                                        :src="filter_room_img.img_1"
-                                                        lazy-src="../../../public/images/no-image.png"
-                                                        @mouseover="mouseImgOver(filter_room_img.img_1)"
-                                                        @mouseout="mouseImgOut()"
-                                                        height="120"
-                                                        class="text-right pa-2"
-                                                        v-on="on"
-                                                ></v-img>
-                                            </v-col>
-                                        </v-row>
-                                    </template>
-                                    <v-img
-                                            :src="menu.src"
-                                            lazy-src="../../../public/images/no-image.png"
-                                            height="350"
-                                            width="350"
-                                            class="text-right pa-2"
-                                    ></v-img>
-                                </v-menu>
-                                <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
-                                    <small>Room photos and details</small>
-                                </v-btn>
-                                <p class="caption green_text mb-1"><v-icon color="#85c150" class="pr-2" >mdi-wifi</v-icon>Free Wi-Fi</p>
-                                <v-menu :open-on-hover="true" min-width="400" top offset-x light >
-                                    <template v-slot:activator="{ on }">
-                                        <p class="caption blue_text pointer" v-on="on">
-                                            <v-icon class="pr-2" color="#5392f9">mdi-plus-circle-outline</v-icon>
-                                            More features
-                                        </p>
-                                    </template>
-                                    <v-list>
-                                        <v-col class="caption">
-                                            <p class=" font-weight-bold">Bathroom and Toiletries</p>
-                                            <v-row class="pa-3">
-                                                <v-icon>mdi-shower-head</v-icon>Shower
-                                            </v-row>
-                                            <p class=" font-weight-bold">Entertainment</p>
-                                            <v-row class="">
-                                                <v-col><v-icon>mdi-shower-head</v-icon>Free Wi-Fi in all rooms</v-col>
-                                                <v-col>
-                                                    <div><v-icon>mdi-phone-in-talk</v-icon>Telephone</div>
-                                                    <div><v-icon>mdi-television</v-icon>Television</div>
-                                                </v-col>
-                                            </v-row>
-                                            <p class=" font-weight-bold">Comforts</p>
-                                            <v-row class="">
-                                                <v-col><v-icon>mdi-air-conditioner</v-icon>Air conditioning</v-col>
-                                            </v-row>
-                                            <p class=" font-weight-bold">Safety and security features</p>
-                                            <v-row class="">
-                                                <v-col><v-icon>mdi-shield-lock-outline</v-icon>In room safe box</v-col>
-                                            </v-row>
-                                        </v-col>
-                                    </v-list>
-                                </v-menu>
-                            </v-flex>
-                            <v-flex sm10 md10 pl-3>
-                                <v-layout class="caption font-weight-bold">
-                                    <v-col class="pl-0" cols="12" sm="4" md="4">
-                                        Benefits
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="1" md="1">
-                                        Sleeps
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="3" md="3">
-                                        Price per night
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="1" md="1">
-                                        Rooms
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="3" md="3">
-                                        Most booked
-                                    </v-col>
-                                </v-layout>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">250</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="40"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Book now</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">293</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="40"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Book now</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                            </v-flex>
-                        </v-layout>
-                    </v-card>
-
-                    <v-card outlined flat color="#f7f7f7" class="mb-5">
-                        <v-card-title class="doubleRoomTitle">
-                            <v-col class="pa-0">
-                                <span class="font-weight-bold subtitle-2">Doble Superior</span>
+                            <v-col class="pl-0" cols="12" sm="3" md="3">
+                                Price per night
                             </v-col>
-                            <v-spacer></v-spacer>
-                            <v-chip pill  outlined color="#488bf8">
-                                <v-avatar
-                                        left dark
-                                        color="#488bf8"
-                                        size="50"
-                                >
-                                    <v-icon color="white">mdi-message-text-outline</v-icon>
-                                </v-avatar>
-                                Ask about this room
-                            </v-chip>
-                        </v-card-title>
-                        <v-layout class="pr-3">
-                            <v-flex sm2 md2 pl-3 py-3>
-                                <v-menu open-on-hover right offset-x attach="superiorRoom">
-                                    <template v-slot:activator="{ on }">
-                                        <v-row class="px-3" id="superiorRoom">
-                                            <v-col
-                                                    cols="12" md="12"
-                                                    class="pa-0 mb-1 zoom"
-                                            >
-                                                <v-img
-                                                        :src="filter_room_img.img_1"
-                                                        lazy-src="../../../public/images/no-image.png"
-                                                        @mouseover="mouseImgOver(filter_room_img.img_1)"
-                                                        @mouseout="mouseImgOut()"
-                                                        height="120"
-                                                        class="text-right pa-2"
-                                                        v-on="on"
-                                                ></v-img>
-                                            </v-col>
-                                        </v-row>
-                                    </template>
-                                    <v-img
-                                            :src="menu.src"
-                                            lazy-src="../../../public/images/no-image.png"
-                                            height="350"
-                                            width="350"
-                                            class="text-right pa-2"
-                                    ></v-img>
-                                </v-menu>
-                                <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
-                                    <small>Room photos and details</small>
-                                </v-btn>
-                                <p class="caption green_text mb-1"><v-icon color="#85c150" class="pr-2" >mdi-wifi</v-icon>Free Wi-Fi</p>
-                                <v-menu :open-on-hover="true" min-width="400" top offset-x light >
-                                    <template v-slot:activator="{ on }">
-                                        <p class="caption blue_text pointer" v-on="on">
-                                            <v-icon class="pr-2" color="#5392f9">mdi-plus-circle-outline</v-icon>
-                                            More features
-                                        </p>
-                                    </template>
-                                    <v-list>
-                                        <v-col class="caption">
-                                            <p class=" font-weight-bold">Bathroom and Toiletries</p>
-                                            <v-row class="pa-3">
-                                                <v-icon>mdi-shower-head</v-icon>Shower
-                                            </v-row>
-                                            <p class=" font-weight-bold">Entertainment</p>
-                                            <v-row class="">
-                                                <v-col><v-icon>mdi-shower-head</v-icon>Free Wi-Fi in all rooms</v-col>
-                                                <v-col>
-                                                    <div><v-icon>mdi-phone-in-talk</v-icon>Telephone</div>
-                                                    <div><v-icon>mdi-television</v-icon>Television</div>
-                                                </v-col>
-                                            </v-row>
-                                            <p class=" font-weight-bold">Comforts</p>
-                                            <v-row class="">
-                                                <v-col><v-icon>mdi-air-conditioner</v-icon>Air conditioning</v-col>
-                                            </v-row>
-                                            <p class=" font-weight-bold">Safety and security features</p>
-                                            <v-row class="">
-                                                <v-col><v-icon>mdi-shield-lock-outline</v-icon>In room safe box</v-col>
-                                            </v-row>
-                                        </v-col>
-                                    </v-list>
-                                </v-menu>
-                            </v-flex>
-                            <v-flex sm10 md10 pl-3>
-                                <v-layout class="caption font-weight-bold">
-                                    <v-col class="pl-0" cols="12" sm="4" md="4">
-                                        Benefits
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="1" md="1">
-                                        Sleeps
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="3" md="3">
-                                        Price per night
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="1" md="1">
-                                        Rooms
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="3" md="3">
-                                        Most booked
-                                    </v-col>
-                                </v-layout>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">250</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="40"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Book now</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">293</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="40"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Book now</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                            </v-flex>
-                        </v-layout>
-                    </v-card>
-
-                    <v-card outlined flat color="#f7f7f7" class="mb-5">
-                        <v-card-title class="doubleRoomTitle">
-                            <v-col class="pa-0">
-                                <span class="font-weight-bold subtitle-2">Run of House</span>
+                            <v-col class="pl-0" cols="12" sm="1" md="1">
+                                Rooms
                             </v-col>
-                            <v-spacer></v-spacer>
-                            <v-chip pill  outlined color="#488bf8">
-                                <v-avatar
-                                        left dark
-                                        color="#488bf8"
-                                        size="50"
-                                >
-                                    <v-icon color="white">mdi-message-text-outline</v-icon>
-                                </v-avatar>
-                                Ask about this room
-                            </v-chip>
-                        </v-card-title>
-                        <v-layout class="pr-3">
-                            <v-flex sm2 md2 pl-3 py-3>
-                                <v-menu open-on-hover right offset-x attach="runOfHouse">
-                                    <template v-slot:activator="{ on }">
-                                        <v-row class="px-3" id="runOfHouse">
-                                            <v-col
-                                                    cols="12" md="12"
-                                                    class="pa-0 mb-1 zoom"
-                                            >
-                                                <v-img
-                                                        :src="filter_room_img.img_1"
-                                                        lazy-src="../../../public/images/no-image.png"
-                                                        @mouseover="mouseImgOver(filter_room_img.img_1)"
-                                                        @mouseout="mouseImgOut()"
-                                                        height="120"
-                                                        class="text-right pa-2"
-                                                        v-on="on"
-                                                ></v-img>
-                                            </v-col>
-                                        </v-row>
-                                    </template>
-                                    <v-img
-                                            :src="menu.src"
-                                            lazy-src="../../../public/images/no-image.png"
-                                            height="350"
-                                            width="350"
-                                            class="text-right pa-2"
-                                    ></v-img>
-                                </v-menu>
-                                <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
-                                    <small>Room photos and details</small>
-                                </v-btn>
-                            </v-flex>
-                            <v-flex sm10 md10 pl-3>
-                                <v-layout class="caption font-weight-bold">
-                                    <v-col class="pl-0" cols="12" sm="4" md="4">
-                                        Benefits
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="1" md="1">
-                                        Sleeps
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="3" md="3">
-                                        Price per night
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="1" md="1">
-                                        Rooms
-                                    </v-col>
-                                    <v-col class="pl-0" cols="12" sm="3" md="3">
-                                        Most booked
-                                    </v-col>
-                                </v-layout>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">250</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="40"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Book now</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                                <v-card outlined flat class="mb-3">
-                                    <v-layout>
-                                        <v-col class="" cols="12" sm="4" md="4">
-                                            <strong class="caption font-weight-bold">Your price includes:</strong>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
-                                            <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
-                                            <div class="d-flex justify-center">
-                                                <v-icon mt-2 large>mdi-human-female-girl</v-icon>
-                                                <v-icon mt-2 large>mdi-human-male-boy</v-icon>
-                                            </div>
-                                            <p class="caption grey&#45;&#45;text mb-0">2 kids under 1 year stay </p>
-                                            <p class="green_text caption">FREE!</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
-                                            <p class="red&#45;&#45;text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">293</span></p>
-                                            <p class="grey&#45;&#45;text caption text-right">Price per night as low as</p>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="d-flex" cols="12" sm="1" md="1">
-                                            <v-select
-                                                    :items="[0,1]"
-                                                    outlined
-                                            ></v-select>
-                                        </v-col>
-                                        <v-divider vertical></v-divider>
-                                        <v-col class="text-center" cols="12" sm="3" md="3">
-                                            <v-btn
-                                                    x-large dark
-                                                    depressed
-                                                    min-width="150"
-                                                    min-height="40"
-                                                    color="#0283df"
-                                            >
-                                                <span class="caption font-weight-bold">Book now</span>
-                                            </v-btn>
-                                            <p class="caption text">It only takes 2 minutes</p>
-                                            <p class="body-2 red&#45;&#45;text">Our last room!</p>
-                                        </v-col>
-                                    </v-layout>
-                                </v-card>
-                            </v-flex>
+                            <v-col class="pl-0" cols="12" sm="3" md="3">
+                                Most booked
+                            </v-col>
                         </v-layout>
-                    </v-card>-->
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Pay at the hotel</div>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">341</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="65"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Reserve</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">370</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="40"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Book now</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Pay at the hotel</div>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">407</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="65"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Reserve</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">422</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="40"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Book now</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-card>
+
+            <v-card outlined flat color="#f7f7f7" class="mb-5">
+                <v-card-title class="doubleRoomTitle">
+                    <v-col class="pa-0">
+                        <span class="font-weight-bold subtitle-2">Superior Room</span>
+                    </v-col>
+                    <v-spacer></v-spacer>
+                    <v-chip pill  outlined color="#488bf8">
+                        <v-avatar
+                                left dark
+                                color="#488bf8"
+                                size="50"
+                        >
+                            <v-icon color="white">mdi-message-text-outline</v-icon>
+                        </v-avatar>
+                        Ask about this room
+                    </v-chip>
+                </v-card-title>
+                <v-layout class="pr-3">
+                    <v-flex sm2 md2 pl-3 py-3>
+                        <v-menu open-on-hover right offset-x attach="superiorRoom">
+                            <template v-slot:activator="{ on }">
+                                <v-row class="px-3" id="superiorRoom">
+                                    <v-col
+                                            cols="12" md="12"
+                                            class="pa-0 mb-1 zoom"
+                                    >
+                                        <v-img
+                                                :src="filter_room_img.img_1"
+                                                lazy-src="../../../public/images/no-image.png"
+                                                @mouseover="mouseImgOver(filter_room_img.img_1)"
+                                                @mouseout="mouseImgOut()"
+                                                height="120"
+                                                class="text-right pa-2"
+                                                v-on="on"
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
+                                    </v-col>
+                                </v-row>
+                            </template>
+                            <v-img
+                                    :src="menu.src"
+                                    lazy-src="../../../public/images/no-image.png"
+                                    height="350"
+                                    width="350"
+                                    class="text-right pa-2"
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
+                        </v-menu>
+                        <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
+                            <small>Room photos and details</small>
+                        </v-btn>
+                        <p class="caption green_text mb-1"><v-icon color="#85c150" class="pr-2" >mdi-wifi</v-icon>Free Wi-Fi</p>
+                        <v-menu :open-on-hover="true" min-width="400" top offset-x light >
+                            <template v-slot:activator="{ on }">
+                                <p class="caption blue_text pointer" v-on="on">
+                                    <v-icon class="pr-2" color="#5392f9">mdi-plus-circle-outline</v-icon>
+                                    More features
+                                </p>
+                            </template>
+                            <v-list>
+                                <v-col class="caption">
+                                    <p class=" font-weight-bold">Bathroom and Toiletries</p>
+                                    <v-row class="pa-3">
+                                        <v-icon>mdi-shower-head</v-icon>Shower
+                                    </v-row>
+                                    <p class=" font-weight-bold">Entertainment</p>
+                                    <v-row class="">
+                                        <v-col><v-icon>mdi-shower-head</v-icon>Free Wi-Fi in all rooms</v-col>
+                                        <v-col>
+                                            <div><v-icon>mdi-phone-in-talk</v-icon>Telephone</div>
+                                            <div><v-icon>mdi-television</v-icon>Television</div>
+                                        </v-col>
+                                    </v-row>
+                                    <p class=" font-weight-bold">Comforts</p>
+                                    <v-row class="">
+                                        <v-col><v-icon>mdi-air-conditioner</v-icon>Air conditioning</v-col>
+                                    </v-row>
+                                    <p class=" font-weight-bold">Safety and security features</p>
+                                    <v-row class="">
+                                        <v-col><v-icon>mdi-shield-lock-outline</v-icon>In room safe box</v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-list>
+                        </v-menu>
+                    </v-flex>
+                    <v-flex sm10 md10 pl-3>
+                        <v-layout class="caption font-weight-bold">
+                            <v-col class="pl-0" cols="12" sm="4" md="4">
+                                Benefits
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="1" md="1">
+                                Sleeps
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="3" md="3">
+                                Price per night
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="1" md="1">
+                                Rooms
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="3" md="3">
+                                Most booked
+                            </v-col>
+                        </v-layout>
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">250</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="40"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Book now</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">293</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="40"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Book now</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-card>
+
+            <v-card outlined flat color="#f7f7f7" class="mb-5">
+                <v-card-title class="doubleRoomTitle">
+                    <v-col class="pa-0">
+                        <span class="font-weight-bold subtitle-2">Doble Superior</span>
+                    </v-col>
+                    <v-spacer></v-spacer>
+                    <v-chip pill  outlined color="#488bf8">
+                        <v-avatar
+                                left dark
+                                color="#488bf8"
+                                size="50"
+                        >
+                            <v-icon color="white">mdi-message-text-outline</v-icon>
+                        </v-avatar>
+                        Ask about this room
+                    </v-chip>
+                </v-card-title>
+                <v-layout class="pr-3">
+                    <v-flex sm2 md2 pl-3 py-3>
+                        <v-menu open-on-hover right offset-x attach="superiorRoom">
+                            <template v-slot:activator="{ on }">
+                                <v-row class="px-3" id="superiorRoom">
+                                    <v-col
+                                            cols="12" md="12"
+                                            class="pa-0 mb-1 zoom"
+                                    >
+                                        <v-img
+                                                :src="filter_room_img.img_1"
+                                                lazy-src="../../../public/images/no-image.png"
+                                                @mouseover="mouseImgOver(filter_room_img.img_1)"
+                                                @mouseout="mouseImgOut()"
+                                                height="120"
+                                                class="text-right pa-2"
+                                                v-on="on"
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
+                                    </v-col>
+                                </v-row>
+                            </template>
+                            <v-img
+                                    :src="menu.src"
+                                    lazy-src="../../../public/images/no-image.png"
+                                    height="350"
+                                    width="350"
+                                    class="text-right pa-2"
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
+                        </v-menu>
+                        <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
+                            <small>Room photos and details</small>
+                        </v-btn>
+                        <p class="caption green_text mb-1"><v-icon color="#85c150" class="pr-2" >mdi-wifi</v-icon>Free Wi-Fi</p>
+                        <v-menu :open-on-hover="true" min-width="400" top offset-x light >
+                            <template v-slot:activator="{ on }">
+                                <p class="caption blue_text pointer" v-on="on">
+                                    <v-icon class="pr-2" color="#5392f9">mdi-plus-circle-outline</v-icon>
+                                    More features
+                                </p>
+                            </template>
+                            <v-list>
+                                <v-col class="caption">
+                                    <p class=" font-weight-bold">Bathroom and Toiletries</p>
+                                    <v-row class="pa-3">
+                                        <v-icon>mdi-shower-head</v-icon>Shower
+                                    </v-row>
+                                    <p class=" font-weight-bold">Entertainment</p>
+                                    <v-row class="">
+                                        <v-col><v-icon>mdi-shower-head</v-icon>Free Wi-Fi in all rooms</v-col>
+                                        <v-col>
+                                            <div><v-icon>mdi-phone-in-talk</v-icon>Telephone</div>
+                                            <div><v-icon>mdi-television</v-icon>Television</div>
+                                        </v-col>
+                                    </v-row>
+                                    <p class=" font-weight-bold">Comforts</p>
+                                    <v-row class="">
+                                        <v-col><v-icon>mdi-air-conditioner</v-icon>Air conditioning</v-col>
+                                    </v-row>
+                                    <p class=" font-weight-bold">Safety and security features</p>
+                                    <v-row class="">
+                                        <v-col><v-icon>mdi-shield-lock-outline</v-icon>In room safe box</v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-list>
+                        </v-menu>
+                    </v-flex>
+                    <v-flex sm10 md10 pl-3>
+                        <v-layout class="caption font-weight-bold">
+                            <v-col class="pl-0" cols="12" sm="4" md="4">
+                                Benefits
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="1" md="1">
+                                Sleeps
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="3" md="3">
+                                Price per night
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="1" md="1">
+                                Rooms
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="3" md="3">
+                                Most booked
+                            </v-col>
+                        </v-layout>
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">250</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="40"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Book now</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">293</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="40"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Book now</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-card>
+
+            <v-card outlined flat color="#f7f7f7" class="mb-5">
+                <v-card-title class="doubleRoomTitle">
+                    <v-col class="pa-0">
+                        <span class="font-weight-bold subtitle-2">Run of House</span>
+                    </v-col>
+                    <v-spacer></v-spacer>
+                    <v-chip pill  outlined color="#488bf8">
+                        <v-avatar
+                                left dark
+                                color="#488bf8"
+                                size="50"
+                        >
+                            <v-icon color="white">mdi-message-text-outline</v-icon>
+                        </v-avatar>
+                        Ask about this room
+                    </v-chip>
+                </v-card-title>
+                <v-layout class="pr-3">
+                    <v-flex sm2 md2 pl-3 py-3>
+                        <v-menu open-on-hover right offset-x attach="runOfHouse">
+                            <template v-slot:activator="{ on }">
+                                <v-row class="px-3" id="runOfHouse">
+                                    <v-col
+                                            cols="12" md="12"
+                                            class="pa-0 mb-1 zoom"
+                                    >
+                                        <v-img
+                                                :src="filter_room_img.img_1"
+                                                lazy-src="../../../public/images/no-image.png"
+                                                @mouseover="mouseImgOver(filter_room_img.img_1)"
+                                                @mouseout="mouseImgOut()"
+                                                height="120"
+                                                class="text-right pa-2"
+                                                v-on="on"
+                                        >
+                                            <template v-slot:placeholder>
+                                                <v-row
+                                                        class="fill-height ma-0"
+                                                        align="center"
+                                                        justify="center"
+                                                >
+                                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                </v-row>
+                                            </template>
+                                        </v-img>
+                                    </v-col>
+                                </v-row>
+                            </template>
+                            <v-img
+                                    :src="menu.src"
+                                    lazy-src="../../../public/images/no-image.png"
+                                    height="350"
+                                    width="350"
+                                    class="text-right pa-2"
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
+                        </v-menu>
+                        <v-btn class="my-1" color="#0283df" small text @click.stop="dialog = true">
+                            <small>Room photos and details</small>
+                        </v-btn>
+                    </v-flex>
+                    <v-flex sm10 md10 pl-3>
+                        <v-layout class="caption font-weight-bold">
+                            <v-col class="pl-0" cols="12" sm="4" md="4">
+                                Benefits
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="1" md="1">
+                                Sleeps
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="3" md="3">
+                                Price per night
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="1" md="1">
+                                Rooms
+                            </v-col>
+                            <v-col class="pl-0" cols="12" sm="3" md="3">
+                                Most booked
+                            </v-col>
+                        </v-layout>
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">250</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="40"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Book now</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                        <v-card outlined flat class="mb-3">
+                            <v-layout>
+                                <v-col class="" cols="12" sm="4" md="4">
+                                    <strong class="caption font-weight-bold">Your price includes:</strong>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Free breakfast for 2</div>
+                                    <div class="subtitle-2"><v-icon color="#32a923">mdi-check</v-icon>Cancellation policy</div>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center orange_card_kids" cols="12" sm="1" md="1">
+                                    <div class="d-flex justify-center">
+                                        <v-icon mt-2 large>mdi-human-female-girl</v-icon>
+                                        <v-icon mt-2 large>mdi-human-male-boy</v-icon>
+                                    </div>
+                                    <p class="caption grey--text mb-0">2 kids under 1 year stay </p>
+                                    <p class="green_text caption">FREE!</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="pl-0 orange_card_price" cols="12" sm="3" md="3">
+                                    <p class="red--text mb-0 body-1 text-right">&#36;<span class="display-1 font-weight-medium">293</span></p>
+                                    <p class="grey--text caption text-right">Price per night as low as</p>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="d-flex" cols="12" sm="1" md="1">
+                                    <v-select
+                                            :items="[0,1]"
+                                            outlined
+                                    ></v-select>
+                                </v-col>
+                                <v-divider vertical></v-divider>
+                                <v-col class="text-center" cols="12" sm="3" md="3">
+                                    <v-btn
+                                            x-large dark
+                                            depressed
+                                            min-width="150"
+                                            min-height="40"
+                                            color="#0283df"
+                                    >
+                                        <span class="caption font-weight-bold">Book now</span>
+                                    </v-btn>
+                                    <p class="caption text">It only takes 2 minutes</p>
+                                    <p class="body-2 red--text">Our last room!</p>
+                                </v-col>
+                            </v-layout>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-card>
 
             <v-col>
                 <v-row>
@@ -2116,6 +2445,15 @@
                             src="//q-xx.bstatic.com/xdata/images/hotel/840x460/60112138.jpg?k=42b08d9b45efa1743135bd003d7b225110a174b2bdf9c0263ba8e7e3092bbfa1"
                             lazy-src="../../../public/images/no-image.png"
                     >
+                        <template v-slot:placeholder>
+                            <v-row
+                                    class="fill-height ma-0"
+                                    align="center"
+                                    justify="center"
+                            >
+                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                            </v-row>
+                        </template>
                         <v-card-title class="align-end fill-height">
                             <h2 class="pa-5 heading_overlay_text">Vale Apartments Barcelona</h2>
                         </v-card-title>
@@ -2176,7 +2514,26 @@
                                             width="110"
                                             @click="toggle"
                                             :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-slide-item>
                             </v-slide-group>
                         </v-flex>

@@ -112,7 +112,6 @@ export default {
   name: "app",
   data(){
     return{
-      // overlay: false,
       home: ['Home', 'Help center', 'FAQs', 'Privacy policy', 'Cookie policy', 'Terms of use',],
       about: ['About us', 'PointsMAX', 'Careers', 'Press', 'Blog',],
       destinations: ['Destinations', 'Countries/Territories', 'Cities',],

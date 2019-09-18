@@ -8,6 +8,15 @@
                         lazy-src="../../../public/images/no-image.png"
                         max-height="400"
                 >
+                    <template v-slot:placeholder>
+                        <v-row
+                                class="fill-height ma-0"
+                                align="center"
+                                justify="center"
+                        >
+                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                        </v-row>
+                    </template>
                     <div class="mt-5 ml-5"
                          @click="$vuetify.goTo(`#tab${0}`)"
                          @mouseover="price_btn = false"
@@ -57,6 +66,15 @@
                             src="//q-xx.bstatic.com/xdata/images/hotel/840x460/62116150.jpg?k=e5dfcb99ac06655e16ec83aa34f0767158739e67d998e6335ad8ac071edec38c&amp;o="
                             lazy-src="../../../public/images/no-image.png"
                     >
+                        <template v-slot:placeholder>
+                            <v-row
+                                    class="fill-height ma-0"
+                                    align="center"
+                                    justify="center"
+                            >
+                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                            </v-row>
+                        </template>
                         <v-row class="px-5 pt-1">
                             <v-spacer></v-spacer>
                             <v-btn
@@ -96,6 +114,15 @@
                                 src="//q-xx.bstatic.com/xdata/images/hotel/840x460/62116311.jpg?k=d76884a8698a7790ec416d5ae369c3104d20ad751378b68e559e821a47857c8c"
                                 lazy-src="../../../public/images/no-image.png"
                         >
+                            <template v-slot:placeholder>
+                                <v-row
+                                        class="fill-height ma-0"
+                                        align="center"
+                                        justify="center"
+                                >
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                            </template>
                             <v-fade-transition>
                                 <div
                                         v-if="hover"
@@ -115,6 +142,15 @@
                                 @click="dialog_all_img = true"
                                 class="pointer"
                         >
+                            <template v-slot:placeholder>
+                                <v-row
+                                        class="fill-height ma-0"
+                                        align="center"
+                                        justify="center"
+                                >
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                            </template>
                             <v-fade-transition>
                                 <div
                                         v-if="hover"
@@ -203,11 +239,22 @@
                         >
                             <v-img
                                     :src="item"
+                                    lazy-src="../../../public/images/no-image.png"
                                     height="60"
                                     width="85"
                                     @click="toggle"
                                     :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
-                            ></v-img>
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
+                                    >
+                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                    </v-row>
+                                </template>
+                            </v-img>
                         </v-slide-item>
                     </v-slide-group>
                 </v-col>

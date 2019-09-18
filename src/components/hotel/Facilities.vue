@@ -23,11 +23,21 @@
                                     </template>
                                     <v-img
                                             src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                             <v-col class="py-0" cols="4">
@@ -40,11 +50,21 @@
                                     </template>
                                     <v-img
                                             src="//pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                             <v-col class="py-0" cols="4">
@@ -57,11 +77,21 @@
                                     </template>
                                     <v-img
                                             src="//pix6.agoda.net/hotelImages/566538/-1/c04af35cf95f32991e5f2f4ac514b062.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                             <v-col class="py-0" cols="4">
@@ -75,11 +105,21 @@
                                     </template>
                                     <v-img
                                             src="//pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                             <v-col class="py-0" cols="4">
@@ -92,11 +132,21 @@
                                     </template>
                                     <v-img
                                             src="//pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                         </v-row>
@@ -112,11 +162,22 @@
                                 <div class="row">
                                     <v-img
                                             src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg"
+                                            lazy-src="../../../public/images/no-image.png"
                                             contain
                                             height="20"
                                             max-width="30"
                                             class="mr-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                     English
                                 </div>
                             </v-col>
@@ -124,11 +185,22 @@
                                 <div class="row">
                                     <v-img
                                             src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1280px-Flag_of_Spain.svg.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             contain
                                             height="20"
                                             max-width="30"
                                             class="mr-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                     Spanish
                                 </div>
                             </v-col>
@@ -168,11 +240,21 @@
                                     </template>
                                     <v-img
                                             src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                             <v-col class="py-0" cols="4">
@@ -198,11 +280,21 @@
                                     </template>
                                     <v-img
                                             src="//pix6.agoda.net/hotelImages/566538/-1/362a88cef8f986da16968a277ff481d2.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                         </v-row>
@@ -224,11 +316,21 @@
                                     </template>
                                     <v-img
                                             src="//pix6.agoda.net/hotelImages/566538/-1/0bda81d9aeb80bd8a2ec945711621132.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                             <v-col class="py-0 blue_text" cols="4">
@@ -241,11 +343,21 @@
                                     </template>
                                     <v-img
                                             src="//pix6.agoda.net/hotelImages/566538/-1/f011671e14e3e0443c937de4df30ab70.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                             <v-col class="py-0" cols="4">
@@ -417,10 +529,20 @@
                     <v-col cols="3">
                         <v-img
                                 src="//pix6.agoda.net/geo/cuisine/1110/5_1110.jpg?s=270x360"
-                                lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                lazy-src="../../../public/images/no-image.png"
                                 height="120"
                                 class="text-right pa-2"
-                        ></v-img>
+                        >
+                            <template v-slot:placeholder>
+                                <v-row
+                                        class="fill-height ma-0"
+                                        align="center"
+                                        justify="center"
+                                >
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                            </template>
+                        </v-img>
                         <div class="mt-3">
                             <v-icon small left>mdi-silverware-fork-knife</v-icon>
                             Spanish cuisine
@@ -448,10 +570,20 @@
                     <v-col cols="3" class="mx-5">
                         <v-img
                                 src="//pix6.agoda.net/geo/cuisine/1079/5_1079.jpg?s=270x360"
-                                lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                lazy-src="../../../public/images/no-image.png"
                                 height="120"
                                 class="text-right pa-2"
-                        ></v-img>
+                        >
+                            <template v-slot:placeholder>
+                                <v-row
+                                        class="fill-height ma-0"
+                                        align="center"
+                                        justify="center"
+                                >
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                            </template>
+                        </v-img>
                         <div class="mt-3">
                             <v-icon small left>mdi-silverware-fork-knife</v-icon>
                             Spanish cuisine
@@ -479,10 +611,20 @@
                     <v-col cols="3">
                         <v-img
                                 src="//pix6.agoda.net/geo/cuisine/1048/5_1048.jpg?s=270x360"
-                                lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                lazy-src="../../../public/images/no-image.png"
                                 height="120"
                                 class="text-right pa-2"
-                        ></v-img>
+                        >
+                            <template v-slot:placeholder>
+                                <v-row
+                                        class="fill-height ma-0"
+                                        align="center"
+                                        justify="center"
+                                >
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                            </template>
+                        </v-img>
                         <div class="mt-3">
                             <v-icon small left>mdi-silverware-fork-knife</v-icon>
                             Spanish cuisine
@@ -532,11 +674,21 @@
                                     </template>
                                     <v-img
                                             src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                                 <v-menu :open-on-hover="true" offset-y>
                                     <template v-slot:activator="{ on }">
@@ -546,11 +698,21 @@
                                     </template>
                                     <v-img
                                             src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                                 <v-menu :open-on-hover="true" offset-y>
                                     <template v-slot:activator="{ on }">
@@ -560,11 +722,21 @@
                                     </template>
                                     <v-img
                                             src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                                 <v-menu :open-on-hover="true" offset-y>
                                     <template v-slot:activator="{ on }">
@@ -574,11 +746,21 @@
                                     </template>
                                     <v-img
                                             src="http://pix6.agoda.net/hotelImages/566538/-1/b7821815c089ee3d4f5bdb9ee4ddf29f.jpg?s=360x270"
-                                            lazy-src="https://eholot-gps.com.ua/images/no-image.png"
+                                            lazy-src="../../../public/images/no-image.png"
                                             height="350"
                                             width="350"
                                             class="text-right pa-2"
-                                    ></v-img>
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
                                 </v-menu>
                             </v-col>
                             <v-col class="py-0" cols="5">

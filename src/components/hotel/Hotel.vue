@@ -285,7 +285,7 @@
     },
     computed: {
       backToTop(){
-        return  this.fixed ? true : false;
+        return  this.fixed;
       }
     },
     created() {

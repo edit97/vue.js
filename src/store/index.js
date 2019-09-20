@@ -93,6 +93,11 @@ export default new Vuex.Store({
         'https://pix6.agoda.net/hotelImages/566538/-1/5ca20f0d786717b0bab0539ac8214d98.jpg?s=1024x768'
       ],
     ],
+    tourImages: [
+        'https://d3hne3c382ip58.cloudfront.net/resized/750x420/segovia-half-day-tour-from-madrid-tour-2-454989_1567921614.JPG',
+        'https://d3hne3c382ip58.cloudfront.net/resized/750x420/segovia-half-day-tour-from-madrid-tour-2-454988_1543760668.JPG',
+        'https://d3hne3c382ip58.cloudfront.net/resized/750x420/segovia-half-day-tour-from-madrid-tour-2-463756_1549280496.JPG',
+    ],
   },
   mutations: {
     searchMenu (state, payload) {

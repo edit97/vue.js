@@ -169,7 +169,7 @@
 
     <v-dialog
             v-model="dialog_all_img"
-            dark fullscreen hide-overlay
+            dark fullscreen
             transition="dialog-bottom-transition"
     >
         <v-card color="black">

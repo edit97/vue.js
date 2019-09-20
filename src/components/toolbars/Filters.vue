@@ -90,6 +90,13 @@
                                             fill
                                             type="trend"
                                     ></v-sparkline>
+                                    <el-slider
+                                            v-model="range"
+                                            :show-tooltip="false"
+                                            :max="2000"
+                                            range
+                                    >
+                                    </el-slider>
                                 </v-col>
                                 <v-col cols="2" sm="2" md="2" class="text-right pb-0">
                                     <v-text-field
@@ -100,13 +107,7 @@
                                 </v-col>
                             </v-row>
                             <v-flex sm8 md8 class="justify-center mx-auto">
-                                <el-slider
-                                        v-model="range"
-                                        :show-tooltip="false"
-                                        :max="2000"
-                                        range
-                                >
-                                </el-slider>
+
                             </v-flex>
                             <!--<v-range-slider
                                     v-model="range"
@@ -522,5 +523,9 @@
     }
     .showMore{
         flex-wrap: wrap !important;
+    }
+    .el-slider__runway{
+        margin: 0 !important;
+        top: -8px;
     }
 </style>

@@ -2,26 +2,27 @@
     <div>
         <v-row>
             <v-img
-                    src="https://d3hne3c382ip58.cloudfront.net/resized/1920x700/-400X400_.JPG"
+                    class="white--text fill-height "
                     lazy-src="../../../public/images/no-image.png"
                     max-height="400"
-                    class="white--text fill-height "
+                    src="https://d3hne3c382ip58.cloudfront.net/resized/1920x700/-400X400_.JPG"
             >
                 <template v-slot:placeholder>
                     <v-row
-                            class="fill-height ma-0"
                             align="center"
+                            class="fill-height ma-0"
                             justify="center"
                     >
-                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                        <v-progress-circular color="grey lighten-5" indeterminate></v-progress-circular>
                     </v-row>
                 </template>
                 <v-overlay absolute z-index="-1"></v-overlay>
-                <v-layout column justify-end fill-height>
+                <v-layout column fill-height justify-end>
                     <v-spacer></v-spacer>
-                    <v-col cols="9" class="mx-auto">
+                    <v-col class="mx-auto" cols="9">
                         <span class="display-2">Spain Group Tours 2019/2020</span>
-                        <p class="subtitle-1 font-weight-bold">Find 278 Group Tours and Group Departures in Spain with more than 754 customer reviews.
+                        <p class="subtitle-1 font-weight-bold">Find 278 Group Tours and Group Departures in Spain with
+                            more than 754 customer reviews.
                             The 278 Spain group tours and Spain group holidays are delivered by some of the top local
                             and global travel companies in Spain.
                         </p>
@@ -34,35 +35,112 @@
         </v-row>
         <v-container>
             <v-tabs
-                    v-model="tab"
                     align-with-title
                     background-color="transparent"
+                    v-model="tab"
             >
                 <v-tabs-slider color="primary"></v-tabs-slider>
 
-                <v-tab v-for="(item, index) in hotel_menu" :key="index">
+                <v-tab :key="index" v-for="(item, index) in hotel_menu">
                     {{ item }}
                 </v-tab>
                 <v-tab-item>
                     <v-row>
                         <v-col cols="3">
-                            <v-card flat outlined class="mb-5"  v-show="applied.length !== 0">
+                            <v-card class="mb-5" flat outlined>
                                 <v-layout class="pl-5 py-3 white--text bg_blue">
                                     <div>{{applied.length}} Filters Applied</div>
                                     <v-spacer></v-spacer>
                                     <v-btn
-                                            @click="applied = []"
+                                            @click="clearAll()"
                                             color="white" small text>
                                         <span class="caption">Clear All</span>
                                     </v-btn>
                                 </v-layout>
+                                <v-row class="mx-2" v-show="applied.date !== null">
+                                    <span>{{applied.date}}</span>
+                                    <v-spacer></v-spacer>
+                                    <v-btn @click="removeAppliedDatePiker()" color="red" icon small>
+                                        <v-icon>mdi-close</v-icon>
+                                    </v-btn>
+                                </v-row>
                                 <v-row
-                                        v-for="(item, index) in applied"
-                                        :key="index"
-                                        class="mx-2">
+                                        :key="index + item"
+                                        class="mx-2"
+                                        v-for="(item, index) in applied.dates">
                                     <span>{{item}}</span>
                                     <v-spacer></v-spacer>
-                                    <v-btn color="red" icon small @click="removeApplied(index)">
+                                    <v-btn @click="removeAppliedDates(index)" color="red" icon small>
+                                        <v-icon>mdi-close</v-icon>
+                                    </v-btn>
+                                </v-row>
+                                <v-row
+                                        :key="index + item"
+                                        class="mx-2"
+                                        v-for="(item, index) in applied.destinations">
+                                    <span>{{item}}</span>
+                                    <v-spacer></v-spacer>
+                                    <v-btn @click="removeAppliedDestinations(index)" color="red" icon small>
+                                        <v-icon>mdi-close</v-icon>
+                                    </v-btn>
+                                </v-row>
+                                <v-row
+                                        :key="index + item"
+                                        class="mx-2"
+                                        v-for="(item, index) in applied.type">
+                                    <span>{{item}}</span>
+                                    <v-spacer></v-spacer>
+                                    <v-btn @click="removeAppliedType(index)" color="red" icon small>
+                                        <v-icon>mdi-close</v-icon>
+                                    </v-btn>
+                                </v-row>
+                                <v-row
+                                        :key="index + item"
+                                        class="mx-2"
+                                        v-for="(item, index) in applied.price">
+                                    <span>{{item}}</span>
+                                    <v-spacer></v-spacer>
+                                    <v-btn @click="removeAppliedPrice(index)" color="red" icon small>
+                                        <v-icon>mdi-close</v-icon>
+                                    </v-btn>
+                                </v-row>
+                                <v-row
+                                        :key="index + item"
+                                        class="mx-2"
+                                        v-for="(item, index) in applied.duration">
+                                    <span>{{item}}</span>
+                                    <v-spacer></v-spacer>
+                                    <v-btn @click="removeAppliedDuration(index)" color="red" icon small>
+                                        <v-icon>mdi-close</v-icon>
+                                    </v-btn>
+                                </v-row>
+                                <v-row
+                                        :key="index + item"
+                                        class="mx-2"
+                                        v-for="(item, index) in applied.age">
+                                    <span>{{item}}</span>
+                                    <v-spacer></v-spacer>
+                                    <v-btn @click="removeAppliedAge(index)" color="red" icon small>
+                                        <v-icon>mdi-close</v-icon>
+                                    </v-btn>
+                                </v-row>
+                                <v-row
+                                        :key="index + item"
+                                        class="mx-2"
+                                        v-for="(item, index) in applied.operators">
+                                    <span>{{item}}</span>
+                                    <v-spacer></v-spacer>
+                                    <v-btn @click="removeAppliedOperators(index)" color="red" icon small>
+                                        <v-icon>mdi-close</v-icon>
+                                    </v-btn>
+                                </v-row>
+                                <v-row
+                                        :key="index + item"
+                                        class="mx-2"
+                                        v-for="(item, index) in applied.discounts">
+                                    <span>{{item}}</span>
+                                    <v-spacer></v-spacer>
+                                    <v-btn @click="removeAppliedDiscounts(index)" color="red" icon small>
                                         <v-icon>mdi-close</v-icon>
                                     </v-btn>
                                 </v-row>
@@ -78,45 +156,45 @@
                                     <v-expansion-panel-header
                                             class="text-uppercase  body-2 font-weight-bold"
                                     >
-                                        <span><v-icon left class="">mdi-calendar-today</v-icon>Departure Date</span>
+                                        <span><v-icon class="" left>mdi-calendar-today</v-icon>Departure Date</span>
                                     </v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <v-menu
-                                                ref="menu"
-                                                v-model="menuDate"
                                                 :close-on-content-click="false"
-                                                :return-value.sync="date"
-                                                transition="scale-transition"
-                                                offset-y
+                                                :return-value.sync="applied.date"
                                                 full-width
                                                 min-width="290px"
+                                                offset-y
+                                                ref="menu"
+                                                transition="scale-transition"
+                                                v-model="menuDate"
                                         >
                                             <template v-slot:activator="{ on }">
                                                 <v-text-field
-                                                        v-model="date"
-                                                        prepend-inner-icon="mdi-calendar-today"
-                                                        placeholder="Select specific date"
-                                                        readonly outlined
-                                                        hide-details
-                                                        v-on="on"
                                                         class="mt-3"
+                                                        hide-details
+                                                        outlined
+                                                        placeholder="Select specific date" prepend-inner-icon="mdi-calendar-today"
+                                                        readonly
+                                                        v-model="applied.date"
+                                                        v-on="on"
                                                 ></v-text-field>
                                             </template>
-                                            <v-date-picker v-model="date" no-title scrollable>
+                                            <v-date-picker no-title scrollable v-model="applied.date">
                                                 <div class="flex-grow-1"></div>
-                                                <v-btn text color="primary" @click="menuDate = false">Cancel</v-btn>
-                                                <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                                                <v-btn @click="menuDate = false" color="primary" text>Cancel</v-btn>
+                                                <v-btn @click="$refs.menu.save(applied.date)" color="primary" text>OK</v-btn>
                                             </v-date-picker>
                                         </v-menu>
 
                                         <v-checkbox
-                                                v-model="applied"
-                                                v-for="(item, index) in filters.date"
-                                                :key="index"
-                                                :label="item"
-                                                :value="item"
-                                                color="primary"
-                                                hide-details
+                                            :key="index"
+                                            :label="item"
+                                            :value="item"
+                                            color="primary"
+                                            hide-details
+                                            v-for="(item, index) in filters.date"
+                                            v-model="applied.dates"
                                         ></v-checkbox>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
@@ -128,13 +206,12 @@
                                     </v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <v-treeview
-                                                v-model="tree"
-                                                @input="filterDestinations($event)"
                                                 :items="filters.destinations"
                                                 :return-object="true"
-                                                selectable dense
-                                                selected-color="primary"
+                                                @input="filterDestinations($event)"
                                                 class="pa-0"
+                                                dense selectable
+                                                selected-color="primary"
                                         ></v-treeview>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
@@ -146,13 +223,13 @@
                                     </v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <v-checkbox
-                                                v-model="applied"
-                                                v-for="(item, index) in filters.type"
                                                 :key="index"
                                                 :label="item"
                                                 :value="item"
                                                 color="primary"
                                                 hide-details
+                                                v-for="(item, index) in filters.type"
+                                                v-model="applied.type"
                                         ></v-checkbox>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
@@ -162,36 +239,36 @@
                                     </v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <v-sparkline
+                                                :smooth="8 || false"
                                                 :value="filters.value"
                                                 color="#e0ecff"
-                                                :smooth="8 || false"
-                                                line-width="1"
                                                 fill
+                                                line-width="1"
                                                 type="trend"
                                         ></v-sparkline>
                                         <el-slider
-                                                v-model="filters.range"
-                                                :show-tooltip="false"
                                                 :max="2000"
-                                                range
+                                                :show-tooltip="false"
                                                 @change="filterRange()"
+                                                range
+                                                v-model="filters.price"
                                         >
                                         </el-slider>
                                         <v-row class="mb-4 justify-space-between">
-                                            <v-col cols="3" class="text-left pb-0">
+                                            <v-col class="text-left pb-0" cols="3">
                                                 <v-text-field
-                                                        v-model.number="filters.range[0]"
-                                                        label="MIN"
                                                         height="48"
                                                         hide-details
+                                                        label="MIN"
+                                                        v-model.number="filters.price[0]"
                                                 ></v-text-field>
                                             </v-col>
-                                            <v-col cols="3" class="text-right pb-0">
+                                            <v-col class="text-right pb-0" cols="3">
                                                 <v-text-field
-                                                        v-model="filters.range[1]"
-                                                        label="MAX"
                                                         height="48"
                                                         hide-details
+                                                        label="MAX"
+                                                        v-model="filters.price[1]"
                                                 ></v-text-field>
                                             </v-col>
                                         </v-row>
@@ -205,32 +282,32 @@
                                     </v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <el-slider
-                                                v-model="filters.duration"
-                                                @change="filterDuration()"
-                                                :show-tooltip="false"
                                                 :max="50"
                                                 :min="1"
+                                                :show-tooltip="false"
+                                                @change="filterDuration()"
                                                 range
+                                                v-model="filters.duration"
                                         >
                                         </el-slider>
                                         <v-row
                                                 class="mb-4"
                                                 justify="space-between"
                                         >
-                                            <v-col cols="3" class="text-left pb-0">
+                                            <v-col class="text-left pb-0" cols="3">
                                                 <v-text-field
-                                                        v-model.number="filters.duration[0]"
-                                                        label="MIN"
                                                         height="48"
                                                         hide-details
+                                                        label="MIN"
+                                                        v-model.number="filters.duration[0]"
                                                 ></v-text-field>
                                             </v-col>
-                                            <v-col cols="3" class="text-right pb-0">
+                                            <v-col class="text-right pb-0" cols="3">
                                                 <v-text-field
-                                                        v-model="filters.duration[1]"
-                                                        label="MAX"
                                                         height="48"
                                                         hide-details
+                                                        label="MAX"
+                                                        v-model="filters.duration[1]"
                                                 ></v-text-field>
                                             </v-col>
                                         </v-row>
@@ -240,17 +317,17 @@
                                     <v-expansion-panel-header
                                             class="text-uppercase body-2 font-weight-bold"
                                     >
-                                        <span><v-icon left>mdi-human-male</v-icon>Age Range</span>
+                                        <span><v-icon left>mdi-human-male</v-icon>Age price</span>
                                     </v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <v-checkbox
-                                                v-model="applied"
-                                                v-for="(item, index) in filters.age"
                                                 :key="index"
                                                 :label="item"
                                                 :value="item"
                                                 color="primary"
                                                 hide-details
+                                                v-for="(item, index) in filters.age"
+                                                v-model="applied.age"
                                         ></v-checkbox>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
@@ -262,24 +339,25 @@
                                     </v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <el-input
-                                                placeholder="Search Operators"
-                                                v-model="filters.inputOperators"
-                                                clearable
-                                                prefix-icon="el-icon-search"
                                                 class="mb-2"
+                                                clearable
+                                                placeholder="Search Operators"
+                                                prefix-icon="el-icon-search"
+                                                v-model="filters.inputOperators"
                                         >
                                         </el-input>
                                         <v-checkbox
-                                                v-model="applied"
-                                                v-for="(item, index) in filters.operators"
                                                 :key="index"
                                                 :label="item"
                                                 :value="item"
                                                 color="primary"
                                                 hide-details
+                                                v-for="(item, index) in filters.operators"
+                                                v-model="applied.operators"
                                         ></v-checkbox>
 
-                                        <v-btn dark color="rgb(83, 146, 249)" class="mt-3"><span class="caption">View All Spain Tour Operators</span></v-btn>
+                                        <v-btn class="mt-3" color="rgb(83, 146, 249)" dark><span class="caption">View All Spain Tour Operators</span>
+                                        </v-btn>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
                                 <v-expansion-panel>
@@ -290,44 +368,45 @@
                                     </v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <v-checkbox
-                                                v-model="applied"
-                                                v-for="(item, index) in filters.discounts"
                                                 :key="index"
                                                 :label="item"
                                                 :value="item"
                                                 color="primary"
                                                 hide-details
+                                                v-for="(item, index) in filters.discounts"
+                                                v-model="applied.discounts"
                                         ></v-checkbox>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
                             </v-expansion-panels>
                         </v-col>
                         <v-col cols="9">
-                            <v-hover  v-slot:default="{ hover }">
-                                <v-card outlined flat :elevation="hover ? 2 : 0" class="ticket">
+                            <v-hover v-slot:default="{ hover }">
+                                <v-card :elevation="hover ? 2 : 0" class="ticket" flat outlined>
                                     <v-row>
-                                        <v-col cols="4" class="py-0">
+                                        <v-col class="py-0" cols="4">
                                             <v-item-group v-model="selected">
                                                 <v-row>
-                                                    <v-col cols="12" class="py-0">
+                                                    <v-col class="py-0" cols="12">
                                                         <v-item v-slot:default="{ active, toggle }">
                                                             <v-img
                                                                     :src="$store.state.tourImages[0]"
-                                                                    lazy-src="../../../public/images/no-image.png"
-                                                                    height="200"
-                                                                    class="text-right pa-2"
                                                                     @click="toggle"
+                                                                    class="text-right pa-2"
+                                                                    height="200"
+                                                                    lazy-src="../../../public/images/no-image.png"
                                                             >
                                                                 <template v-slot:placeholder>
                                                                     <v-row
-                                                                            class="fill-height ma-0"
                                                                             align="center"
+                                                                            class="fill-height ma-0"
                                                                             justify="center"
                                                                     >
-                                                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                                        <v-progress-circular color="grey lighten-5"
+                                                                                             indeterminate></v-progress-circular>
                                                                     </v-row>
                                                                 </template>
-                                                                <v-btn icon dark>
+                                                                <v-btn dark icon>
                                                                     <v-icon>
                                                                         {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
                                                                     </v-icon>
@@ -337,77 +416,81 @@
                                                     </v-col>
                                                 </v-row>
                                                 <v-row>
-                                                    <v-col cols="6" class="py-0">
+                                                    <v-col class="py-0" cols="6">
                                                         <iframe
-                                                                height="102"
-                                                                width="160"
-                                                                id="gmap_canvas"
-                                                                src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed"
                                                                 frameborder="0"
-                                                                scrolling="no"
+                                                                height="102"
+                                                                id="gmap_canvas"
                                                                 marginheight="0"
                                                                 marginwidth="0"
+                                                                scrolling="no"
+                                                                src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                                                width="160"
                                                         ></iframe>
                                                     </v-col>
-                                                    <v-col cols="6" class="py-0">
-                                                        <v-menu open-on-hover top offset-y attach="menu">
+                                                    <v-col class="py-0" cols="6">
+                                                        <v-menu attach="tourImg" offset-y open-on-hover top>
                                                             <template v-slot:activator="{ on }">
                                                                 <v-item v-slot:default="{ active, toggle }">
-                                                                    <v-row class="px-3" id="menu">
+                                                                    <v-row class="px-3" id="tourImg">
                                                                         <v-col
+                                                                                :key="i"
+                                                                                class="pa-0 zoom border_white"
+                                                                                cols="6"
                                                                                 v-for="(item,i) in $store.state.tourImages"
                                                                                 v-if="i <= 3"
-                                                                                :key="i"
-                                                                                cols="6"
-                                                                                class="pa-0 zoom border_white"
                                                                         >
                                                                             <v-img
                                                                                     :src="item"
-                                                                                    lazy-src="../../../public/images/no-image.png"
-                                                                                    @mouseover="mouseImgOver(item)"
                                                                                     @mouseout="mouseImgOut(item)"
-                                                                                    height="50"
+                                                                                    @mouseover="mouseImgOver(item)"
                                                                                     class="text-right pa-2"
+                                                                                    height="50"
+                                                                                    lazy-src="../../../public/images/no-image.png"
                                                                                     v-on="on"
                                                                             >
                                                                                 <template v-slot:placeholder>
                                                                                     <v-row
-                                                                                            class="fill-height ma-0"
                                                                                             align="center"
+                                                                                            class="fill-height ma-0"
                                                                                             justify="center"
                                                                                     >
-                                                                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                                                        <v-progress-circular
+                                                                                                color="grey lighten-5"
+                                                                                                indeterminate></v-progress-circular>
                                                                                     </v-row>
                                                                                 </template>
                                                                             </v-img>
                                                                         </v-col>
                                                                         <v-col
-                                                                                cols="6"
-                                                                                class="pa-0 pointer border_white"
                                                                                 @click.stop="dialog = true"
+                                                                                class="pa-0 pointer border_white"
+                                                                                cols="6"
                                                                         >
                                                                             <v-img
-                                                                                    src="https://d3hne3c382ip58.cloudfront.net/resized/750x420/segovia-half-day-tour-from-madrid-tour-2-463756_1549280496.JPG"
-                                                                                    lazy-src="../../../public/images/no-image.png"
-                                                                                    height="50"
-                                                                                    class="text-right pa-2"
                                                                                     @mouseover="menu.src = 'https://d3hne3c382ip58.cloudfront.net/resized/750x420/segovia-half-day-tour-from-madrid-tour-2-463756_1549280496.JPG'"
+                                                                                    class="text-right pa-2"
+                                                                                    height="50"
+                                                                                    lazy-src="../../../public/images/no-image.png"
+                                                                                    src="https://d3hne3c382ip58.cloudfront.net/resized/750x420/segovia-half-day-tour-from-madrid-tour-2-463756_1549280496.JPG"
                                                                                     v-on="on"
                                                                             >
                                                                                 <template v-slot:placeholder>
                                                                                     <v-row
-                                                                                            class="fill-height ma-0"
                                                                                             align="center"
+                                                                                            class="fill-height ma-0"
                                                                                             justify="center"
                                                                                     >
-                                                                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                                                        <v-progress-circular
+                                                                                                color="grey lighten-5"
+                                                                                                indeterminate></v-progress-circular>
                                                                                     </v-row>
                                                                                 </template>
                                                                                 <v-overlay
                                                                                         absolute
+                                                                                        class="caption"
                                                                                         color="black"
                                                                                         opacity="0.8"
-                                                                                        class="caption"
                                                                                 >
                                                                                     See All
                                                                                 </v-overlay>
@@ -418,18 +501,19 @@
                                                             </template>
                                                             <v-img
                                                                     :src="menu.src"
-                                                                    lazy-src="../../../public/images/no-image.png"
-                                                                    height="350"
-                                                                    width="350"
                                                                     class="text-right pa-2"
+                                                                    height="350"
+                                                                    lazy-src="../../../public/images/no-image.png"
+                                                                    width="350"
                                                             >
                                                                 <template v-slot:placeholder>
                                                                     <v-row
-                                                                            class="fill-height ma-0"
                                                                             align="center"
+                                                                            class="fill-height ma-0"
                                                                             justify="center"
                                                                     >
-                                                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                                        <v-progress-circular color="grey lighten-5"
+                                                                                             indeterminate></v-progress-circular>
                                                                     </v-row>
                                                                 </template>
                                                             </v-img>
@@ -439,32 +523,34 @@
                                             </v-item-group>
                                         </v-col>
                                         <v-col class="pa-0">
-<!--                                            <router-link class="link text&#45;&#45;black" :to="{name:'Hotel'}">-->
-                                                <span class="link black_text text--black title mt-3">Gibraltar Sightseeing Tour From Malaga</span>
-<!--                                            </router-link>-->
+                                            <!--                                            <router-link class="link text&#45;&#45;black" :to="{name:'Hotel'}">-->
+                                            <span class="link black_text text--black title mt-3">Gibraltar Sightseeing Tour From Malaga</span>
+                                            <!--                                            </router-link>-->
 
                                             <v-tooltip color="black" top>
                                                 <template v-slot:activator="{ on }">
                                                     <v-chip-group
-                                                            column
                                                             active-class="primary--text"
+                                                            column
                                                     >
                                                         <v-chip
+                                                                class="my-0"
+                                                                color="black"
                                                                 label
                                                                 outlined
-                                                                color="black"
                                                                 small
-                                                                class="my-0"
                                                                 v-on="on"
-                                                        >Free cancellation</v-chip>
+                                                        >Free cancellation
+                                                        </v-chip>
                                                         <v-chip
+                                                                class="my-0"
+                                                                color="black"
                                                                 label
                                                                 outlined
-                                                                color="black"
                                                                 small
-                                                                class="my-0"
                                                                 v-on="on"
-                                                        >Best price guaranteed</v-chip>
+                                                        >Best price guaranteed
+                                                        </v-chip>
                                                     </v-chip-group>
                                                 </template>
                                                 <v-layout>
@@ -475,10 +561,10 @@
                                             </v-tooltip>
                                             <p class="reserve mb-0">
                                                 <v-chip
-                                                        color="red  accent-4"
-                                                        text-color="white"
                                                         class="my-1 font-weight-bold"
-                                                        small label
+                                                        color="red  accent-4"
+                                                        label
+                                                        small text-color="white"
                                                 >
                                                     Popular!
                                                 </v-chip>
@@ -486,50 +572,58 @@
                                             </p>
                                             <p class="coupon mb-0">
                                                 <v-chip
-                                                        color="#d8eed5"
-                                                        text-color="success"
                                                         class="my-1 font-weight-bold"
-                                                        small label outlined
-                                                        style="border: 2px dotted #4caf50; background-color: #d8eed5 !important;"
+                                                        color="#d8eed5"
+                                                        label
+                                                        outlined small style="border: 2px dotted #4caf50; background-color: #d8eed5 !important;"
+                                                        text-color="success"
                                                 >
                                                     WEEKENDSALE
                                                 </v-chip>
                                                 Coupon Code WEEKENDSALE applied - $ 21 off!
                                             </p>
                                             <v-row>
-                                               <v-col cols="6" class="py-0">
-                                                   <v-tooltip color="black" top>
-                                                       <template v-slot:activator="{ on }">
-                                                           <v-chip
-                                                                   label
-                                                                   outlined
-                                                                   color="black"
-                                                                   small
-                                                                   class="my-0"
-                                                                   v-on="on"
-                                                           >Instant Booking</v-chip>
-                                                       </template>
-                                                       <v-layout>
-                                                           <v-col class="mr-2 text-center">
-                                                               <span class="font-weight-bold">Instant Booking</span><br>
-                                                               Secure your space instantly<br>
-                                                               without needing to wait for<br>
-                                                               operator’s approval<br>
-                                                           </v-col>
-                                                       </v-layout>
-                                                   </v-tooltip>
-                                               </v-col>
-                                                <v-col cols="6" class="py-0">
-                                                    <v-tooltip color="black" class="ml-3" top>
+                                                <v-col class="py-0" cols="5">
+                                                    <v-tooltip color="black" top>
                                                         <template v-slot:activator="{ on }">
-                                                            <v-chip
+                                                            <span class="caption pointer" v-on="on">
+                                                                <v-icon color="#5392f9" left small>mdi-flash</v-icon>
+                                                                Instant Booking
+                                                            </span>
+                                                            <!--<v-chip
                                                                     label
                                                                     outlined
                                                                     color="black"
                                                                     small
                                                                     class="my-0"
                                                                     v-on="on"
-                                                            >Instant Booking</v-chip>
+                                                            >Instant Booking</v-chip>-->
+                                                        </template>
+                                                        <v-layout>
+                                                            <v-col class="mr-2 text-center">
+                                                                <span class="font-weight-bold">Instant Booking</span><br>
+                                                                Secure your space instantly<br>
+                                                                without needing to wait for<br>
+                                                                operator’s approval<br>
+                                                            </v-col>
+                                                        </v-layout>
+                                                    </v-tooltip>
+                                                </v-col>
+                                                <v-col class="py-0" cols="7">
+                                                    <v-tooltip class="ml-3" color="black" top>
+                                                        <template v-slot:activator="{ on }">
+                                                            <v-chip
+                                                                    class="my-0"
+                                                                    color="#5392f9"
+                                                                    label
+                                                                    outlined
+                                                                    small
+                                                                    v-on="on"
+                                                            >
+                                                                <v-icon color="#5392f9" left small>mdi-check-circle
+                                                                </v-icon>
+                                                                Instant Booking
+                                                            </v-chip>
                                                         </template>
                                                         <v-layout>
                                                             <v-col class="mr-2 text-center">
@@ -545,20 +639,28 @@
                                             </v-row>
                                             <v-divider class="my-2"></v-divider>
                                             <v-row>
-                                                <v-col cols="6" class="grey--text overline py-0">
-                                                    <div class="mb-1">DESTINATIONS</div>
+                                                <v-col class="grey--text overline py-0" cols="5">
+                                                    <span>DESTINATIONS</span>
+                                                </v-col>
+                                                <v-col class="caption py-0" cols="7">
+                                                    <div>
+                                                        Rome, Orvieto, Venice
+                                                        <span @click="showMore = true" class="blue_text pointer"
+                                                              v-show="!showMore">+7 more</span>
+                                                        <span v-show="showMore">, Lake Garda, Florence, Tuscany, Pisa, Cinque Terra, San Gimignano, Siena</span>
+                                                    </div>
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <v-col class="grey--text overline py-0" cols="5">
                                                     <div class="mb-1">STARTS/ ENDS IN</div>
-                                                    <div class="mb-1">AGE RANGE</div>
+                                                    <div class="mb-1">AGE price</div>
                                                     <div class="mb-1">ACCOMMODATION</div>
                                                     <div class="mb-1">TRANSPORT</div>
                                                     <div class="mb-1">TRAVEL STYLE</div>
                                                     <div class="mb-1">OPERATOR</div>
                                                 </v-col>
-                                                <v-col cols="6" class="caption py-0">
-                                                    <div>
-                                                        Rome, Orvieto, Venice
-                                                        <span class="blue_text">+7 more</span>
-                                                    </div>
+                                                <v-col class="caption py-0" cols="7">
                                                     <div>Rome / Rome</div>
                                                     <div>10 to 90 year olds</div>
                                                     <div>Hotel</div>
@@ -569,23 +671,23 @@
                                             </v-row>
                                         </v-col>
                                         <v-divider class="mx-3 my-0" inset vertical></v-divider>
-                                        <v-col cols="3" class="py-0">
-                                            <v-layout column justify-end fill-height text-right>
+                                        <v-col class="py-0" cols="3">
+                                            <v-layout column fill-height justify-end text-right>
                                                 <v-spacer></v-spacer>
                                                 <v-col>
                                                     <v-chip
-                                                            color="red  accent-4"
-                                                            text-color="white"
                                                             class="my-1 font-weight-bold"
-                                                            small label
+                                                            color="red  accent-4"
+                                                            label
+                                                            small text-color="white"
                                                     >
                                                         ONLY 2 LEFT
                                                     </v-chip>
                                                     <v-chip
-                                                            color="#d8eed5"
-                                                            text-color="#28871c"
                                                             class="my-0 font-weight-bold"
-                                                            small label
+                                                            color="#d8eed5"
+                                                            label
+                                                            small text-color="#28871c"
                                                     >
                                                         <v-avatar left>
                                                             <v-icon ma-0 x-small>mdi-arrow-bottom-right</v-icon>
@@ -593,30 +695,31 @@
                                                         <span class="caption">Save US $ 3</span>
                                                     </v-chip>
                                                     <div class="title past_price font-weight-bold">372</div>
-                                                    <div class="title price gray font-weight-bold">$ <span>238</span></div>
+                                                    <div class="title price gray font-weight-bold">$ <span>238</span>
+                                                    </div>
                                                     <v-tooltip color="black" top>
                                                         <template v-slot:activator="{ on }">
                                                             <v-chip
-                                                                        label
-                                                                        outlined
-                                                                        color="#dde9fd"
-                                                                        text-color="#396fc6"
-                                                                        small
-                                                                        class="my-0"
-                                                                        v-on="on"
-                                                                ><span class="green_text">Next Departures</span></v-chip>
+                                                                    class="my-0"
+                                                                    color="#dde9fd"
+                                                                    label
+                                                                    outlined
+                                                                    small
+                                                                    text-color="#396fc6"
+                                                                    v-on="on"
+                                                            ><span class="green_text">Next Departures</span></v-chip>
                                                         </template>
-                                                        <v-layout column class="body-2">
+                                                        <v-layout class="body-2" column>
                                                             <span>Next Departures:</span>
-                                                            <span class="mr-4"><v-icon color="#396fc6" samll dark>mdi-clock-outline</v-icon>Sep 21</span>
-                                                            <span class="mr-4"><v-icon color="#396fc6" samll dark>mdi-clock-outline</v-icon>Sep 22</span>
+                                                            <span class="mr-4"><v-icon color="#396fc6" dark samll>mdi-clock-outline</v-icon>Sep 21</span>
+                                                            <span class="mr-4"><v-icon color="#396fc6" dark samll>mdi-clock-outline</v-icon>Sep 22</span>
                                                         </v-layout>
                                                     </v-tooltip>
                                                     <v-chip
-                                                            color="red  accent-4"
-                                                            text-color="white"
                                                             class="my-1 font-weight-bold text-uppercase"
-                                                            small label
+                                                            color="red  accent-4"
+                                                            label
+                                                            small text-color="white"
                                                     >
                                                         Make your offer
                                                     </v-chip>
@@ -625,46 +728,47 @@
                                         </v-col>
                                     </v-row>
                                     <v-dialog
-                                            v-model="dialog"
-                                            max-width="950"
                                             dark
+                                            max-width="950"
+                                            v-model="dialog"
                                     >
                                         <v-card color="black">
                                             <v-layout>
-                                                <v-flex lg7 md7 sm7 pa-5>
-                                                    <v-carousel v-model="model" hide-delimiters height="400">
+                                                <v-flex lg7 md7 pa-5 sm7>
+                                                    <v-carousel height="400" hide-delimiters v-model="model">
                                                         <v-carousel-item
-                                                                v-for="(item, index) in $store.state.tourImages"
                                                                 :key="index"
                                                                 :src="item"
+                                                                v-for="(item, index) in $store.state.tourImages"
                                                         ></v-carousel-item>
                                                     </v-carousel>
                                                     <v-slide-group
-                                                            v-model="model"
                                                             active-class="success"
-                                                            show-arrows
                                                             class="modal_slide"
+                                                            show-arrows
+                                                            v-model="model"
                                                     >
                                                         <v-slide-item
-                                                                v-for="(item, index) in $store.state.tourImages"
                                                                 :key="index"
+                                                                v-for="(item, index) in $store.state.tourImages"
                                                                 v-slot:default="{ active, toggle }"
                                                         >
                                                             <v-img
-                                                                    :src="item"
-                                                                    lazy-src="../../../public/images/no-image.png"
-                                                                    height="60"
-                                                                    width="85"
-                                                                    @click="toggle"
                                                                     :class="active ? 'text-right active_class ma-1' : 'text-right ma-1'"
+                                                                    :src="item"
+                                                                    @click="toggle"
+                                                                    height="60"
+                                                                    lazy-src="../../../public/images/no-image.png"
+                                                                    width="85"
                                                             >
                                                                 <template v-slot:placeholder>
                                                                     <v-row
-                                                                            class="fill-height ma-0"
                                                                             align="center"
+                                                                            class="fill-height ma-0"
                                                                             justify="center"
                                                                     >
-                                                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                                                        <v-progress-circular color="grey lighten-5"
+                                                                                             indeterminate></v-progress-circular>
                                                                     </v-row>
                                                                 </template>
                                                             </v-img>
@@ -672,34 +776,59 @@
                                                     </v-slide-group>
                                                 </v-flex>
                                                 <v-divider vertical></v-divider>
-                                                <v-flex lg5 md5 sm5 pa-5>
-                                                    <v-layout column justify-space-between fill-height>
+                                                <v-flex lg5 md5 pa-5 sm5>
+                                                    <v-layout column fill-height justify-space-between>
                                                         <v-flex class="modal_text">
                                                             <v-row class="d-flex justify-space-between">
                                                                 <p class="font-weight-bold pl-3">Property overview</p>
-                                                                <v-btn fab text right @click="dialog = !dialog">
+                                                                <v-btn @click="dialog = !dialog" fab right text>
                                                                     <v-icon>mdi-close</v-icon>
                                                                 </v-btn>
                                                             </v-row>
-                                                            <p class="caption"><v-icon class="pr-1" small color="green darken-1">mdi-wifi</v-icon>Free Wi-Fi in all rooms!</p>
-                                                            <p class="caption"><v-icon class="pr-1" small color="green darken-1">mdi-air-conditioner</v-icon>Air conditioning</p>
-                                                            <p class="caption"><v-icon class="pr-1" small color="green darken-1">mdi-broom</v-icon>Daily housekeeping</p>
-                                                            <p class="caption"><v-icon class="pr-1" small color="green darken-1">mdi-glass-wine</v-icon>Bar</p>
+                                                            <p class="caption">
+                                                                <v-icon class="pr-1" color="green darken-1" small>
+                                                                    mdi-wifi
+                                                                </v-icon>
+                                                                Free Wi-Fi in all rooms!
+                                                            </p>
+                                                            <p class="caption">
+                                                                <v-icon class="pr-1" color="green darken-1" small>
+                                                                    mdi-air-conditioner
+                                                                </v-icon>
+                                                                Air conditioning
+                                                            </p>
+                                                            <p class="caption">
+                                                                <v-icon class="pr-1" color="green darken-1" small>
+                                                                    mdi-broom
+                                                                </v-icon>
+                                                                Daily housekeeping
+                                                            </p>
+                                                            <p class="caption">
+                                                                <v-icon class="pr-1" color="green darken-1" small>
+                                                                    mdi-glass-wine
+                                                                </v-icon>
+                                                                Bar
+                                                            </p>
                                                             <p class="font-weight-bold">Nearby Attraction</p>
-                                                            <div class="caption">La Pedrera Casa Mila<span class="float-right">1.23 km</span></div>
-                                                            <div class="caption">Casa Batllo<span class="float-right">1.55 km</span></div>
-                                                            <div class="caption">Camp Nou<span class="float-right">2.39 km</span></div>
-                                                            <div class="caption">Parc Guell<span class="float-right">2.41 km</span></div>
-                                                            <p class="font-weight-bold">Dining, drinking and snacking</p>
+                                                            <div class="caption">La Pedrera Casa Mila<span
+                                                                    class="float-right">1.23 km</span></div>
+                                                            <div class="caption">Casa Batllo<span class="float-right">1.55 km</span>
+                                                            </div>
+                                                            <div class="caption">Camp Nou<span class="float-right">2.39 km</span>
+                                                            </div>
+                                                            <div class="caption">Parc Guell<span class="float-right">2.41 km</span>
+                                                            </div>
+                                                            <p class="font-weight-bold">Dining, drinking and
+                                                                snacking</p>
                                                             <p class="caption">Coffee/tea maker</p>
                                                             <p class="caption">Mini bar</p>
                                                         </v-flex>
                                                         <v-flex>
                                                             <v-layout class="justify-center fill-height align-end">
                                                                 <v-btn
-                                                                        color="#5392f9"
-                                                                        large bottom
-                                                                        class="font-weight-bold align-center"
+                                                                        bottom
+                                                                        class="font-weight-bold align-center" color="#5392f9"
+                                                                        large
                                                                 >
                                                                     View property
                                                                 </v-btn>
@@ -723,13 +852,23 @@
 <script>
   export default {
     name: 'Tours',
-    data(){
+    data() {
       return {
-        hotel_menu: ['Rooms','Facilities','Children and extra beds','Reviews','Map','Check-in'],
+        showMore: false,
+        hotel_menu: ['Rooms', 'Facilities', 'Children and extra beds', 'Reviews', 'Map', 'Check-in'],
         tab: null,
-        date: null,
         menuDate: false,
-        applied: [],
+        applied: {
+          date: null,
+          dates: [],
+          destinations: [],
+          type: [],
+          price: [],
+          duration: [],
+          age: [],
+          operators: [],
+          discounts: [],
+        },
         tree: [],
         filters: {
           date: ['Sep 2019', 'Oct 2019', 'Nov 2019', 'Dec 2019', 'Jan 2020', 'Feb 2020', 'Mar 2020'],
@@ -738,25 +877,25 @@
               id: 1,
               name: 'Madrid',
               children: [
-                { id: 2, name: 'Segovia' },
-                { id: 3, name: 'Cadalso De Los Vidrios' },
+                {id: 2, name: 'Segovia'},
+                {id: 3, name: 'Cadalso De Los Vidrios'},
               ],
             },
             {
               id: 4,
               name: 'Andalucia',
               children: [
-                { id: 5, name: 'Seville' },
-                { id: 6, name: 'Malaga' },
-                { id: 7, name: 'Ronda' },
-                { id: 8, name: 'Granada' },
-                { id: 9, name: 'Cordoba' },
-                { id: 10, name: 'Gibraltar' },
-                { id: 11, name: 'Sierra Nevada' },
-                { id: 12, name: 'Costa del Sol' },
-                { id: 13, name: 'Cadiz' },
-                { id: 14, name: 'Algamitas' },
-                { id: 15, name: 'Aracena' },
+                {id: 5, name: 'Seville'},
+                {id: 6, name: 'Malaga'},
+                {id: 7, name: 'Ronda'},
+                {id: 8, name: 'Granada'},
+                {id: 9, name: 'Cordoba'},
+                {id: 10, name: 'Gibraltar'},
+                {id: 11, name: 'Sierra Nevada'},
+                {id: 12, name: 'Costa del Sol'},
+                {id: 13, name: 'Cadiz'},
+                {id: 14, name: 'Algamitas'},
+                {id: 15, name: 'Aracena'},
               ],
             },
             {
@@ -767,27 +906,27 @@
               id: 17,
               name: 'Basque Country & Navarre',
               children: [
-                { id: 19, name: 'San Sebastian' },
-                { id: 20, name: 'Bilbao' },
-                { id: 21, name: 'Las Arenas' },
+                {id: 19, name: 'San Sebastian'},
+                {id: 20, name: 'Bilbao'},
+                {id: 21, name: 'Las Arenas'},
               ],
             },
             {
               id: 22,
               name: 'Castilla-La Mancha',
               children: [
-                { id: 23, name: 'Toledo' },
+                {id: 23, name: 'Toledo'},
               ],
             },
           ],
           type: ['Day Tours', 'Multiday Tours'],
-          range: [0, 2000],
+          price: [0, 2000],
           value: [0, 0, 0, 9, 5, 10, 3, 5, 0, 0, 1, 8, 0, 0, 0],
           duration: [1, 50],
-          age: ['18 - 40 yrs', '40+ yrs', '50+ yrs', '60+ yrs', '70+ yrs', 'Family',],
-          operators: ['Exodus Travels', 'Urban Adventures', 'Utracks', 'Intrepid Travel', '70+ yrs', 'VPT Tours',],
+          age: ['18 - 40 yrs', '40+ yrs', '50+ yrs', '60+ yrs', '70+ yrs', 'Family'],
+          operators: ['Exodus Travels', 'Urban Adventures', 'Utracks', 'Intrepid Travel', '70+ yrs', 'VPT Tours'],
           inputOperators: '',
-          discounts: ['Discounted Tours', 'Last Minute Deals',],
+          discounts: ['Discounted Tours', 'Last Minute Deals'],
         },
         selected: null,
         dialog: false,
@@ -795,63 +934,104 @@
         tag: 0,
         menu: {
           src: '',
-        }
-      }
+        },
+      };
     },
-    computed: {},
-    watch: {
-      menuDate(show) {
-        if (!show) this.applied.push(this.date);
-      },
-      /*'filters.range'(value) {
-          if(value[0] !== 0 && value[1] !== 2000)
-            this.applied.push(`Price: ${value[0]} - ${value[1]} US $`);
-        },*/
-      applied(newVal, oldVal){
-        console.log(newVal, oldVal);
-      }
+    computed: {
+
     },
+    watch: {},
     methods: {
-      removeApplied(index){
-        this.applied.splice(index, 1);
+      clearAll() {
+        this.applied = {
+          date: null,
+          dates: [],
+          destinations: [],
+          type: [],
+          price: [],
+          duration: [],
+          age: [],
+          operators: [],
+          discounts: [],
+        };
+        this.filters.price = [0, 2000];
+        this.filters.duration = [1, 50];
       },
-      filterRange(){
-        if(this.filters.range[0] !== 0 || this.filters.range[1] !== 2000)
-            this.applied.push(`Price: ${this.filters.range[0]} - ${this.filters.range[1]} US $`);
+      removeAppliedDatePiker() {
+        this.applied.date = null;
       },
-      filterDuration(){
-        if(this.filters.duration[0] !== 1 || this.filters.duration[1] !== 50)
-            this.applied.push(`Duration: ${this.filters.duration[0]} - ${this.filters.duration[1]} days`);
+      removeAppliedDates(index) {
+        this.applied.dates.splice(index, 1);
       },
-      filterDestinations(event){
-        for(let item of event){
-          this.applied.push(item.name);
+      removeAppliedDestinations(index) {
+        this.applied.destinations.splice(index, 1);
+      },
+      removeAppliedType(index) {
+        this.applied.type.splice(index, 1);
+      },
+      removeAppliedPrice(index) {
+        this.applied.price.splice(index, 1);
+        this.filters.price = [0, 2000];
+      },
+      removeAppliedDuration(index) {
+        this.applied.duration.splice(index, 1);
+        this.filters.duration = [1, 50];
+      },
+      removeAppliedAge(index) {
+        this.applied.age.splice(index, 1);
+      },
+      removeAppliedOperators(index) {
+        this.applied.operators.splice(index, 1);
+      },
+      removeAppliedDiscounts(index) {
+        this.applied.discounts.splice(index, 1);
+      },
+
+      filterRange() {
+        if (this.filters.price[0] !== 0 || this.filters.price[1] !== 2000)
+          this.applied.price.pop();
+          this.applied.price.push(`Price: ${this.filters.price[0]} - ${this.filters.price[1]} US $`);
+      },
+      filterDuration() {
+        if (this.filters.duration[0] !== 1 || this.filters.duration[1] !== 50)
+          this.applied.duration.pop();
+          this.applied.duration.push(`Duration: ${this.filters.duration[0]} - ${this.filters.duration[1]} days`);
+      },
+      filterDestinations(event) {
+        for (let item of event) {
+          this.applied.destinations.push(item.name);
         }
       },
-      mouseImgOver(item){
+
+      mouseImgOver(item) {
         this.menu.src = item;
       },
-      mouseImgOut(){
-        this.menu.src = ''
-      }
+      mouseImgOut() {
+        this.menu.src = '';
+      },
     },
-    created(){
+    created() {
       // console.log(this.filters.destinations[0].children);
-    }
+    },
   };
 </script>
 
 <style>
-    .d_contents{
+    .d_contents {
         display: contents;
     }
-    .bg_blue{
+
+    .bg_blue {
         background-color: #5392f9;
     }
-    .blue_text{
+
+    .blue_text {
         color: #5392f9;
     }
-    .el-slider__runway{
+    .pointer{
+        cursor: pointer !important;
+    }
+    .el-slider__runway {
         margin: 0 !important;
         top: -8px;
     }

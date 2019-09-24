@@ -47,9 +47,9 @@
                 <v-tab-item>
                     <v-row>
                         <v-col cols="3">
-                            <v-card class="mb-5" flat outlined>
+                            <v-card v-show="showApplied" class="mb-5" flat outlined>
                                 <v-layout class="pl-5 py-3 white--text bg_blue">
-                                    <div>{{applied.length}} Filters Applied</div>
+                                    <div>{{filtersCount}} Filters Applied</div>
                                     <v-spacer></v-spacer>
                                     <v-btn
                                             @click="clearAll()"
@@ -146,7 +146,7 @@
                                 </v-row>
                             </v-card>
 
-                            <v-expansion-panels accordion multiple>
+                            <v-expansion-panels accordion multiple :value="[1,2,3,4,5,6,7,8]">
                                 <v-expansion-panel readonly>
                                     <v-expansion-panel-header hide-actions>
                                         <span class="title">Filter by</span>
@@ -385,37 +385,33 @@
                                 <v-card :elevation="hover ? 2 : 0" class="ticket" flat outlined>
                                     <v-row>
                                         <v-col class="py-0" cols="4">
-                                            <v-item-group v-model="selected">
-                                                <v-row>
-                                                    <v-col class="py-0" cols="12">
-                                                        <v-item v-slot:default="{ active, toggle }">
-                                                            <v-img
-                                                                    :src="$store.state.tourImages[0]"
-                                                                    @click="toggle"
-                                                                    class="text-right pa-2"
-                                                                    height="200"
-                                                                    lazy-src="../../../public/images/no-image.png"
+                                            <v-row>
+                                                <v-col class="py-0" cols="12">
+                                                    <v-img
+                                                            :src="$store.state.tourImages[0]"
+                                                            class="text-right pa-2"
+                                                            height="200"
+                                                            lazy-src="../../../public/images/no-image.png"
+                                                    >
+                                                        <template v-slot:placeholder>
+                                                            <v-row
+                                                                    align="center"
+                                                                    class="fill-height ma-0"
+                                                                    justify="center"
                                                             >
-                                                                <template v-slot:placeholder>
-                                                                    <v-row
-                                                                            align="center"
-                                                                            class="fill-height ma-0"
-                                                                            justify="center"
-                                                                    >
-                                                                        <v-progress-circular color="grey lighten-5"
-                                                                                             indeterminate></v-progress-circular>
-                                                                    </v-row>
-                                                                </template>
-                                                                <v-btn dark icon>
-                                                                    <v-icon>
-                                                                        {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
-                                                                    </v-icon>
-                                                                </v-btn>
-                                                            </v-img>
-                                                        </v-item>
-                                                    </v-col>
-                                                </v-row>
-                                                <v-row>
+                                                                <v-progress-circular color="grey lighten-5"
+                                                                                     indeterminate></v-progress-circular>
+                                                            </v-row>
+                                                        </template>
+                                                        <v-btn dark icon @click="likeTour  = !likeTour">
+                                                            <v-icon>
+                                                                {{ likeTour ? 'mdi-heart' : 'mdi-heart-outline' }}
+                                                            </v-icon>
+                                                        </v-btn>
+                                                    </v-img>
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
                                                     <v-col class="py-0" cols="6">
                                                         <iframe
                                                                 frameborder="0"
@@ -431,7 +427,6 @@
                                                     <v-col class="py-0" cols="6">
                                                         <v-menu attach="tourImg" offset-y open-on-hover top>
                                                             <template v-slot:activator="{ on }">
-                                                                <v-item v-slot:default="{ active, toggle }">
                                                                     <v-row class="px-3" id="tourImg">
                                                                         <v-col
                                                                                 :key="i"
@@ -497,7 +492,6 @@
                                                                             </v-img>
                                                                         </v-col>
                                                                     </v-row>
-                                                                </v-item>
                                                             </template>
                                                             <v-img
                                                                     :src="menu.src"
@@ -520,7 +514,6 @@
                                                         </v-menu>
                                                     </v-col>
                                                 </v-row>
-                                            </v-item-group>
                                         </v-col>
                                         <v-col class="pa-0">
                                             <!--                                            <router-link class="link text&#45;&#45;black" :to="{name:'Hotel'}">-->
@@ -854,7 +847,6 @@
     name: 'Tours',
     data() {
       return {
-        showMore: false,
         hotel_menu: ['Rooms', 'Facilities', 'Children and extra beds', 'Reviews', 'Map', 'Check-in'],
         tab: null,
         menuDate: false,
@@ -869,7 +861,6 @@
           operators: [],
           discounts: [],
         },
-        tree: [],
         filters: {
           date: ['Sep 2019', 'Oct 2019', 'Nov 2019', 'Dec 2019', 'Jan 2020', 'Feb 2020', 'Mar 2020'],
           destinations: [
@@ -928,7 +919,8 @@
           inputOperators: '',
           discounts: ['Discounted Tours', 'Last Minute Deals'],
         },
-        selected: null,
+        showMore: false,
+        likeTour: false,
         dialog: false,
         model: 0,
         tag: 0,
@@ -938,9 +930,26 @@
       };
     },
     computed: {
-
+      filtersCount() {
+        let count = this.applied.dates.length + this.applied.destinations.length + this.applied.type.length +
+            this.applied.price.length + this.applied.duration.length + this.applied.age.length +
+            this.applied.operators.length + this.applied.discounts.length;
+        if (this.applied.date !== null) count += 1;
+        return count;
+      },
+      showApplied() {
+        return !(this.filtersCount === 0);
+      },
     },
-    watch: {},
+    watch: {
+     /* applied: {
+        handler(val, oldVal){
+          console.log(val === oldVal);
+          // if(val) this.showApplied = true;
+        },
+        deep: true
+      },*/
+    },
     methods: {
       clearAll() {
         this.applied = {
@@ -961,6 +970,7 @@
         this.applied.date = null;
       },
       removeAppliedDates(index) {
+        console.log(this.applied);
         this.applied.dates.splice(index, 1);
       },
       removeAppliedDestinations(index) {
@@ -998,6 +1008,7 @@
           this.applied.duration.push(`Duration: ${this.filters.duration[0]} - ${this.filters.duration[1]} days`);
       },
       filterDestinations(event) {
+        this.applied.destinations = [];
         for (let item of event) {
           this.applied.destinations.push(item.name);
         }

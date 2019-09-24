@@ -3,26 +3,20 @@
         <v-card outlined flat :elevation="hover ? 2 : 0" class=" ticket">
             <v-row>
                 <v-col cols="4" class="py-0">
-                    <v-item-group v-model="selected">
-                        <v-row>
-                            <v-col cols="12" class="py-0">
-                                <v-item v-slot:default="{ active, toggle }">
-                                    <v-img
-                                            src="//pix5.agoda.net/hotelImages/566538/-1/20e5402f389a16d5f2a997c4e95e8679.jpg?s=450x450"
-                                            lazy-src="../../../public/images/no-image.png"
-                                            height="250"
-                                            class="text-right pa-2"
-                                            @click="toggle"
+                    <v-row>
+                        <v-col cols="12" class="py-0">
+                            <v-img
+                                    src="//pix5.agoda.net/hotelImages/566538/-1/20e5402f389a16d5f2a997c4e95e8679.jpg?s=450x450"
+                                    lazy-src="../../../public/images/no-image.png"
+                                    height="250"
+                                    class="text-right pa-2"
+                            >
+                                <template v-slot:placeholder>
+                                    <v-row
+                                            class="fill-height ma-0"
+                                            align="center"
+                                            justify="center"
                                     >
-                                        <template v-slot:placeholder>
-                                            <v-row
-                                                    class="fill-height ma-0"
-                                                    align="center"
-                                                    justify="center"
-                                            >
-                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                            </v-row>
-                                        </template>
                                         <v-btn icon dark>
                                             <v-icon>
                                                 {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
@@ -37,7 +31,7 @@
                                 <v-item v-slot:default="{ active, toggle }">
                                     <v-row class="px-3" id="menu">
                                         <v-col
-                                                v-for="(item,i) in $store.state.images[0]"
+                                                v-for="(item,i) in images[0]"
                                                 v-if="i <= 10"
                                                 :key="i"
                                                 cols="2"
@@ -46,23 +40,12 @@
                                         >
                                             <v-img
                                                     :src="item"
-                                                    lazy-src="../../../public/images/no-image.png"
                                                     @mouseover="mouseImgOver(item)"
                                                     @mouseout="mouseImgOut(item)"
                                                     height="50"
                                                     class="text-right pa-2"
                                                     v-on="on"
-                                            >
-                                                <template v-slot:placeholder>
-                                                    <v-row
-                                                            class="fill-height ma-0"
-                                                            align="center"
-                                                            justify="center"
-                                                    >
-                                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                                    </v-row>
-                                                </template>
-                                            </v-img>
+                                            ></v-img>
                                         </v-col>
                                         <v-col
                                                 cols="2"
@@ -72,53 +55,44 @@
                                         >
                                             <v-img
                                                     src="https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768"
-                                                    lazy-src="../../../public/images/no-image.png"
                                                     height="50"
                                                     class="text-right pa-2"
                                                     @mouseover="menu.src = 'https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768'"
                                                     v-on="on"
                                             >
-                                                <template v-slot:placeholder>
-                                                    <v-row
-                                                            class="fill-height ma-0"
-                                                            align="center"
-                                                            justify="center"
-                                                    >
-                                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                                    </v-row>
-                                                </template>
-                                                <v-overlay
-                                                        absolute
-                                                        color="black"
-                                                        opacity="0.8"
-                                                        class="caption"
-                                                >
-                                                    See All
-                                                </v-overlay>
-                                            </v-img>
-                                        </v-col>
-                                    </v-row>
-                                </v-item>
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                        <v-overlay
+                                                absolute
+                                                color="black"
+                                                opacity="0.8"
+                                                class="caption"
+                                        >
+                                            See All
+                                        </v-overlay>
+                                    </v-img>
+                                </v-col>
+                            </v-row>
+                        </template>
+                        <v-img
+                                :src="menu.src"
+                                lazy-src="../../../public/images/no-image.png"
+                                height="350"
+                                width="350"
+                                class="text-right pa-2"
+                        >
+                            <template v-slot:placeholder>
+                                <v-row
+                                        class="fill-height ma-0"
+                                        align="center"
+                                        justify="center"
+                                >
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
                             </template>
-                            <v-img
-                                    :src="menu.src"
-                                    lazy-src="../../../public/images/no-image.png"
-                                    height="350"
-                                    width="350"
-                                    class="text-right pa-2"
-                            >
-                                <template v-slot:placeholder>
-                                    <v-row
-                                            class="fill-height ma-0"
-                                            align="center"
-                                            justify="center"
-                                    >
-                                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                                    </v-row>
-                                </template>
-                            </v-img>
-                        </v-menu>
-                    </v-item-group>
+                        </v-img>
+                    </v-menu>
                 </v-col>
                 <v-col class="pa-0">
                     <router-link class="link text--black" :to="{name:'Hotel'}">
@@ -388,7 +362,7 @@
     name: 'Property_card',
     data(){
       return {
-        selected: null,
+        likeHotel: false,
         dialog: false,
         model: 0,
         tag: 0,

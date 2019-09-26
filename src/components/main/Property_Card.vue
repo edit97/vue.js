@@ -5,60 +5,79 @@
                 <v-col cols="4" class="py-0">
                     <v-row>
                         <v-col cols="12" class="py-0">
-                            <v-img
-                                    src="//pix5.agoda.net/hotelImages/566538/-1/20e5402f389a16d5f2a997c4e95e8679.jpg?s=450x450"
-                                    lazy-src="../../../public/images/no-image.png"
-                                    height="250"
-                                    class="text-right pa-2"
-                            >
-                                <template v-slot:placeholder>
-                                    <v-row
-                                            class="fill-height ma-0"
-                                            align="center"
-                                            justify="center"
+                                <v-img
+                                        src="//pix5.agoda.net/hotelImages/566538/-1/20e5402f389a16d5f2a997c4e95e8679.jpg?s=450x450"
+                                        lazy-src="../../../public/images/no-image.png"
+                                        height="250"
+                                        class="text-right pa-2"
+                                >
+                                    <template v-slot:placeholder>
+                                        <v-row
+                                                class="fill-height ma-0"
+                                                align="center"
+                                                justify="center"
+                                        >
+                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                        </v-row>
+                                    </template>
+                                    <v-btn icon dark @click="likeHotel = !likeHotel">
+                                        <v-icon>
+                                            {{ likeHotel ? 'mdi-heart' : 'mdi-heart-outline' }}
+                                        </v-icon>
+                                    </v-btn>
+                                </v-img>
+                        </v-col>
+                    </v-row>
+                    <v-menu open-on-hover top offset-y attach="menu">
+                        <template v-slot:activator="{ on }">
+                            <v-row class="px-3" id="menu">
+                                <v-col
+                                        v-for="(item,i) in $store.state.images[0]"
+                                        v-if="i <= 10"
+                                        :key="i"
+                                        cols="2"
+                                        md="2"
+                                        class="pa-0 zoom border_white"
+                                >
+                                    <v-img
+                                            :src="item"
+                                            lazy-src="../../../public/images/no-image.png"
+                                            @mouseover="mouseImgOver(item)"
+                                            @mouseout="mouseImgOut(item)"
+                                            height="50"
+                                            class="text-right pa-2"
+                                            v-on="on"
                                     >
-                                        <v-btn icon dark>
-                                            <v-icon>
-                                                {{ active ? 'mdi-heart' : 'mdi-heart-outline' }}
-                                            </v-icon>
-                                        </v-btn>
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
                                     </v-img>
-                                </v-item>
-                            </v-col>
-                        </v-row>
-                        <v-menu open-on-hover top offset-y attach="menu">
-                            <template v-slot:activator="{ on }">
-                                <v-item v-slot:default="{ active, toggle }">
-                                    <v-row class="px-3" id="menu">
-                                        <v-col
-                                                v-for="(item,i) in images[0]"
-                                                v-if="i <= 10"
-                                                :key="i"
-                                                cols="2"
-                                                md="2"
-                                                class="pa-0 zoom border_white"
-                                        >
-                                            <v-img
-                                                    :src="item"
-                                                    @mouseover="mouseImgOver(item)"
-                                                    @mouseout="mouseImgOut(item)"
-                                                    height="50"
-                                                    class="text-right pa-2"
-                                                    v-on="on"
-                                            ></v-img>
-                                        </v-col>
-                                        <v-col
-                                                cols="2"
-                                                md="2"
-                                                class="pa-0 pointer border_white"
-                                                @click.stop="dialog = true"
-                                        >
-                                            <v-img
-                                                    src="https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768"
-                                                    height="50"
-                                                    class="text-right pa-2"
-                                                    @mouseover="menu.src = 'https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768'"
-                                                    v-on="on"
+                                </v-col>
+                                <v-col
+                                        cols="2"
+                                        md="2"
+                                        class="pa-0 pointer border_white"
+                                        @click.stop="dialog = true"
+                                >
+                                    <v-img
+                                            src="https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768"
+                                            lazy-src="../../../public/images/no-image.png"
+                                            height="50"
+                                            class="text-right pa-2"
+                                            @mouseover="menu.src = 'https://pix6.agoda.net/hotelImages/566538/-1/719a596c109513eab63c55d6cd7822d2.jpg?s=1024x768'"
+                                            v-on="on"
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                    class="fill-height ma-0"
+                                                    align="center"
+                                                    justify="center"
                                             >
                                                 <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
                                             </v-row>

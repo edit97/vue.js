@@ -70,7 +70,7 @@
                                         v-for="(item, index) in applied.dates">
                                     <span>{{item}}</span>
                                     <v-spacer></v-spacer>
-                                    <v-btn @click="removeAppliedDates(index)" color="red" icon small>
+                                    <v-btn @click="removeApplied(index, 'dates')" color="red" icon small>
                                         <v-icon>mdi-close</v-icon>
                                     </v-btn>
                                 </v-row>
@@ -90,7 +90,7 @@
                                         v-for="(item, index) in applied.type">
                                     <span>{{item}}</span>
                                     <v-spacer></v-spacer>
-                                    <v-btn @click="removeAppliedType(index)" color="red" icon small>
+                                    <v-btn @click="removeApplied(index, 'type')" color="red" icon small>
                                         <v-icon>mdi-close</v-icon>
                                     </v-btn>
                                 </v-row>
@@ -120,7 +120,7 @@
                                         v-for="(item, index) in applied.age">
                                     <span>{{item}}</span>
                                     <v-spacer></v-spacer>
-                                    <v-btn @click="removeAppliedAge(index)" color="red" icon small>
+                                    <v-btn @click="removeApplied(index, 'age')" color="red" icon small>
                                         <v-icon>mdi-close</v-icon>
                                     </v-btn>
                                 </v-row>
@@ -130,7 +130,7 @@
                                         v-for="(item, index) in applied.operators">
                                     <span>{{item}}</span>
                                     <v-spacer></v-spacer>
-                                    <v-btn @click="removeAppliedOperators(index)" color="red" icon small>
+                                    <v-btn @click="removeApplied(index, 'operators')" color="red" icon small>
                                         <v-icon>mdi-close</v-icon>
                                     </v-btn>
                                 </v-row>
@@ -140,7 +140,7 @@
                                         v-for="(item, index) in applied.discounts">
                                     <span>{{item}}</span>
                                     <v-spacer></v-spacer>
-                                    <v-btn @click="removeAppliedDiscounts(index)" color="red" icon small>
+                                    <v-btn @click="removeApplied(index, 'discounts')" color="red" icon small>
                                         <v-icon>mdi-close</v-icon>
                                     </v-btn>
                                 </v-row>
@@ -208,6 +208,7 @@
                                         <v-treeview
                                                 :items="filters.destinations"
                                                 :return-object="true"
+                                                :value="applied.valueDestinations"
                                                 @input="filterDestinations($event)"
                                                 class="pa-0"
                                                 dense selectable
@@ -854,6 +855,7 @@
           date: null,
           dates: [],
           destinations: [],
+          valueDestinations: [],
           type: [],
           price: [],
           duration: [],
@@ -956,6 +958,7 @@
           date: null,
           dates: [],
           destinations: [],
+          valueDestinations: [],
           type: [],
           price: [],
           duration: [],
@@ -969,15 +972,12 @@
       removeAppliedDatePiker() {
         this.applied.date = null;
       },
-      removeAppliedDates(index) {
-        console.log(this.applied);
-        this.applied.dates.splice(index, 1);
+      removeApplied(index, item) {
+        this.applied[item].splice(index, 1);
       },
       removeAppliedDestinations(index) {
         this.applied.destinations.splice(index, 1);
-      },
-      removeAppliedType(index) {
-        this.applied.type.splice(index, 1);
+        this.applied.valueDestinations.splice(index, 1);
       },
       removeAppliedPrice(index) {
         this.applied.price.splice(index, 1);
@@ -986,15 +986,6 @@
       removeAppliedDuration(index) {
         this.applied.duration.splice(index, 1);
         this.filters.duration = [1, 50];
-      },
-      removeAppliedAge(index) {
-        this.applied.age.splice(index, 1);
-      },
-      removeAppliedOperators(index) {
-        this.applied.operators.splice(index, 1);
-      },
-      removeAppliedDiscounts(index) {
-        this.applied.discounts.splice(index, 1);
       },
 
       filterRange() {
@@ -1009,6 +1000,7 @@
       },
       filterDestinations(event) {
         this.applied.destinations = [];
+        this.applied.valueDestinations = event;
         for (let item of event) {
           this.applied.destinations.push(item.name);
         }
@@ -1020,9 +1012,6 @@
       mouseImgOut() {
         this.menu.src = '';
       },
-    },
-    created() {
-      // console.log(this.filters.destinations[0].children);
     },
   };
 </script>

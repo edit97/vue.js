@@ -98,6 +98,8 @@ export default new Vuex.Store({
         'https://d3hne3c382ip58.cloudfront.net/resized/750x420/segovia-half-day-tour-from-madrid-tour-2-454988_1543760668.JPG',
         'https://d3hne3c382ip58.cloudfront.net/resized/750x420/segovia-half-day-tour-from-madrid-tour-2-463756_1549280496.JPG',
     ],
+    rentDate: '',
+    rentTime: '',
   },
   mutations: {
     searchMenu (state, payload) {
@@ -105,6 +107,9 @@ export default new Vuex.Store({
     },
     filtersMenu (state, payload) {
       state.filter_overlay = payload
-    }
+    },
+    // rentDate(state, payload){
+    //   state.rentDate = payload
+    // },
   }
 });

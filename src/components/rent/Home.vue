@@ -7,7 +7,7 @@
                        <div class="display-1">Let’s find your ideal car</div>
                        <div class="my-2">
                            <el-date-picker
-                                   v-model="date"
+                                   v-model="$store.state.rentDate"
                                    type="daterange"
                                    range-separator="To"
                                    start-placeholder="Pick-up Date:"
@@ -19,8 +19,10 @@
                        </div>
                        <div class="my-2">
                            <el-time-picker
+                                   v-model="$store.state.rentTime"
                                    is-range
-                                   v-model="time"
+                                   format="h:mm"
+                                   value-format="h:mm"
                                    range-separator="To"
                                    start-placeholder="Pick-up Time:"
                                    end-placeholder="Drop-off Time:"
@@ -50,20 +52,20 @@
                                        </div>
                                    </v-tooltip>
                                </div>
-                               <div slot="append"  v-show="!betweenAge">
-                                   <div class="d-flex">
-                                       <span class="pt-2 pr-3">Driver's age</span>
-                                       <v-col cols="1" class="pa-0">
-                                           <el-input v-model.number="input" :maxlength="2"></el-input>
-                                       </v-col>
-                                   </div>
-                               </div>
                            </v-checkbox>
+                           <div v-show="!betweenAge">
+                               <div class="d-flex">
+                                   <span class="pt-2 pr-3">Driver's age</span>
+                                   <v-col cols="1" class="pa-0">
+                                       <el-input v-model.number="input" :maxlength="2"></el-input>
+                                   </v-col>
+                               </div>
+                           </div>
                        </div>
                        <v-chip
                                color="#d8eed5"
                                text-color="success"
-                               class="width_100"
+                               class="width_100 mt-2"
                                large label outlined
                                style="border: 2px dotted #4caf50; background-color: #d8eed5 !important;"
                        >

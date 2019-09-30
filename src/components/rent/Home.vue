@@ -4,10 +4,92 @@
            <v-col cols="6">
                <v-card class="justify-center pa-3">
                    <v-col>
-                       <div class="display-1">Let’s find your ideal car</div>
+                       <div class="display-1 mb-5">Let’s find your ideal car</div>
+                       <div class="body-2">Pick-up Location</div>
+                       <v-autocomplete
+                               v-model="select"
+                               :items="items"
+                               :search-input.sync="search"
+                               cache-items
+                               flat outlined
+                               hide-no-data
+                               hide-details
+                               clearable
+                               placeholder="city, airport, station, region, district…"
+                       >
+                           <template v-slot:item="{ item }">
+                               <v-hover v-slot:default="{ hover }">
+                                   <v-row  :class="hover ? 'place_menu_color' : ''" class="px-4">
+                                       <v-list-item-icon class="mr-3">
+                                           <v-icon :color="hover ? 'white' : 'grey'">
+                                               mdi-map-marker
+                                           </v-icon>
+                                       </v-list-item-icon>
+                                       <v-list-item-content>
+                                           <v-list-item-title v-text="item"></v-list-item-title>
+                                           <v-list-item-subtitle v-text="item" :class="hover ? 'white--text' : ''"></v-list-item-subtitle>
+                                       </v-list-item-content>
+                                       <v-list-item-action>
+                                           <v-chip
+                                                   :color="hover ? 'white' : '#5392f9'"
+                                                   class="font-weight-bold place_menu_chip"
+                                                   label outlined small>
+                                               City
+                                           </v-chip>
+                                       </v-list-item-action>
+                                   </v-row>
+                               </v-hover>
+                           </template>
+                       </v-autocomplete>
+                       <div class="mb-5">
+                           <v-checkbox
+                                   v-model="dropCar"
+                                   hide-details
+                                   class="d-inline-block mb-3"
+                                   label="Drop car off at different location"
+                           ></v-checkbox>
+                           <div v-show="dropCar">
+                               <div class="body-2">Drop-off Location</div>
+                               <v-autocomplete
+                                       v-model="endLocationSelect"
+                                       :items="items"
+                                       :search-input.sync="endLocationSearch"
+                                       cache-items
+                                       flat outlined
+                                       hide-no-data
+                                       hide-details
+                                       clearable
+                                       placeholder="city, airport, station, region, district…"
+                               >
+                                   <template v-slot:item="{ item }">
+                                       <v-hover v-slot:default="{ hover }">
+                                           <v-row :class="hover ? 'place_menu_color' : ''" class="px-4">
+                                               <v-list-item-icon class="mr-3">
+                                                   <v-icon :color="hover ? 'white' : 'grey'">
+                                                       mdi-map-marker
+                                                   </v-icon>
+                                               </v-list-item-icon>
+                                               <v-list-item-content>
+                                                   <v-list-item-title v-text="item"></v-list-item-title>
+                                                   <v-list-item-subtitle v-text="item" :class="hover ? 'white--text' : ''"></v-list-item-subtitle>
+                                               </v-list-item-content>
+                                               <v-list-item-action>
+                                                   <v-chip
+                                                           :color="hover ? 'white' : '#5392f9'"
+                                                           class="font-weight-bold place_menu_chip"
+                                                           label outlined small>
+                                                       City
+                                                   </v-chip>
+                                               </v-list-item-action>
+                                           </v-row>
+                                       </v-hover>
+                                   </template>
+                               </v-autocomplete>
+                           </div>
+                       </div>
                        <div class="my-2">
                            <el-date-picker
-                                   v-model="$store.state.rentDate"
+                                   v-model="date"
                                    type="daterange"
                                    range-separator="To"
                                    start-placeholder="Pick-up Date:"
@@ -19,7 +101,7 @@
                        </div>
                        <div class="my-2">
                            <el-time-picker
-                                   v-model="$store.state.rentTime"
+                                   v-model="time"
                                    is-range
                                    format="h:mm"
                                    value-format="h:mm"
@@ -152,13 +234,98 @@
     name: 'Home',
     data() {
       return {
+        items: [],
+        states: [
+          'Alabama',
+          'Alaska',
+          'American Samoa',
+          'Arizona',
+          'Arkansas',
+          'California',
+          'Colorado',
+          'Connecticut',
+          'Delaware',
+          'District of Columbia',
+          'Federated States of Micronesia',
+          'Florida',
+          'Georgia',
+          'Guam',
+          'Hawaii',
+          'Idaho',
+          'Illinois',
+          'Indiana',
+          'Iowa',
+          'Kansas',
+          'Kentucky',
+          'Louisiana',
+          'Maine',
+          'Marshall Islands',
+          'Maryland',
+          'Massachusetts',
+          'Michigan',
+          'Minnesota',
+          'Mississippi',
+          'Missouri',
+          'Montana',
+          'Nebraska',
+          'Nevada',
+          'New Hampshire',
+          'New Jersey',
+          'New Mexico',
+          'New York',
+          'North Carolina',
+          'North Dakota',
+          'Northern Mariana Islands',
+          'Ohio',
+          'Oklahoma',
+          'Oregon',
+          'Palau',
+          'Pennsylvania',
+          'Puerto Rico',
+          'Rhode Island',
+          'South Carolina',
+          'South Dakota',
+          'Tennessee',
+          'Texas',
+          'Utah',
+          'Vermont',
+          'Virgin Island',
+          'Virginia',
+          'Washington',
+          'West Virginia',
+          'Wisconsin',
+          'Wyoming',
+        ],
+        search: null,
+        endLocationSearch: null,
+        select: null,
+        endLocationSelect: null,
+        dropCar: false,
         date: '',
         time: '',
         betweenAge: true,
         input: 30,
         radios: 'Leisure',
       };
-    }
+    },
+    watch: {
+      search (val) {
+        val && val !== this.select && this.querySelections(val)
+      },
+      endLocationSearch (val) {
+        val && val !== this.endLocationSelect && this.querySelections(val)
+      },
+    },
+    methods: {
+      querySelections (v) {
+        // Simulated ajax query
+        setTimeout(() => {
+          this.items = this.states.filter(e => {
+            return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
+          })
+        }, 500)
+      },
+    },
   };
 </script>
 
@@ -168,5 +335,9 @@
     }
     .height_100{
         height: 100% !important;
+    }
+    .place_menu_color{
+        background-color: #5a96f9;
+        color: white !important;
     }
 </style>

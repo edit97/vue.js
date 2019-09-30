@@ -6,7 +6,7 @@
                     <v-col>
                         <div class="title mb-2">Let’s find your ideal car</div>
                         <el-date-picker
-                                v-model="$store.state.rentDate"
+                                v-model="date"
                                 format="yy/MM/dd"
                                 value-format="yyyy-MM-dd"
                                 type="daterange"
@@ -16,14 +16,14 @@
                                 style="width: 220px"
                         ></el-date-picker>
                         <el-time-picker
-                                v-model="$store.state.rentTime[0]"
+                                v-model="time[0]"
                                 format="h:mm"
                                 value-format="h:mm"
                                 placeholder="Drop-off Time:"
                                 class="my-2"
                         ></el-time-picker>
                         <el-time-picker
-                                v-model="$store.state.rentTime[1]"
+                                v-model="time[1]"
                                 placeholder="Pick-up Time:"
                                 format="h:mm"
                                 value-format="h:mm"
@@ -366,12 +366,12 @@
                     <v-row class="px-3">
                         <v-col>
                             <div class="caption">Pick-up</div>
-                            <div class="subtitle-2">Yerevan Airport - {{$store.state.rentTime[0]}} {{$store.state.rentDate[0]}}</div>
+                            <div class="subtitle-2">Yerevan Airport - {{time[0]}} {{date[0]}}</div>
                         </v-col>
                         <v-icon>mdi-chevron-double-right</v-icon>
                         <v-col>
                             <div class="caption">Drop-off</div>
-                            <div class="body-1">Yerevan Airport - {{$store.state.rentTime[1]}} {{$store.state.rentDate[0]}}</div>
+                            <div class="body-1">Yerevan Airport - {{time[1]}} {{date[0]}}</div>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -384,7 +384,7 @@
                                 :key="i"
                                 class="pa-1"
                                 cols="2"
-                                v-for="(item, i) in items"
+                                v-for="(item, i) in carFilter"
                         >
                             <v-hover v-slot:default="{ hover }">
                                 <v-item v-slot:default="{ active, toggle }">
@@ -425,7 +425,7 @@
                             text-color="white"
                             @click:close="closefilterCar(index)"
                     >
-                        {{ items[item].text }}
+                        {{ carFilter[item].text }}
                     </v-chip>
                 </div>
                 <v-hover v-slot:default="{ hover }">
@@ -680,7 +680,7 @@
           paymentCards: ['Debit card', 'Credit card',],
           kilometres: ['Unlimited',],
         },
-        items: [
+        carFilter: [
           {
             src: 'https://cdn2.rcstatic.com/images/car_images/new_images/kia/picanto_5_door_lrg.jpg',
             text: 'Small Cars',

@@ -2,130 +2,140 @@
     <v-app-bar :class="$store.state.overlay ? 'search_app' : ''" flat color="#20274d" :max-height="64" :scroll-threshold="40">
         <v-container class="d-flex  pb-0 mt-3 search">
             <v-flex  ma-0 sm5>
-                <v-menu v-model="place" offset-y  min-width="750"  nudge-bottom="8" :close-on-content-click="false">
-                    <template v-slot:activator="{ on }">
-                        <v-text-field
-                                v-on="on"
-                                label="Prepend inner"
-                                prepend-inner-icon="mdi-magnify"
-                                solo hide-details sm3
-                                @click="searchMenu()"
-                        ></v-text-field>
-                    </template>
-                    <v-list flat class="py-0">
-                        <v-list-item-group
-                                    v-model="check_place"
+                <v-autocomplete
+                        v-model="select"
+                        :items="items"
+                        :search-input.sync="search"
+                        cache-items
+                        flat solo
+                        hide-details
+                        clearable
+                        placeholder="Enter a destination or property"
+                        @click="searchMenu()"
+                        @blur="closeLayer"
+                >
+                    <v-list-item v-slot:default="{ active }" dense color="#5392f9" active-class="place_menu_color">
+                        <v-list-item-icon class="mr-3">
+                            <v-icon :color="active ? 'white' : 'grey'">mdi-eye</v-icon>
+                        </v-list-item-icon>
+                        <div>
+                            <span :class="active ? 'white--text' : 'blue_text'">Barcelona,</span>
+                            <span :class="active ? 'white--text' : 'grey--text'">Spain</span>
+                        </div>
+                        <v-spacer></v-spacer>
+                        <div :class="active ? 'white--text' : 'grey--text'">
+                            <span class="pr-3">30 Aug 2019 - 1 Sep 2019</span>
+                            <span>1 room, 2 adults, 0 children</span>
+                        </div>
+                    </v-list-item>
+                    <template v-slot:no-data>
+                        <v-list flat class="py-0">
+                            <v-list-item-group
                                     color="#5a96f9"
                                     mandatory
                                     class="body-2 width_100"
                                     active-class="place_menu_color"
                             >
-                                <v-list-item dense color="#5392f9">
+                                <v-list-item v-slot:default="{ active }" dense color="#5392f9" active-class="place_menu_color">
                                     <v-list-item-icon class="mr-3">
-                                        <v-icon :color="(check_place === 0) ? 'white' : 'grey'">mdi-eye</v-icon>
+                                        <v-icon :color="active ? 'white' : 'grey'">mdi-eye</v-icon>
                                     </v-list-item-icon>
-                                    <div >
-                                        <span :class="(check_place === 0) ? 'white--text' : 'blue_text'">Barcelona</span>,
-                                        <span :class="(check_place === 0) ? 'white--text' : 'grey--text'">Spain</span>
+                                    <div>
+                                        <span :class="active ? 'white--text' : 'blue_text'">Barcelona,</span>
+                                        <span :class="active ? 'white--text' : 'grey--text'">Spain</span>
                                     </div>
                                     <v-spacer></v-spacer>
-                                    <div :class="(check_place === 0) ? 'white--text' : 'grey--text'">
+                                    <div :class="active ? 'white--text' : 'grey--text'">
                                         <span class="pr-3">30 Aug 2019 - 1 Sep 2019</span>
                                         <span>1 room, 2 adults, 0 children</span>
                                     </div>
                                 </v-list-item>
 
                                 <v-divider></v-divider>
-                                <v-list-item color="#5392f9">
+                                <v-list-item v-slot:default="{ active }" color="#5392f9">
                                     <v-list-item-icon class="mr-3">
-                                        <v-icon :color="(check_place === 1) ? 'white' : 'grey'">mdi-home-city-outline</v-icon>
+                                        <v-icon :color="active ? 'white' : 'grey'">mdi-home-city-outline</v-icon>
                                     </v-list-item-icon>
                                     <div>
-                                    <span class="font-weight-bold"><span :class="(check_place === 1) ? 'white--text' : 'blue_text'">Barcelona</span>
-                                        <v-chip color="#e12d2d" dark x-small>Popular</v-chip>
-                                    </span><br>
+                                        <span class="font-weight-bold"><span :class="active ? 'white--text' : 'blue_text'">Barcelona</span>
+                                            <v-chip color="#e12d2d" dark x-small>Popular</v-chip>
+                                        </span><br>
                                         <span>Spain</span>
                                     </div>
                                     <v-spacer></v-spacer>
                                     <v-chip
                                             class="font-weight-bold place_menu_chip"
-                                            :color="(check_place === 1) ? 'white' : '#5392f9'"
+                                            :color="active ? 'white' : '#5392f9'"
                                             outlined label small>
                                         City
-                                     </v-chip>
+                                    </v-chip>
                                 </v-list-item>
 
                                 <v-divider></v-divider>
-                                <v-list-item color="#5392f9">
+                                <v-list-item v-slot:default="{ active }" color="#5392f9">
                                     <v-list-item-icon class="mr-3">
-                                        <v-icon :color="(check_place === 2) ? 'white' : 'grey'">mdi-star</v-icon>
+                                        <v-icon :color="active ? 'white' : 'grey'">mdi-star</v-icon>
                                     </v-list-item-icon>
                                     <div>
-                                        <span class="font-weight-bold">Stay in the heart of <span :class="(check_place === 2) ? 'white--text' : 'blue_text'">Barcelona</span></span><br>
+                                        <span class="font-weight-bold">Stay in the heart of <span :class="active ? 'white--text' : 'blue_text'">Barcelona</span></span><br>
                                         <span>Spain</span>
                                     </div>
                                     <v-spacer></v-spacer>
-                                    <v-chip class="font-weight-bold place_menu_chip" :color="(check_place === 2) ? 'white' : '#5392f9'" outlined label small>Area</v-chip>
+                                    <v-chip class="font-weight-bold place_menu_chip" :color="active ? 'white' : '#5392f9'" outlined label small>Area</v-chip>
                                 </v-list-item>
 
                                 <v-divider></v-divider>
-                                <v-list-item color="#5392f9">
+                                <v-list-item v-slot:default="{ active }" color="#5392f9">
                                     <v-list-item-icon class="mr-3">
-                                        <v-icon :color="(check_place === 3) ? 'white' : 'grey'">mdi-map-marker</v-icon>
+                                        <v-icon :color="active ? 'white' : 'grey'">mdi-map-marker</v-icon>
                                     </v-list-item-icon>
                                     <div>
-                                        <span class="font-weight-bold"><span :color="(check_place === 3) ? 'white' : '#5392f9'" >Barcelona</span> Airport</span><br>
+                                        <span class="font-weight-bold"><span :color="active ? 'white' : '#5392f9'" >Barcelona</span> Airport</span><br>
                                         <span>Barcelona</span>
                                     </div>
                                     <v-spacer></v-spacer>
-                                    <v-chip class="font-weight-bold place_menu_chip" :color="(check_place === 3) ? 'white' : '#5392f9'" outlined label small>Area</v-chip>
+                                    <v-chip class="font-weight-bold place_menu_chip" :color="active ? 'white' : '#5392f9'" outlined label small>Area</v-chip>
                                 </v-list-item>
 
                                 <v-divider></v-divider>
-                                <v-list-item color="#5392f9">
+                                <v-list-item v-slot:default="{ active }" color="#5392f9">
                                     <v-list-item-icon class="mr-3">
-                                        <v-icon :color="(check_place === 4) ? 'white' : 'grey'">mdi-map-marker</v-icon>
+                                        <v-icon :color="active ? 'white' : 'grey'">mdi-map-marker</v-icon>
                                     </v-list-item-icon>
                                     <div>
                                         <span class="font-weight-bold">Eixample</span><br>
                                         <span>Barcelona</span>
                                     </div>
                                     <v-spacer></v-spacer>
-                                    <v-chip class="font-weight-bold place_menu_chip" :color="(check_place === 4) ? 'white' : '#5392f9'" outlined label small>Area</v-chip>
-                                </v-list-item>
-
-                                <v-divider></v-divider>
-                                <v-list-item color="#5392f9">
-                                    <v-list-item-icon class="mr-3">
-                                        <v-icon :color="(check_place === 5) ? 'white' : 'grey'">mdi-map-marker</v-icon>
-                                    </v-list-item-icon>
-                                    <div>
-                                        <span class="font-weight-bold">La Rambla</span><br>
-                                        <span>Barcelona</span>
-                                    </div>
-                                    <v-spacer></v-spacer>
-                                    <v-chip class="font-weight-bold place_menu_chip" :color="(check_place === 5) ? 'white' : '#5392f9'" outlined label small>Area</v-chip>
-                                </v-list-item>
-
-                                <v-divider></v-divider>
-                                <v-list-item color="#5392f9">
-                                    <v-list-item-icon class="mr-3">
-                                        <v-icon :color="(check_place === 6) ? 'white' : 'grey'">mdi-map-marker</v-icon>
-                                    </v-list-item-icon>
-                                    <div>
-                                        <span class="font-weight-bold">Gotic</span><br>
-                                        <span>Barcelona</span>
-                                    </div>
-                                    <v-spacer></v-spacer>
-                                    <v-chip
-                                        class="font-weight-bold text-center place_menu_chip"
-                                        :color="(check_place === 6) ? 'white' : '#5392f9'" outlined label small>
-                                        Area
-                                    </v-chip>
+                                    <v-chip class="font-weight-bold place_menu_chip" :color="active ? 'white' : '#5392f9'" outlined label small>Area</v-chip>
                                 </v-list-item>
                             </v-list-item-group>
-                    </v-list>
-                </v-menu>
+                        </v-list>
+                    </template>
+                    <template v-slot:item="{ item }">
+                        <v-hover v-slot:default="{ hover }">
+                            <v-row  :class="hover ? 'place_menu_color' : ''" class="px-4">
+                                <v-list-item-icon class="mr-3">
+                                    <v-icon :color="hover ? 'white' : 'grey'">
+                                        mdi-map-marker
+                                    </v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title v-text="item"></v-list-item-title>
+                                    <v-list-item-subtitle v-text="'Barcelona'" :class="hover ? 'white--text' : ''"></v-list-item-subtitle>
+                                </v-list-item-content>
+                                <v-list-item-action>
+                                    <v-chip
+                                            :color="hover ? 'white' : '#5392f9'"
+                                            class="font-weight-bold place_menu_chip"
+                                            label outlined small>
+                                        City
+                                    </v-chip>
+                                </v-list-item-action>
+                            </v-row>
+                        </v-hover>
+                    </template>
+                </v-autocomplete>
             </v-flex>
             <div class="block mx-1" @click="searchMenu()">
                 <el-date-picker
@@ -417,11 +427,72 @@
     name: 'SearchNav',
     data(){
       return {
+        items: [],
+        states: [
+          'Alabama',
+          'Alaska',
+          'American Samoa',
+          'Arizona',
+          'Arkansas',
+          'California',
+          'Colorado',
+          'Connecticut',
+          'Delaware',
+          'District of Columbia',
+          'Federated States of Micronesia',
+          'Florida',
+          'Georgia',
+          'Guam',
+          'Hawaii',
+          'Idaho',
+          'Illinois',
+          'Indiana',
+          'Iowa',
+          'Kansas',
+          'Kentucky',
+          'Louisiana',
+          'Maine',
+          'Marshall Islands',
+          'Maryland',
+          'Massachusetts',
+          'Michigan',
+          'Minnesota',
+          'Mississippi',
+          'Missouri',
+          'Montana',
+          'Nebraska',
+          'Nevada',
+          'New Hampshire',
+          'New Jersey',
+          'New Mexico',
+          'New York',
+          'North Carolina',
+          'North Dakota',
+          'Northern Mariana Islands',
+          'Ohio',
+          'Oklahoma',
+          'Oregon',
+          'Palau',
+          'Pennsylvania',
+          'Puerto Rico',
+          'Rhode Island',
+          'South Carolina',
+          'South Dakota',
+          'Tennessee',
+          'Texas',
+          'Utah',
+          'Vermont',
+          'Virgin Island',
+          'Virginia',
+          'Washington',
+          'West Virginia',
+          'Wisconsin',
+          'Wyoming',
+        ],
+        search: null,
+        select: null,
         date: '',
-        count: 0,
-        place: false,
         room: false,
-        check_place: null,
         check_room: null,
         family_travelers: {
           rooms: 1,
@@ -440,6 +511,14 @@
       }
     },
     methods: {
+      querySelections (v) {
+        // Simulated ajax query
+        setTimeout(() => {
+          this.items = this.states.filter(e => {
+            return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
+          })
+        }, 500)
+      },
       searchMenu(){
         this.$store.commit('searchMenu', true);
       },
@@ -449,10 +528,10 @@
       }
     },
     watch: {
+      search (val) {
+        val && val !== this.select && this.querySelections(val)
+      },
         room(show) {
-          if (!show) this.closeLayer();
-        },
-        place(show) {
           if (!show) this.closeLayer();
         },
     },

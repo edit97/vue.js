@@ -1,7 +1,7 @@
 <template>
     <v-app-bar :class="$store.state.filter_overlay ? 'filters_app' : ''" :fixed="fixed">
         <v-container pa-0 class="filters d-flex">
-            <v-flex  class="filters_select">
+            <v-flex xs12 class="filters_select">
                 <v-toolbar-title class="d-inline caption font-weight-bold mx-3">Filters</v-toolbar-title>
                 <v-menu offset-y v-model="popular" min-width="400" nudge-bottom="20" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
@@ -282,6 +282,7 @@
                     rounded
                     solo
                     class="d-inline-block mx-3"
+                    xs12
             ></v-text-field>
         </v-container>
     </v-app-bar>

@@ -2,7 +2,7 @@
     <v-hover  v-slot:default="{ hover }">
         <v-card outlined flat :elevation="hover ? 2 : 0" class=" ticket">
             <v-row>
-                <v-col cols="4" class="py-0">
+                <v-col cols="12" md="4" class="py-0">
                     <v-row>
                         <v-col cols="12" class="py-0">
                                 <v-img
@@ -113,7 +113,7 @@
                         </v-img>
                     </v-menu>
                 </v-col>
-                <v-col class="pa-0">
+                <v-col class="py-0">
                     <router-link class="link text--black" :to="{name:'Hotel'}">
                         <span class="link black_text text--black title">Catalonia Square Hotel</span>
                     </router-link>
@@ -228,7 +228,7 @@
                     </p>
                 </v-col>
                 <v-divider class="mx-3 my-0" inset vertical></v-divider>
-                <v-col cols="3" class="py-0">
+                <v-col cols="12"  md="3"  class="py-0">
                     <v-layout column justify-end fill-height text-right>
                         <v-spacer></v-spacer>
                         <v-col>

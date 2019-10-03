@@ -11,7 +11,7 @@
                 </v-chip>
                 <v-card flat :elevation="hover ? 2 : 0" class="ticket recommended">
                     <v-row>
-                        <v-col cols="4" class="py-0">
+                        <v-col cols="12" md="4" class="py-0">
                             <v-row>
                                 <v-col cols="12" class="py-0">
                                     <v-img
@@ -122,7 +122,7 @@
                                 </v-img>
                             </v-menu>
                         </v-col>
-                        <v-col class="pa-0">
+                        <v-col class="py-0">
                             <router-link class="link text--black" :to="{name:'Hotel',params:{id: 1}}">
                                 <h4><a class="link black_text text--black">Catalonia Square Hotel</a></h4>
                             </router-link>
@@ -235,7 +235,7 @@
                             </p>
                         </v-col>
                         <v-divider class="mx-3 my-0" inset vertical></v-divider>
-                        <v-col cols="3" class="py-0">
+                        <v-col cols="12"  md="3" class="py-0">
                             <v-layout column justify-end fill-height text-right>
                                 <v-spacer></v-spacer>
                                 <v-col>
@@ -302,7 +302,7 @@
                 </v-list-item>
                 <v-divider></v-divider>
                 <v-row>
-                    <v-col cols="4" class="py-0">
+                    <v-col cols="12" md="4" class="py-0">
                         <v-row>
                             <v-col cols="12" class="py-0">
                                 <v-img
@@ -414,7 +414,7 @@
                             </v-img>
                         </v-menu>
                     </v-col>
-                    <v-col class="pa-0">
+                    <v-col class="py-0">
                         <router-link class="link text--black" :to="{name:'Hotel',params:{id: 1}}">
                             <h4><a class="link black_text text--black pb-0">Catalonia Square Hotel</a></h4>
                         </router-link>
@@ -527,7 +527,7 @@
                         </p>
                     </v-col>
                     <v-divider class="mx-3 my-0" inset vertical></v-divider>
-                    <v-col cols="3" class="py-0">
+                    <v-col cols="12"  md="3" class="py-0">
                         <v-layout column justify-end fill-height text-right>
                             <v-spacer></v-spacer>
                             <v-col>
@@ -589,7 +589,7 @@
                     </v-list-item-action>
                 </v-list-item>
                 <v-row>
-                    <v-col cols="4" class="py-0">
+                    <v-col cols="12" md="4" class="py-0">
                         <v-row>
                             <v-col cols="12" class="py-0">
                                 <v-img
@@ -813,7 +813,7 @@
                         </p>
                     </v-col>
                     <v-divider class="mx-3 my-0" inset vertical></v-divider>
-                    <v-col cols="3" class="py-0">
+                    <v-col cols="12"  md="3" class="py-0">
                         <v-layout column justify-end fill-height text-right>
                             <v-spacer></v-spacer>
                             <v-col>

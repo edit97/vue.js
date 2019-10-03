@@ -1,7 +1,7 @@
 <template>
     <v-app-bar :class="$store.state.filter_overlay ? 'filters_app' : ''" :fixed="fixed">
         <v-container pa-0 class="filters d-flex">
-            <v-flex xs12 class="filters_select">
+            <v-col cols="12" md="6" class="filters_select">
                 <v-toolbar-title class="d-inline caption font-weight-bold mx-3">Filters</v-toolbar-title>
                 <v-menu offset-y v-model="popular" min-width="400" nudge-bottom="20" :close-on-content-click="false">
                     <template v-slot:activator="{ on }">
@@ -271,19 +271,20 @@
                         </el-checkbox-group>
                     </v-list>
                 </v-menu>
-            </v-flex>
+            </v-col>
 
             <v-spacer></v-spacer>
 
-            <v-text-field
-                    label="Search within results"
-                    prepend-inner-icon="mdi-magnify"
-                    hide-details
-                    rounded
-                    solo
-                    class="d-inline-block mx-3"
-                    xs12
-            ></v-text-field>
+            <v-col cols="12" md="4">
+                <v-text-field
+                        label="Search within results"
+                        prepend-inner-icon="mdi-magnify"
+                        hide-details
+                        rounded
+                        solo
+                        class="d-inline-block mx-3"
+                ></v-text-field>
+            </v-col>
         </v-container>
     </v-app-bar>
 </template>

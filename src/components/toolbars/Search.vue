@@ -523,7 +523,7 @@
         this.$store.commit('searchMenu', true);
       },
       closeLayer() {
-        if(!this.room && !this.place)
+        if(!this.room)
             this.$store.commit('searchMenu', false);
       }
     },

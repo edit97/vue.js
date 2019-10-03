@@ -35,8 +35,8 @@
                 </v-flex>
                 <v-tab-item>
                     <v-card flat tile>
-                        <v-layout>
-                            <v-flex xs12 sm12 md3 lg3 pl-4 mt-3>
+                        <v-row>
+                            <v-col cols="12" xs="12" sm="6" md="3" class="mt-3">
                                 <v-card tile flat>
                                     <iframe
                                             width="295"
@@ -105,8 +105,8 @@
                                         </v-layout>
                                     </v-card>
                                 </v-card>
-                            </v-flex>
-                            <v-flex xs12 sm12 md9 lg9 px-4 mt-3>
+                            </v-col>
+                            <v-col cols="12" xs="12" sm="6" md="9" class="mt-3">
                                 <v-card tile flat >
                                     <v-card color="rgb(253, 238, 238)" flat mt-4>
                                         <v-card-text >
@@ -181,8 +181,8 @@
                                         </v-flex>
                                     </v-layout>
                                 </v-card>
-                            </v-flex>
-                        </v-layout>
+                            </v-col>
+                        </v-row>
                     </v-card>
                 </v-tab-item>
             </v-tabs>

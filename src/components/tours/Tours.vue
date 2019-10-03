@@ -46,7 +46,7 @@
                 </v-tab>
                 <v-tab-item>
                     <v-row>
-                        <v-col cols="3">
+                        <v-col cols="12" xs="6" sm="4" md="3">
                             <v-card v-show="showApplied" class="mb-5" flat outlined>
                                 <v-layout class="pl-5 py-3 white--text bg_blue">
                                     <div>{{filtersCount}} Filters Applied</div>
@@ -381,11 +381,11 @@
                                 </v-expansion-panel>
                             </v-expansion-panels>
                         </v-col>
-                        <v-col cols="9">
+                        <v-col cols="12" xs="6" sm="8" md="9">
                             <v-hover v-slot:default="{ hover }">
                                 <v-card :elevation="hover ? 2 : 0" class="ticket" flat outlined>
                                     <v-row>
-                                        <v-col class="py-0" cols="4">
+                                        <v-col cols="12" md="4" class="py-0">
                                             <v-row>
                                                 <v-col class="py-0" cols="12">
                                                     <v-img
@@ -516,7 +516,7 @@
                                                     </v-col>
                                                 </v-row>
                                         </v-col>
-                                        <v-col class="pa-0">
+                                        <v-col class="py-0">
                                             <!--                                            <router-link class="link text&#45;&#45;black" :to="{name:'Hotel'}">-->
                                             <span class="link black_text text--black title mt-3">Gibraltar Sightseeing Tour From Malaga</span>
                                             <!--                                            </router-link>-->
@@ -665,7 +665,7 @@
                                             </v-row>
                                         </v-col>
                                         <v-divider class="mx-3 my-0" inset vertical></v-divider>
-                                        <v-col class="py-0" cols="3">
+                                        <v-col cols="12" md="3" class="py-0">
                                             <v-layout column fill-height justify-end text-right>
                                                 <v-spacer></v-spacer>
                                                 <v-col>
